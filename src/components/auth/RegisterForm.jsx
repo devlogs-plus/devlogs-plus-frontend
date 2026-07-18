@@ -1,4 +1,3 @@
-//import {register} from "../../api/auth.js";
 import {useRef} from "react";
 import {register} from "../../api/auth.js";
 
@@ -8,11 +7,6 @@ export function RegisterForm(){
     const passwordRef = useRef(null)
 
     function RegisterUser() {
-        console.log("Registered!")
-        console.log(emailRef.current.value)
-        console.log(nameRef.current.value)
-        console.log(passwordRef.current.value)
-
         const userObject = {
             "email": emailRef.current.value.toString(),
             "password": passwordRef.current.value.toString(),
