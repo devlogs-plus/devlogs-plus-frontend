@@ -1,7 +1,7 @@
-const BASE_URL = import.meta.env.BASE_URL
+const API_BASE = import.meta.env.VITE_API_BASE
 
 export async function apiFetch(path, options = {}) {
-    const res = await fetch(`${BASE_URL}${path}`, {
+    const res = await fetch(`${API_BASE}${path}`, {
         credentials: 'include',
         headers: {'Content-Type': 'application/json', ...options.headers},
         ...options
