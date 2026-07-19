@@ -1,7 +1,7 @@
 import {createContext, useContext} from "react";
 import {useCurrentUser} from "../hooks/useAuth.js";
 
-const AuthContext = createContext(undefined)
+const AuthContext = createContext({ user: null, isLoading: false})
 
 export function AuthProvider({children}) {
     const {data: user, isLoading} = useCurrentUser()
