@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
 import {useLogin} from "../../hooks/useAuth.js";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 
 export function LoginForm() {
     const emailRef = useRef(null)
@@ -8,6 +8,8 @@ export function LoginForm() {
     const [error, setError] = useState(null)
     const loginMutation = useLogin()
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/"
 
     async function loginUser() {
         setError(null)
@@ -18,7 +20,7 @@ export function LoginForm() {
         }
         try {
             await loginMutation.mutateAsync(userObject)
-            navigate("/")
+            navigate(from, {replace: true})
         } catch (err) {
             setError(err.message || "Login failed")
         }
