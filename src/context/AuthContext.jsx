@@ -6,6 +6,10 @@ const AuthContext = createContext({ user: null, isLoading: false})
 export function AuthProvider({children}) {
     const {data: user, isLoading} = useCurrentUser()
 
+    if (isLoading) {
+        return
+    }
+
     return (
         <AuthContext.Provider value={{ user:user ?? null, isLoading}}>
             {children}
@@ -13,6 +17,7 @@ export function AuthProvider({children}) {
     )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
     const context = useContext(AuthContext)
     if (context === undefined) {
