@@ -25,7 +25,7 @@ export function ProjectView() {
 
     if (loading) return <div>Loading..</div>
     if (error) return <div>Error: {error.message}</div>
-    if (!project) return <div>Project not found</div>
+    if (!project) return <NotFoundPage/>
 
     const {name, short_description, repo_url, demo_url, created_at} = project
 
