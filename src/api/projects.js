@@ -21,3 +21,7 @@ export async function createProject(project) {
         body: JSON.stringify(project)
     })
 }
+
+export async function getSingleProject(projectId) {
+    return apiFetch(`/projects/${projectId}`)
+}

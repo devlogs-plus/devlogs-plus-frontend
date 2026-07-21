@@ -7,6 +7,7 @@ import {ProtectedRoute} from "./components/common/ProtectedRoute.jsx";
 import PageContainer from "./components/layout/PageContainer.jsx";
 import ViewProjects from "./components/projects/ViewProjects.jsx";
 import ProjectForm from "./components/projects/ProjectForm.jsx";
+import ProjectView from "./components/projects/ProjectView.jsx";
 
 function HomePage() {
     const {user, isLoading} = useAuth()
@@ -34,6 +35,7 @@ export default function App() {
                 <Route path="/register" element={<RegisterForm/>}/>
                 <Route path="/login" element={<LoginForm />}/>
                 <Route path="/projects" element={<ViewProjects/>}/>
+                <Route path="/projects/:id" element={<ProjectView/>}/>
                 <Route element={<ProtectedRoute />}>
                     <Route path="/createproject" element={<ProjectForm/>}/>
                 </Route>

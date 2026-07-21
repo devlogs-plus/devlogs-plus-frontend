@@ -1,5 +1,5 @@
 import {use, useRef, useState} from "react";
-import useCreateProject from "../../hooks/useCreateProject.jsx";
+import useCreateProject from "../../hooks/useCreateProject.js";
 import {parseApiError} from "../../api/client.js";
 
 export function ProjectForm() {
