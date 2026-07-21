@@ -2,6 +2,7 @@ import {useRef, useState} from "react";
 import {register} from "../../api/auth.js";
 import {parseApiError} from "../../api/client.js";
 import {useNavigate} from "react-router-dom";
+import {createProject} from "../../api/projects.js";
 
 export function RegisterForm(){
     const emailRef = useRef(null)

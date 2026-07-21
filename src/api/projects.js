@@ -14,3 +14,10 @@ export async function getProjects(params = {}) {
     if (res && Array.isArray(res.data)) return res.data;
     return res;
 }
+
+export async function createProject(project) {
+    return apiFetch('/projects', {
+        method: 'POST',
+        body: JSON.stringify(project)
+    })
+}
