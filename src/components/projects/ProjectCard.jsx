@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 export function ProjectCard({ project }) {
     if (!project) {
         return null; // or show a placeholder
@@ -8,16 +10,19 @@ export function ProjectCard({ project }) {
         short_description: shortDescription,
         demo_url: demoUrl,
         repo_url: repoUrl,
+        id
     } = project;
 
     return (
         <div className="projectCard">
-            <p>-----------------------</p>
-            <h3>{name}</h3>
-            <p>{shortDescription}</p>
-            <p>Demo Url: {demoUrl}</p>
-            <p>Repo Url: {repoUrl}</p>
-            <p>-----------------------</p>
+            <Link to={`/projects/${id}`}>
+                <p>-----------------------</p>
+                <h3>{name}</h3>
+                <p>{shortDescription}</p>
+                <p>Demo Url: {demoUrl}</p>
+                <p>Repo Url: {repoUrl}</p>
+                <p>-----------------------</p>
+            </Link>
         </div>
     );
 }
