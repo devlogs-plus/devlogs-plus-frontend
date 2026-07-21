@@ -27,7 +27,8 @@ export function Nav() {
                     <button onClick={handleLogout} disabled={logout.isLoading}>
                         {logout.isLoading ? "Logging out":"Logout"}
                     </button>{" "}
-                    | <Link to="/">Home</Link>
+                    | <Link to="/">Home</Link> {" "}
+                    | <Link to="/projects">Projects</Link>
                 </>
             ): (
                 <>
