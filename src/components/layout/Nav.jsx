@@ -28,8 +28,8 @@ export function Nav() {
                         {logout.isLoading ? "Logging out":"Logout"}
                     </button>{" "}
                     | <Link to="/">Home</Link> {" "}
-                    | <Link to="/createproject">Create a Project</Link> {" "}
-                    | <Link to="/projects">Projects</Link>
+                    | <Link to="/projects/create">Create a Project</Link> {" "}
+                    | <Link to="/projects">Projects</Link> {" "}
                 </>
             ): (
                 <>

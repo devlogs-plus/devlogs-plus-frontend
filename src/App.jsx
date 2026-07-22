@@ -8,6 +8,8 @@ import PageContainer from "./components/layout/PageContainer.jsx";
 import ViewProjects from "./components/projects/ViewProjects.jsx";
 import ProjectForm from "./components/projects/ProjectForm.jsx";
 import ProjectView from "./components/projects/ProjectView.jsx";
+import ProjectEditForm from "./components/projects/ProjectEditForm.jsx";
+import NotFoundPage from "./components/common/NotFoundPage.jsx";
 
 function HomePage() {
     const {user, isLoading} = useAuth()
@@ -37,8 +39,12 @@ export default function App() {
                 <Route path="/projects" element={<ViewProjects/>}/>
                 <Route path="/projects/:id" element={<ProjectView/>}/>
                 <Route element={<ProtectedRoute />}>
-                    <Route path="/createproject" element={<ProjectForm/>}/>
+                    <Route path="/projects/create" element={<ProjectForm/>}/>
+                    <Route path="/projects/edit/:id" element={<ProjectEditForm/>}/>
                 </Route>
+
+                //404 page
+                <Route path="*" element={<NotFoundPage/>} />
             </Routes>
         </>
     )

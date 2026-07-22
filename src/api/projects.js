@@ -25,3 +25,10 @@ export async function createProject(project) {
 export async function getSingleProject(projectId) {
     return apiFetch(`/projects/${projectId}`)
 }
+
+export async function updateProject(projectId, project) {
+    return apiFetch(`/projects/${projectId}`, {
+        method: 'PATCH',
+        body: JSON.stringify(project)
+    })
+}

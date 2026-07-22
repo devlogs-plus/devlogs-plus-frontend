@@ -1,4 +1,4 @@
-import {use, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import useCreateProject from "../../hooks/useCreateProject.js";
 import {parseApiError} from "../../api/client.js";
 
@@ -42,6 +42,7 @@ export function ProjectForm() {
 
     return (
         <div className="projectForm">
+            <h2>Create Project</h2>
             {generalError && <p className="error">{generalError}</p> }
             {successMessage && <p className="success">{successMessage}</p> }
 
