@@ -4,14 +4,19 @@ import {addIfNotEmpty} from "../../helperFunctions.js";
 import {useParams} from "react-router-dom";
 import useEditProject from "../../hooks/useEditProject.js";
 import {getSingleProject} from "../../api/projects.js";
+import {useAuth} from "../../context/AuthContext.jsx";
+import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 
 export function ProjectEditForm({onUpdated}) {
     const { id: projectId} = useParams()
+    const {user} = useAuth()
+    const currentUserId = user?.id
     const [generalError, setGeneralError] = useState(null)
     const [fieldErrors, setFieldErrors] = useState({})
     const [successMessage, setSuccessMessage] = useState(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [loading, setLoading] = useState(Boolean(projectId))
+    const [ownerId, setOwnerId] = useState(null)
     const [formData, setFormData] = useState({
         name: "",
         short_description: "",
@@ -38,6 +43,7 @@ export function ProjectEditForm({onUpdated}) {
                     repo_url: project.repo_url ?? "",
                     demo_url: project.demo_url ?? ""
                 })
+                setOwnerId(project.owner_user_id)
                 setLoading(false)
             })
             .catch((err) => {
@@ -76,6 +82,7 @@ export function ProjectEditForm({onUpdated}) {
     }
 
     if (loading) return <div>Loading project..</div>
+    if (ownerId !== currentUserId) return <UnauthorizedRoute/>
 
     return (
         <div className="projectEditForm">

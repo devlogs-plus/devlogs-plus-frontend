@@ -1,10 +1,12 @@
 import {getSingleProject} from "../../api/projects.js";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import NotFoundPage from "../common/NotFoundPage.jsx";
+import {useAuth} from "../../context/AuthContext.jsx";
 
 export function ProjectView() {
     const { id: projectId} = useParams()
+    const {user} = useAuth()
     const [project, setProject] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
@@ -27,7 +29,8 @@ export function ProjectView() {
     if (error) return <div>Error: {error.message}</div>
     if (!project) return <NotFoundPage/>
 
-    const {name, short_description, repo_url, demo_url, created_at} = project
+    const {name, short_description, repo_url, demo_url, created_at, owner_user_id: ownerId} = project
+    const isOwner = user && user.id === ownerId
 
     return (
         <>
@@ -39,6 +42,11 @@ export function ProjectView() {
             <p>Demo: {demo_url}</p>
             <p>Created: {created_at}</p>
             <p>the project id is {projectId}</p>
+            {isOwner && (
+                <Link to={`/projects/edit/${projectId}`}>
+                    <button>Edit Project</button>
+                </Link>
+            )}
         </>
     )
 }
