@@ -3,6 +3,7 @@ import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import NotFoundPage from "../common/NotFoundPage.jsx";
 import {useAuth} from "../../context/AuthContext.jsx";
+import ViewDevlogs from "../devlogs/ViewDevlogs.jsx";
 
 export function ProjectView() {
     const { id: projectId} = useParams()
@@ -52,6 +53,8 @@ export function ProjectView() {
                     <button>Delete Project</button>
                 </Link>
             )}
+            <h2>Devlogs</h2>
+            <ViewDevlogs projectId={projectId}/>
         </>
     )
 }

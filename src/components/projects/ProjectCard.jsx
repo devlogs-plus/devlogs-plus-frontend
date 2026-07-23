@@ -1,9 +1,6 @@
 import {Link} from "react-router-dom";
-import {useAuth} from "../../context/AuthContext.jsx";
 
 export function ProjectCard({ project }) {
-    const {user} = useAuth()
-
     if (!project) {
         return null
     }
@@ -13,11 +10,8 @@ export function ProjectCard({ project }) {
         short_description: shortDescription,
         demo_url: demoUrl,
         repo_url: repoUrl,
-        id,
-        owner_user_id: ownerId
+        id
     } = project;
-
-    const isOwner = user && user.id === ownerId
 
     return (
         <div className="projectCard">
