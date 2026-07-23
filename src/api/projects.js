@@ -32,3 +32,9 @@ export async function updateProject(projectId, project) {
         body: JSON.stringify(project)
     })
 }
+
+export async function deleteProject(projectId) {
+    return apiFetch(`/projects/${projectId}`, {
+        method: 'DELETE'
+    })
+}

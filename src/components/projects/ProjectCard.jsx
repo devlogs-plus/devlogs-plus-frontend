@@ -27,13 +27,6 @@ export function ProjectCard({ project }) {
                 <p>{shortDescription}</p>
                 <p>Demo Url: {demoUrl}</p>
                 <p>Repo Url: {repoUrl}</p>
-            </Link>
-            {isOwner && (
-                <Link to={`/projects/edit/${id}`}>
-                    <button>Edit Project</button>
-                </Link>
-            )}
-            <Link to={`/projects/${id}`}>
                 <p>-----------------------</p>
             </Link>
         </div>

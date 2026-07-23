@@ -10,6 +10,7 @@ import ProjectForm from "./components/projects/ProjectForm.jsx";
 import ProjectView from "./components/projects/ProjectView.jsx";
 import ProjectEditForm from "./components/projects/ProjectEditForm.jsx";
 import NotFoundPage from "./components/common/NotFoundPage.jsx";
+import ProjectDeletePage from "./components/projects/ProjectDeletePage.jsx";
 
 function HomePage() {
     const {user, isLoading} = useAuth()
@@ -41,6 +42,7 @@ export default function App() {
                 <Route element={<ProtectedRoute />}>
                     <Route path="/projects/create" element={<ProjectForm/>}/>
                     <Route path="/projects/edit/:id" element={<ProjectEditForm/>}/>
+                    <Route path="/projects/delete/:id" element={<ProjectDeletePage/>}/>
                 </Route>
 
                 //404 page

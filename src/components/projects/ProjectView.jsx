@@ -47,6 +47,11 @@ export function ProjectView() {
                     <button>Edit Project</button>
                 </Link>
             )}
+            {isOwner && (
+                <Link to={`/projects/delete/${projectId}`}>
+                    <button>Delete Project</button>
+                </Link>
+            )}
         </>
     )
 }
