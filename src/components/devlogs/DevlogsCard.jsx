@@ -1,4 +1,3 @@
-
 export function DevlogsCard({devlog}) {
     const {
         title,

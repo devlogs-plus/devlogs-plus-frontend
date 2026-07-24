@@ -11,6 +11,8 @@ import ProjectView from "./components/projects/ProjectView.jsx";
 import ProjectEditForm from "./components/projects/ProjectEditForm.jsx";
 import NotFoundPage from "./components/common/NotFoundPage.jsx";
 import ProjectDeletePage from "./components/projects/ProjectDeletePage.jsx";
+import {DevlogsCard} from "./components/devlogs/DevlogsCard.jsx";
+import DevlogForm from "./components/devlogs/DevlogForm.jsx";
 
 function HomePage() {
     const {user, isLoading} = useAuth()
@@ -43,6 +45,7 @@ export default function App() {
                     <Route path="/projects/create" element={<ProjectForm/>}/>
                     <Route path="/projects/edit/:id" element={<ProjectEditForm/>}/>
                     <Route path="/projects/delete/:id" element={<ProjectDeletePage/>}/>
+                    <Route path="/devlogs/create" element={<DevlogForm/>}/>
                 </Route>
 
                 //404 page

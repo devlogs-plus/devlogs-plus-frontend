@@ -29,6 +29,7 @@ export function Nav() {
                     </button>{" "}
                     | <Link to="/">Home</Link> {" "}
                     | <Link to="/projects/create">Create a Project</Link> {" "}
+                    | <Link to="/devlogs/create">Create a Devlog</Link> {" "}
                     | <Link to="/projects">Projects</Link> {" "}
                 </>
             ): (
