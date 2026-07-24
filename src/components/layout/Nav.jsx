@@ -31,6 +31,7 @@ export function Nav() {
                     | <Link to="/projects/create">Create a Project</Link> {" "}
                     | <Link to="/devlogs/create">Create a Devlog</Link> {" "}
                     | <Link to="/projects">Projects</Link> {" "}
+                    | <Link to="/devlogs/unpublished">Unpublished Devlogs</Link>
                 </>
             ): (
                 <>
