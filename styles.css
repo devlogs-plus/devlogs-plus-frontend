@@ -14,6 +14,57 @@ a:hover {
     color: #004999;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid #ccc;
+
+    background-color: #f5f5f5;
+}
+
+.navbar-brand a {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.logout-button {
+    font: inherit;
+
+    padding: 0.45rem 0.9rem;
+
+    border: 1px solid #999;
+    border-radius: 6px;
+
+    background: transparent;
+    cursor: pointer;
+
+    transition: background-color 0.2s;
+}
+
+.logout-button:hover:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.logout-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 /* ===== Dark Mode ===== */
 @media (prefers-color-scheme: dark) {
     body {
@@ -25,5 +76,18 @@ a:hover {
     }
     a:hover {
         color: #99cfff;
+    }
+    .navbar {
+        background-color: #1b1b1b;
+        border-bottom-color: #333;
+    }
+
+    .logout-button {
+        border-color: #666;
+        color: inherit;
+    }
+
+    .logout-button:hover:not(:disabled) {
+        background-color: rgba(255, 255, 255, 0.08);
     }
 }
