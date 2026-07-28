@@ -17,29 +17,62 @@ export function Nav() {
     }
 
     return (
-        <nav>
-            {isLoading ? (
-                <>
-                    <span>Loading</span> | <Link to="/">Home</Link>
-                </>
-            ) : user ? (
-                <>
-                    <button onClick={handleLogout} disabled={logout.isLoading}>
-                        {logout.isLoading ? "Logging out":"Logout"}
-                    </button>{" "}
-                    | <Link to="/">Home</Link> {" "}
-                    | <Link to="/projects/create">Create a Project</Link> {" "}
-                    | <Link to="/devlogs/create">Create a Devlog</Link> {" "}
-                    | <Link to="/projects">Projects</Link> {" "}
-                    | <Link to="/devlogs/unpublished">Unpublished Devlogs</Link>
-                </>
-            ): (
-                <>
-                    <Link to="/">Home</Link> | <Link to="/projects">Projects</Link>| {" "}
-                    <Link to="/login">Login</Link> {" "}
-                    | <Link to="/register">Register</Link>
-                </>
-            )}
+        <nav className="navbar">
+
+            <div className="navbar-brand">
+                DEVLOGS +
+            </div>
+
+            <div className="navbar-links">
+
+                {isLoading ? (
+                    <span>Loading...</span>
+
+                ) : user ? (
+
+                    <>
+                        <Link to="/">Home</Link>
+                        <Link to="/projects">Projects</Link>
+                        <Link to="/projects/create">
+                            Create Project
+                        </Link>
+                        <Link to="/devlogs/create">
+                            Create Devlog
+                        </Link>
+                        <Link to="/devlogs/unpublished">
+                            Unpublished Devlogs
+                        </Link>
+
+                        <button 
+                            className="logout-button"
+                            onClick={handleLogout}
+                            disabled={logout.isLoading}
+                        >
+                            {logout.isLoading 
+                                ? "Logging out..." 
+                                : "Logout"}
+                        </button>
+                    </>
+
+                ) : (
+
+                    <>
+                        <Link to="/">Home</Link>
+                        <Link to="/projects">
+                            Projects
+                        </Link>
+                        <Link to="/login">
+                            Login
+                        </Link>
+                        <Link to="/register">
+                            Register
+                        </Link>
+                    </>
+
+                )}
+
+            </div>
+
         </nav>
     )
 }
