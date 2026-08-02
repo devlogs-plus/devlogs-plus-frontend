@@ -1,3 +1,5 @@
+import MarkdownRenderer from "../common/MarkdownRenderer.jsx";
+
 export function DevlogsCard({devlog}) {
     const {
         title,
@@ -8,7 +10,7 @@ export function DevlogsCard({devlog}) {
         <div className="devlogCard">
             <p>------------------</p>
             <h3>{title}</h3>
-            <p>{bodyMarkdown}</p>
+            <MarkdownRenderer content={bodyMarkdown}/>
             <p>------------------</p>
         </div>
     )
