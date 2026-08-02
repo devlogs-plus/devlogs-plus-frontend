@@ -95,7 +95,7 @@ export function ProjectEditForm({onUpdated}) {
             {fieldErrors.name && <p className="error">{fieldErrors.name}</p>}
 
             <p>Short Description</p>
-            <input name="shortDescription" value={formData.short_description} onChange={(e) => setFormData({...formData, short_description: e.target.value})}/>
+            <textarea name="shortDescription" value={formData.short_description} onChange={(e) => setFormData({...formData, short_description: e.target.value})}/>
             {fieldErrors.short_description && <p className="error">{fieldErrors.short_description}</p>}
 
             <p>Repo Url</p>

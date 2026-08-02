@@ -85,7 +85,7 @@ export function DevlogForm() {
             {fieldErrors.name && <p className="error">{fieldErrors.title}</p>}
 
             <p>Body</p>
-            <input name="shortDescription" ref={bodyRef}/>
+            <textarea name="shortDescription" ref={bodyRef}/>
             {fieldErrors.short_description && <p className="error">{fieldErrors.body_markdown}</p>}
 
             <p>Project ID</p>

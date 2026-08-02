@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import NotFoundPage from "../common/NotFoundPage.jsx";
 import {useAuth} from "../../context/AuthContext.jsx";
 import ViewDevlogs from "../devlogs/ViewDevlogs.jsx";
+import MarkdownRenderer from "../common/MarkdownRenderer.jsx";
 
 export function ProjectView() {
     const { id: projectId} = useParams()
@@ -37,7 +38,7 @@ export function ProjectView() {
         <>
             <h1>{name}</h1>
             <div className="projectDescription">
-                {short_description}
+                <MarkdownRenderer content={short_description}/>
             </div>
             <p>Git Repo: {repo_url}</p>
             <p>Demo: {demo_url}</p>

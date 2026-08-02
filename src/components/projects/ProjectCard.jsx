@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import MarkdownRenderer from "../common/MarkdownRenderer.jsx";
 
 export function ProjectCard({ project }) {
     if (!project) {
@@ -18,7 +19,7 @@ export function ProjectCard({ project }) {
             <Link to={`/projects/${id}`}>
                 <p>-----------------------</p>
                 <h3>{name}</h3>
-                <p>{shortDescription}</p>
+                <MarkdownRenderer content={shortDescription}/>
                 <p>Demo Url: {demoUrl}</p>
                 <p>Repo Url: {repoUrl}</p>
                 <p>-----------------------</p>

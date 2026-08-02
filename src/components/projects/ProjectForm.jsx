@@ -51,7 +51,7 @@ export function ProjectForm() {
             {fieldErrors.name && <p className="error">{fieldErrors.name}</p>}
 
             <p>Short Description</p>
-            <input name="shortDescription" ref={descRef}/>
+            <textarea name="shortDescription" ref={descRef}/>
             {fieldErrors.short_description && <p className="error">{fieldErrors.short_description}</p>}
 
             <p>Repo Url</p>
