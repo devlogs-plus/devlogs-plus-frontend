@@ -21,3 +21,7 @@ export async function publishDevlog(projectId, devlogId) {
 export async function getUnpublishedDevlogsByUser() {
     return apiFetch(`/users/devlogs/unpublished`)
 }
+
+export async function getSingleDevlog(projectId, devlogId) {
+    return apiFetch(`/projects/${projectId}/devlogs/${devlogId}`)
+}
