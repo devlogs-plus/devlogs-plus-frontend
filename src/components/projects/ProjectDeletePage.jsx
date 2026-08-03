@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {deleteProject, getSingleProject} from "../../api/projects.js";
 import {parseApiError} from "../../api/client.js";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
+import ErrorPage from "../common/ErrorPage.jsx";
 
 export function ProjectDeletePage() {
     const { id: projectId} = useParams()
@@ -52,7 +53,7 @@ export function ProjectDeletePage() {
     const currentUserId = user?.id
 
     if (loading) return <div>Loading</div>
-    if (error && !project) return <div>Error: {error}</div>
+    if (error && !project) return <ErrorPage message={error.message}/>
     if (ownerId !== currentUserId) return <UnauthorizedRoute/>
 
     return (

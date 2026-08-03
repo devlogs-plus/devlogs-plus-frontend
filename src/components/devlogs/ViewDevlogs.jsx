@@ -1,6 +1,7 @@
 import useDevlogs from "../../hooks/useDevlogs.js";
 import {useState} from "react";
 import {DevlogsCard} from "./DevlogsCard.jsx";
+import ErrorPage from "../common/ErrorPage.jsx";
 
 export function ViewDevlogs({projectId}) {
     const {devlogs = [], loading, error, refresh} = useDevlogs({projectId})
@@ -12,7 +13,7 @@ export function ViewDevlogs({projectId}) {
     const visible = devlogs.slice(startIndex, startIndex+PER_PAGE)
 
     if (loading) return <div>Loading..</div>
-    if (error) return <div>Error: {String(error.message)}</div>
+    if (error) return <ErrorPage message={error.message}/>
     if (!devlogs.length) return <div>No devlogs for this project yet</div>
 
     return (

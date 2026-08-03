@@ -5,6 +5,8 @@ import NotFoundPage from "../common/NotFoundPage.jsx";
 import {useAuth} from "../../context/AuthContext.jsx";
 import ViewDevlogs from "../devlogs/ViewDevlogs.jsx";
 import MarkdownRenderer from "../common/MarkdownRenderer.jsx";
+import LoadingSpinner from "../common/LoadingSpinner.jsx";
+import ErrorPage from "../common/ErrorPage.jsx";
 
 export function ProjectView() {
     const { id: projectId} = useParams()
@@ -27,8 +29,8 @@ export function ProjectView() {
         fetchProject()
     }, [projectId])
 
-    if (loading) return <div>Loading..</div>
-    if (error) return <div>Error: {error.message}</div>
+    if (loading) return <LoadingSpinner/>
+    if (error) return <ErrorPage message={error.message}/>
     if (!project) return <NotFoundPage/>
 
     const {name, short_description, repo_url, demo_url, created_at, owner_user_id: ownerId} = project

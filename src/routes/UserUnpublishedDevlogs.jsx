@@ -5,6 +5,7 @@ import {UnauthorizedRoute} from "../components/common/UnauthorizedRoute.jsx";
 import LoadingSpinner from "../components/common/LoadingSpinner.jsx";
 import usePublishDevlog from "../hooks/usePublishDevlog.js";
 import {useState} from "react";
+import ErrorPage from "../components/common/ErrorPage.jsx";
 
 export function UserUnpublishedDevlogs() {
     const { user, isLoading: authLoading } = useAuth();
@@ -18,7 +19,7 @@ export function UserUnpublishedDevlogs() {
     const [publishingId, setPublishingId] = useState(null)
 
     if (loading) return <div>Loading devlogs...</div>;
-    if (error) return <div>Error: {String(error.message)}</div>;
+    if (error) return <ErrorPage message={error.message}/> ;
     if (!devlogs.length) return <div>No unpublished devlogs</div>;
 
     async function handlePublish(devlog) {
@@ -34,11 +35,9 @@ export function UserUnpublishedDevlogs() {
         try {
             setPublishingId(devlogId);
             await publishMutation.mutateAsync({ projectId, devlogId });
-            // refresh the unpublished list so the published item disappears
             await refresh();
         } catch (err) {
             console.error("Publish failed", err);
-            // lightweight user feedback; replace with your toast mechanism if you have one
             alert("Failed to publish devlog: " + (err?.message || String(err)));
         } finally {
             setPublishingId(null);
