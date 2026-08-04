@@ -6,6 +6,8 @@ import LoadingSpinner from "../components/common/LoadingSpinner.jsx";
 import usePublishDevlog from "../hooks/usePublishDevlog.js";
 import {useState} from "react";
 import ErrorPage from "../components/common/ErrorPage.jsx";
+import useEditDevlog from "../hooks/useEditDevlog.js";
+import {Link} from "react-router-dom";
 
 export function UserUnpublishedDevlogs() {
     const { user, isLoading: authLoading } = useAuth();
@@ -16,31 +18,30 @@ export function UserUnpublishedDevlogs() {
 
     const { devlogs = [], loading, error, refresh } = useUnpublishedDevlogs();
     const publishMutation = usePublishDevlog()
+    const editMutation = useEditDevlog()
     const [publishingId, setPublishingId] = useState(null)
 
-    if (loading) return <div>Loading devlogs...</div>;
-    if (error) return <ErrorPage message={error.message}/> ;
-    if (!devlogs.length) return <div>No unpublished devlogs</div>;
+    if (loading) return <LoadingSpinner/>
+    if (error) return <ErrorPage message={error.message}/>
+    if (!devlogs.length) return <div>No unpublished devlogs</div>
 
     async function handlePublish(devlog) {
-        // devlog is expected to include `id` and `project_id`
-        const projectId = devlog.project_id ?? devlog.projectId;
-        const devlogId = devlog.id;
+        const projectId = devlog.project_id ?? devlog.projectId
+        const devlogId = devlog.id
         if (!projectId || !devlogId) {
-            console.error("Missing projectId or devlogId on devlog:", devlog);
-            alert("Cannot publish: missing identifiers.");
-            return;
+            alert("Cannot publish: missing identifiers.")
+            return
         }
 
         try {
-            setPublishingId(devlogId);
-            await publishMutation.mutateAsync({ projectId, devlogId });
-            await refresh();
+            setPublishingId(devlogId)
+            await publishMutation.mutateAsync({ projectId, devlogId })
+            await refresh()
         } catch (err) {
-            console.error("Publish failed", err);
-            alert("Failed to publish devlog: " + (err?.message || String(err)));
+            console.error("Publish failed", err)
+            alert("Failed to publish devlog: " + (err?.message || String(err)))
         } finally {
-            setPublishingId(null);
+            setPublishingId(null)
         }
     }
 
@@ -48,15 +49,15 @@ export function UserUnpublishedDevlogs() {
         <>
             <h1>Unpublished Devlogs</h1>
             {devlogs.map(d => (
-                <div key={d.id} style={{ marginBottom: 12 }}>
+                <div key={d.id}>
                     <DevlogsCard devlog={d} />
-                    <div style={{ marginTop: 6 }}>
-                        <button
-                            onClick={() => handlePublish(d)}
-                            disabled={publishingId === d.id || publishMutation.isLoading}
-                        >
+                    <div>
+                        <button onClick={() => handlePublish(d)} disabled={publishingId === d.id || publishMutation.isLoading}>
                             {publishingId === d.id ? "Publishing..." : "Publish"}
                         </button>
+                        <Link to={`/projects/${d.project_id ?? d.projectId}/devlogs/${d.id}/edit`}>
+                            <button>Edit</button>
+                        </Link>
                     </div>
                 </div>
             ))}
