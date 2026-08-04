@@ -1,6 +1,6 @@
 import {RegisterForm} from "./components/auth/RegisterForm.jsx";
 import {LoginForm} from "./components/auth/LoginForm.jsx";
-import {Route, Routes} from "react-router-dom";
+import {Link, Route, Routes} from "react-router-dom";
 import {Nav} from "./components/layout/Nav.jsx";
 import {useAuth} from "./context/AuthContext.jsx";
 import {ProtectedRoute} from "./components/common/ProtectedRoute.jsx";
@@ -21,7 +21,9 @@ function HomePage() {
     if (isLoading) return <div>Loading..</div>
     if (!user) return (
         <PageContainer title="Home">
-            <p>You are not logged in. You should login</p>
+            <h3>Welcome to Devlogs+</h3>
+            <p>the place for you! (yes you) to share your devlogs!</p>
+            <p>Want to join? <Link to="/register">Register</Link> or <Link to="/login">Login</Link>!!!</p>
         </PageContainer>
     )
 
