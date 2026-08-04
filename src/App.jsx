@@ -15,6 +15,7 @@ import DevlogForm from "./components/devlogs/DevlogForm.jsx";
 import UserUnpublishedDevlogs from "./routes/UserUnpublishedDevlogs.jsx";
 import DevlogPage from "./components/devlogs/DevlogPage.jsx";
 import DevlogEditForm from "./components/devlogs/DevlogEditForm.jsx";
+import {DevlogUnpublishPage} from "./components/devlogs/DevlogUnpublishPage.jsx";
 
 function HomePage() {
     const {user, isLoading} = useAuth()
@@ -53,6 +54,7 @@ export default function App() {
                     <Route path="/devlogs/unpublished" element={<UserUnpublishedDevlogs/>}/>
                     <Route path="/projects/:projectId/devlogs/:devlogId" element={<DevlogPage/>}/>
                     <Route path="/projects/:projectId/devlogs/:devlogId/edit" element={<DevlogEditForm/>}/>
+                    <Route path="/projects/:projectId/devlogs/:devlogId/unpublish" element={<DevlogUnpublishPage/>}/>
                 </Route>
 
                 //404 page

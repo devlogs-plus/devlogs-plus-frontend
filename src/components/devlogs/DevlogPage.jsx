@@ -57,6 +57,11 @@ export function DevlogPage() {
                     <button>Edit Devlog</button>
                 </Link>
             )}
+            {isOwner && (
+                <Link to={`/projects/${projectId}/devlogs/${devlogId}/unpublish`}>
+                    <button>Unpublish Devlog</button>
+                </Link>
+            )}
         </>
     )
 }

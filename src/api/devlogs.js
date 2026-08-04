@@ -32,3 +32,10 @@ export async function updateDevlog(projectId, devlogId, devlog) {
         body: JSON.stringify(devlog)
     })
 }
+
+export async function unpublishDevlog(projectId, devlogId) {
+    return apiFetch(`/projects/${projectId}/devlogs/${devlogId}/unpublish`, {
+        method: 'POST',
+        body: JSON.stringify({})
+    })
+}
