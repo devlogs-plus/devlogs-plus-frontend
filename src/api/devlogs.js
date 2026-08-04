@@ -25,3 +25,10 @@ export async function getUnpublishedDevlogsByUser() {
 export async function getSingleDevlog(projectId, devlogId) {
     return apiFetch(`/projects/${projectId}/devlogs/${devlogId}`)
 }
+
+export async function updateDevlog(projectId, devlogId, devlog) {
+    return apiFetch(`/projects/${projectId}/devlogs/${devlogId}`, {
+        method: `PATCH`,
+        body: JSON.stringify(devlog)
+    })
+}

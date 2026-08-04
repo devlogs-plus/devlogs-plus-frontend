@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState, useCallback} from "react";
+import {useEffect, useState} from "react";
 import {parseApiError} from "../../api/client.js";
 import {addIfNotEmpty} from "../../helperFunctions.js";
 import {useParams} from "react-router-dom";
@@ -6,6 +6,7 @@ import useEditProject from "../../hooks/useEditProject.js";
 import {getSingleProject} from "../../api/projects.js";
 import {useAuth} from "../../context/AuthContext.jsx";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
+import LoadingSpinner from "../common/LoadingSpinner.jsx";
 
 export function ProjectEditForm({onUpdated}) {
     const { id: projectId} = useParams()
@@ -35,7 +36,6 @@ export function ProjectEditForm({onUpdated}) {
         getSingleProject(projectId)
             .then((project) => {
                 if (!mounted) return
-                console.log("Project loaded:", project)
 
                 setFormData({
                     name: project.name ?? "",
@@ -48,7 +48,6 @@ export function ProjectEditForm({onUpdated}) {
             })
             .catch((err) => {
                 if (!mounted) return
-                console.error("Error loading project:", err)
                 setGeneralError(String(err?.message ?? err))
                 setLoading(false)
             })
@@ -81,7 +80,7 @@ export function ProjectEditForm({onUpdated}) {
         }
     }
 
-    if (loading) return <div>Loading project..</div>
+    if (loading) return <LoadingSpinner/>
     if (ownerId !== currentUserId) return <UnauthorizedRoute/>
 
     return (
