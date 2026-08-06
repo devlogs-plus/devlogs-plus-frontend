@@ -8,3 +8,7 @@ export function addCollaborator({projectId, userId}) {
         })
     })
 }
+
+export function viewCollaborators(projectId) {
+    return apiFetch(`/projects/${projectId}/collaborators`)
+}

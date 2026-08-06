@@ -1,5 +1,4 @@
 import {getSingleProject} from "./api/projects.js";
-import useCollaborators from "./hooks/useCollaborators.js";
 
 export function addIfNotEmpty(obj, key, value) {
     if (value?.trim()) {
@@ -23,11 +22,4 @@ export async function getProjectName(projectId) {
     } catch (err) {
         return null
     }
-}
-
-export function getCollabUserIds(projectId) {
-    const {data: collaboratorIds} = useCollaborators(projectId, {
-        select: (res) => res?.collaborator_user_ids ?? res
-    })
-    return collaboratorIds
 }
