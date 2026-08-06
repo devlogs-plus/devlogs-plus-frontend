@@ -18,7 +18,7 @@ export async function getProjectOwnerId(projectId) {
 export async function getProjectName(projectId) {
     try {
         const project = await getSingleProject(projectId)
-        return project?.title || null
+        return project?.name || null
     } catch (err) {
         return null
     }
