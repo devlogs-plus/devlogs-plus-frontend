@@ -47,14 +47,17 @@ export function ProjectView() {
             <p>Created: {created_at}</p>
             <p>the project id is {projectId}</p>
             {isOwner && (
-                <Link to={`/projects/edit/${projectId}`}>
-                    <button>Edit Project</button>
-                </Link>
-            )}
-            {isOwner && (
-                <Link to={`/projects/delete/${projectId}`}>
-                    <button>Delete Project</button>
-                </Link>
+                <>
+                    <Link to={`/projects/edit/${projectId}`}>
+                        <button>Edit Project</button>
+                    </Link>
+                    <Link to={`/projects/delete/${projectId}`}>
+                        <button>Delete Project</button>
+                    </Link>
+                    <Link to={`/projects/${projectId}/collaborators/add`}>
+                        <button>Add Collaborator</button>
+                    </Link>
+                </>
             )}
             <h2>Devlogs</h2>
             <ViewDevlogs projectId={projectId}/>

@@ -54,11 +54,9 @@ export function DevlogForm() {
         }
 
         try {
-            // First create the devlog
             const created = await createMutation.mutateAsync(devlogObject)
             console.log("Created devlog:", created)  // Debug: verify id and project_id exist
 
-            // Then publish it (created already has both id and project_id from backend)
             const published = await publishMutation.mutateAsync({
                 projectId: created.project_id,
                 devlogId: created.id

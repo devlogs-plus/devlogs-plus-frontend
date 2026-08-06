@@ -16,6 +16,7 @@ import UserUnpublishedDevlogs from "./routes/UserUnpublishedDevlogs.jsx";
 import DevlogPage from "./components/devlogs/DevlogPage.jsx";
 import DevlogEditForm from "./components/devlogs/DevlogEditForm.jsx";
 import {DevlogUnpublishPage} from "./components/devlogs/DevlogUnpublishPage.jsx";
+import AddCollaboratorPage from "./components/collaborator/AddCollaboratorPage.jsx";
 
 function HomePage() {
     const {user, isLoading} = useAuth()
@@ -32,6 +33,7 @@ function HomePage() {
     return (
         <PageContainer title="Home">
             <p>Hello, {user.display_name}</p>
+            <p>user id: {user.id}</p>
         </PageContainer>
     );
 }
@@ -55,6 +57,7 @@ export default function App() {
                     <Route path="/projects/:projectId/devlogs/:devlogId" element={<DevlogPage/>}/>
                     <Route path="/projects/:projectId/devlogs/:devlogId/edit" element={<DevlogEditForm/>}/>
                     <Route path="/projects/:projectId/devlogs/:devlogId/unpublish" element={<DevlogUnpublishPage/>}/>
+                    <Route path="/projects/:projectId/collaborators/add" element={<AddCollaboratorPage/>}/>
                 </Route>
 
                 //404 page
