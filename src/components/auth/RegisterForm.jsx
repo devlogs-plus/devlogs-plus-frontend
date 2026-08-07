@@ -3,6 +3,7 @@ import {register} from "../../api/auth.js";
 import {parseApiError} from "../../api/client.js";
 import {useNavigate} from "react-router-dom";
 import {createProject} from "../../api/projects.js";
+import {Input} from "../common/Input.jsx";
 
 export function RegisterForm(){
     const emailRef = useRef(null)
@@ -46,15 +47,15 @@ export function RegisterForm(){
             {successMessage && <p className="success">{successMessage}</p> }
 
             <p>Email</p>
-            <input type="email" name="email" ref={emailRef}/>
+            <Input type="email" name="email" ref={emailRef}/>
             {fieldErrors.email && <p className="error">{fieldErrors.email}</p>}
 
             <p>Username</p>
-            <input type="text" name="username" ref={nameRef}/>
+            <Input type="text" name="username" ref={nameRef}/>
             {fieldErrors.display_name && <p className="error">{fieldErrors.display_name}</p>}
 
             <p>Password</p>
-            <input type="password" name="password" ref={passwordRef}/>
+            <Input type="password" name="password" ref={passwordRef}/>
             {fieldErrors.password && <p className="error">{fieldErrors.password}</p>}
 
             <br/>

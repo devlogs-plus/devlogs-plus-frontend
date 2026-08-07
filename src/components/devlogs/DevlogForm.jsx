@@ -2,6 +2,8 @@ import {useRef, useState} from "react";
 import {parseApiError} from "../../api/client.js";
 import useCreateDevlog from "../../hooks/useCreateDevlog.js";
 import usePublishDevlog from "../../hooks/usePublishDevlog.js";
+import {Input} from "../common/Input.jsx";
+import {TextArea} from "../common/TextArea.jsx";
 
 export function DevlogForm() {
     const titleRef = useRef(null)
@@ -79,15 +81,15 @@ export function DevlogForm() {
             {successMessage && <p className="success">{successMessage}</p> }
 
             <p>Title</p>
-            <input name="name" ref={titleRef}/>
+            <Input name="name" ref={titleRef}/>
             {fieldErrors.name && <p className="error">{fieldErrors.title}</p>}
 
             <p>Body</p>
-            <textarea name="shortDescription" ref={bodyRef}/>
+            <TextArea name="shortDescription" ref={bodyRef}/>
             {fieldErrors.short_description && <p className="error">{fieldErrors.body_markdown}</p>}
 
             <p>Project ID</p>
-            <input name="repoUrl" ref={projectIdRef}/>
+            <Input name="repoUrl" ref={projectIdRef}/>
             {fieldErrors.repo_url && <p className="error">{fieldErrors.project_id}</p>}
 
             <button id="createProjectButton" onClick={createDevlog} disabled={isSubmitting}>{isSubmitting ? "Creating Draft.." : "Create Draft"}</button>

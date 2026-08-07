@@ -7,6 +7,8 @@ import {getSingleProject} from "../../api/projects.js";
 import {useAuth} from "../../context/AuthContext.jsx";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
+import {Input} from "../common/Input.jsx";
+import {TextArea} from "../common/TextArea.jsx";
 
 export function ProjectEditForm({onUpdated}) {
     const { id: projectId} = useParams()
@@ -90,19 +92,19 @@ export function ProjectEditForm({onUpdated}) {
             {successMessage && <p className="success">{successMessage}</p> }
 
             <p>Name</p>
-            <input name="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})}/>
+            <Input name="name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})}/>
             {fieldErrors.name && <p className="error">{fieldErrors.name}</p>}
 
             <p>Short Description</p>
-            <textarea name="shortDescription" value={formData.short_description} onChange={(e) => setFormData({...formData, short_description: e.target.value})}/>
+            <TextArea name="shortDescription" value={formData.short_description} onChange={(e) => setFormData({...formData, short_description: e.target.value})}/>
             {fieldErrors.short_description && <p className="error">{fieldErrors.short_description}</p>}
 
             <p>Repo Url</p>
-            <input name="repoUrl" value={formData.repo_url} onChange={(e) => setFormData({...formData, repo_url: e.target.value})}/>
+            <Input name="repoUrl" value={formData.repo_url} onChange={(e) => setFormData({...formData, repo_url: e.target.value})}/>
             {fieldErrors.repo_url && <p className="error">{fieldErrors.repo_url}</p>}
 
             <p>Demo Url</p>
-            <input name="demoUrl" value={formData.demo_url} onChange={(e) => setFormData({...formData, demo_url: e.target.value})}/>
+            <Input name="demoUrl" value={formData.demo_url} onChange={(e) => setFormData({...formData, demo_url: e.target.value})}/>
             {fieldErrors.demo_url && <p className="error">{fieldErrors.demo_url}</p>}
 
             <button id="editProjectButton" onClick={editProject} disabled={isSubmitting}>{isSubmitting ? "Saving.." : "Save"}</button>

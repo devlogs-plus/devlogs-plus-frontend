@@ -7,6 +7,8 @@ import {addIfNotEmpty} from "../../helperFunctions.js";
 import {parseApiError} from "../../api/client.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
+import {Input} from "../common/Input.jsx";
+import {TextArea} from "../common/TextArea.jsx";
 
 export function DevlogEditForm({onUpdated}) {
     const {projectId, devlogId} = useParams()
@@ -81,11 +83,11 @@ export function DevlogEditForm({onUpdated}) {
             {successMessage && <p className="success">{successMessage}</p> }
 
             <p>Title</p>
-            <input name="title" value={formData.title} onChange={(e) => setFormData({...formData, name: e.target.value})}/>
+            <Input name="title" value={formData.title} onChange={(e) => setFormData({...formData, name: e.target.value})}/>
             {fieldErrors.title && <p className="error">{fieldErrors.title}</p>}
 
             <p>Body</p>
-            <textarea name="title" value={formData.body_markdown} onChange={(e) => setFormData({...formData, body_markdown: e.target.value})}/>
+            <TextArea name="title" value={formData.body_markdown} onChange={(e) => setFormData({...formData, body_markdown: e.target.value})}/>
             {fieldErrors.body_markdown && <p className="error">{fieldErrors.body_markdown}</p> }
 
             <button id="editDevlogButton" onClick={editDevlog} disabled={isSubmitting}>{isSubmitting ? "Saving.." : "Save"}</button>

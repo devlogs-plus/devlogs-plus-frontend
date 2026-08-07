@@ -2,6 +2,7 @@ import {useRef, useState} from "react";
 import {useLogin} from "../../hooks/useAuth.js";
 import {useNavigate, useLocation} from "react-router-dom";
 import {parseApiError} from "../../api/client.js";
+import {Input} from "../common/Input.jsx";
 
 export function LoginForm() {
     const emailRef = useRef(null)
@@ -36,9 +37,9 @@ export function LoginForm() {
         <div className="loginForm">
             {generalError && <p className="error">{generalError}</p>}
             <p>Email</p>
-            <input type="email" name="email" ref={emailRef}/>
+            <Input type="email" name="email" ref={emailRef}/>
             <p>Password</p>
-            <input type="password" name="password" ref={passwordRef}/>
+            <Input type="password" name="password" ref={passwordRef}/>
             <button id="loginButton" onClick={loginUser} disabled={loginMutation.isPending}>
                 {loginMutation.isPending ? "Logging in..." : "Login"}
             </button>

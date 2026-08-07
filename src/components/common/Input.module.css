@@ -1,0 +1,6 @@
+.input {
+    border: 3px solid var(--color-accent);
+    border-radius: 3px;
+    background-color: var(--nord10);
+    color: var(--color-text);
+}

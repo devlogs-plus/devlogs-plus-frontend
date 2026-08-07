@@ -6,6 +6,7 @@ import {useAuth} from "../../context/AuthContext.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {getProjectOwnerId} from "../../helperFunctions.js";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
+import {Input} from "../common/Input.jsx";
 
 export function AddCollaboratorPage() {
     const userIdRef = useRef(null)
@@ -68,7 +69,7 @@ export function AddCollaboratorPage() {
             {successMessage && <p className="success">{successMessage}</p> }
 
             <p>User Id</p>
-            <input name="userid" ref={userIdRef}/>
+            <Input name="userid" ref={userIdRef}/>
             {fieldErrors.user_id && <p className="error">{fieldErrors.user_id}</p> }
 
             <button id="addCollaborator" onClick={addCollaborator} disabled={isSubmitting}>{isSubmitting ? "Adding..":"Add Collaborator"}</button>

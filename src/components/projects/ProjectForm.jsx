@@ -1,6 +1,8 @@
 import {useRef, useState} from "react";
 import useCreateProject from "../../hooks/useCreateProject.js";
 import {parseApiError} from "../../api/client.js";
+import {Input} from "../common/Input.jsx";
+import {TextArea} from "../common/TextArea.jsx";
 
 export function ProjectForm() {
     const nameRef = useRef(null)
@@ -47,19 +49,19 @@ export function ProjectForm() {
             {successMessage && <p className="success">{successMessage}</p> }
 
             <p>Name</p>
-            <input name="name" ref={nameRef}/>
+            <Input name="name" ref={nameRef}/>
             {fieldErrors.name && <p className="error">{fieldErrors.name}</p>}
 
             <p>Short Description</p>
-            <textarea name="shortDescription" ref={descRef}/>
+            <TextArea name="shortDescription" ref={descRef}/>
             {fieldErrors.short_description && <p className="error">{fieldErrors.short_description}</p>}
 
             <p>Repo Url</p>
-            <input name="repoUrl" ref={repoRef}/>
+            <Input name="repoUrl" ref={repoRef}/>
             {fieldErrors.repo_url && <p className="error">{fieldErrors.repo_url}</p>}
 
             <p>Demo Url</p>
-            <input name="demoUrl" ref={demoRef}/>
+            <Input name="demoUrl" ref={demoRef}/>
             {fieldErrors.demo_url && <p className="error">{fieldErrors.demo_url}</p>}
 
             <button id="createProjectButton" onClick={createProject} disabled={isSubmitting}>{isSubmitting ? "Creating.." : "Create"}</button>
