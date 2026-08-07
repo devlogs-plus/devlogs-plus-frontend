@@ -58,6 +58,9 @@ export function ProjectView() {
                     <Link to={`/projects/${projectId}/collaborators/add`}>
                         <button>Add Collaborator</button>
                     </Link>
+                    <Link to={`/projects/${projectId}/collaborators/remove`}>
+                        <button>Remove Collaborator</button>
+                    </Link>
                 </>
             )}
             <h2>Devlogs</h2>

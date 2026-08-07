@@ -18,6 +18,7 @@ import DevlogEditForm from "./components/devlogs/DevlogEditForm.jsx";
 import {DevlogUnpublishPage} from "./components/devlogs/DevlogUnpublishPage.jsx";
 import AddCollaboratorPage from "./components/collaborator/AddCollaboratorPage.jsx";
 import {CollaboratorList} from "./components/collaborator/CollaboratorList.jsx";
+import RemoveCollaboratorPage from "./components/collaborator/RemoveCollaboratorPage.jsx";
 
 function HomePage() {
     const {user, isLoading} = useAuth()
@@ -60,6 +61,7 @@ export default function App() {
                     <Route path="/projects/:projectId/devlogs/:devlogId/unpublish" element={<DevlogUnpublishPage/>}/>
                     <Route path="/projects/:projectId/collaborators/add" element={<AddCollaboratorPage/>}/>
                     <Route path="/projects/:projectId/collaborators" element={<CollaboratorList/>}/>
+                    <Route path="/projects/:projectId/collaborators/remove" element={<RemoveCollaboratorPage/>}/>
                 </Route>
 
                 //404 page

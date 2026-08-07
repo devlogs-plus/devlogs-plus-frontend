@@ -12,3 +12,9 @@ export function addCollaborator({projectId, userId}) {
 export function viewCollaborators(projectId) {
     return apiFetch(`/projects/${projectId}/collaborators`)
 }
+
+export function deleteCollaborator({projectId, userId}) {
+    return apiFetch(`/projects/${projectId}/collaborators/${userId}`, {
+        method: 'DELETE'
+    })
+}
