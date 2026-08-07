@@ -1,0 +1,28 @@
+.card {
+    display: block;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border-radius: 8px;
+    padding: 1rem;
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+
+.card:hover {
+    background: var(--nord3);
+}
+
+.divider {
+    color: var(--nord3);
+    margin: 0.25rem 0;
+}
+
+.title {
+    color: var(--color-accent);
+    margin: 0.5rem 0;
+}
+
+.id {
+    color: var(--nord4);
+    font-size: 0.85rem;
+}
