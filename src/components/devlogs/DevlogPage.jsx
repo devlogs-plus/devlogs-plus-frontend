@@ -6,6 +6,7 @@ import ErrorPage from "../common/ErrorPage.jsx";
 import NotFoundPage from "../common/NotFoundPage.jsx";
 import MarkdownRenderer from "../common/MarkdownRenderer.jsx";
 import {useAuth} from "../../context/AuthContext.jsx";
+import styles from "./DevlogPage.module.css"
 
 export function DevlogPage() {
     const {projectId, devlogId} = useParams()
@@ -44,23 +45,22 @@ export function DevlogPage() {
 
     return (
         <>
-            <h1>{title}</h1>
-            <div className="devlogBody">
-                <MarkdownRenderer content={bodyMarkdown}/>
-            </div>
+            <h1 className={styles.title}>{title}</h1>
             <p>-----------------------------------</p>
-            <p>Published {published}</p>
-            <p>project id: {projectId}</p>
-            <p>devlog id: {devlogId}</p>
+            <MarkdownRenderer content={bodyMarkdown}/>
+            <p>-----------------------------------</p>
+            <p className={styles.id}>Published {published}</p>
+            <p className={styles.id}>project id: {projectId}</p>
+            <p className={styles.id}>devlog id: {devlogId}</p>
             {isOwner && (
+                <>
                 <Link to={`/projects/${projectId}/devlogs/${devlogId}/edit`}>
                     <button>Edit Devlog</button>
                 </Link>
-            )}
-            {isOwner && (
                 <Link to={`/projects/${projectId}/devlogs/${devlogId}/unpublish`}>
                     <button>Unpublish Devlog</button>
                 </Link>
+                </>
             )}
         </>
     )

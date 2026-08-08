@@ -1,0 +1,14 @@
+.id {
+    color: var(--color-text);
+    font-size: 0.85rem;
+}
+
+.title {
+    color: var(--color-accent);
+    margin: 0.5rem 0;
+}
+
+.divider {
+    color: var(--nord3);
+    margin: 0.25rem 0;
+}
