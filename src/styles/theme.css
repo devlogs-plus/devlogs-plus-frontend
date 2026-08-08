@@ -21,4 +21,6 @@
     --color-text: var(--nord6);
     --color-accent: var(--nord8);
     --color-danger: var(--nord11);
+
+    --font-sans: "Stack Sans Text Variable", sans-serif;
 }

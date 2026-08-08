@@ -12,6 +12,7 @@
     background: var(--color-accent);
     color: var(--nord0);
     transition: background 0.15s ease, opacity 0.15s ease;
+    margin: 5px;
 }
 
 .button:hover:not(:disabled) {
