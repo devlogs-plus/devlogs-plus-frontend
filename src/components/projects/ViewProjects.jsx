@@ -3,6 +3,7 @@ import ProjectCard from "./ProjectCard.jsx";
 import useProjects from "../../hooks/useProjects.js";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {Button} from "../common/Button.jsx";
+import LoadingSpinner from "../common/LoadingSpinner.jsx";
 
 export function ViewProjects() {
     const { projects, loading, error, refresh } = useProjects()
@@ -12,7 +13,7 @@ export function ViewProjects() {
     const startIndex = (page - 1) * 10
     const visibleProjects = projects.slice(startIndex, startIndex + 10)
 
-    if (loading) return <div>Loading projects…</div>
+    if (loading) return <LoadingSpinner/>
     if (error) return <ErrorPage message={error.message}/>
 
     return (

@@ -19,11 +19,12 @@ import {DevlogUnpublishPage} from "./components/devlogs/DevlogUnpublishPage.jsx"
 import AddCollaboratorPage from "./components/collaborator/AddCollaboratorPage.jsx";
 import {CollaboratorList} from "./components/collaborator/CollaboratorList.jsx";
 import RemoveCollaboratorPage from "./components/collaborator/RemoveCollaboratorPage.jsx";
+import LoadingSpinner from "./components/common/LoadingSpinner.jsx";
 
 function HomePage() {
     const {user, isLoading} = useAuth()
 
-    if (isLoading) return <div>Loading..</div>
+    if (isLoading) return <LoadingSpinner/>
     if (!user) return (
         <PageContainer title="Home">
             <h3>Welcome to Devlogs+</h3>
