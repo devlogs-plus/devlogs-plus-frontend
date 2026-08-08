@@ -3,6 +3,7 @@ import {useState} from "react";
 import {DevlogsCard} from "./DevlogsCard.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function ViewDevlogs({projectId}) {
     const {devlogs = [], loading, error, refresh} = useDevlogs({projectId})
@@ -23,18 +24,18 @@ export function ViewDevlogs({projectId}) {
                 <DevlogsCard key={d.id} devlog={d}/>
             ))}
             <div>
-                <button disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
+                <Button disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
                     Previous
-                </button>
+                </Button>
                 <span>
                     Page {page} of {totalPages}
                 </span>
-                <button disabled={page === totalPages} onClick={() => setPage((p) => p + 1)}>
+                <Button disabled={page === totalPages} onClick={() => setPage((p) => p + 1)}>
                     Next
-                </button>
-                <button onClick={refresh}>
+                </Button>
+                <Button onClick={refresh}>
                     Refresh
-                </button>
+                </Button>
             </div>
         </>
     )

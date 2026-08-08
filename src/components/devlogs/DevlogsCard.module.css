@@ -6,6 +6,9 @@
     padding: 1rem;
     text-decoration: none;
     transition: background 0.15s ease;
+    border: 1px solid var(--nord4);
+    box-sizing: border-box;
+    margin: 15px 0;
 }
 
 .card:hover {
