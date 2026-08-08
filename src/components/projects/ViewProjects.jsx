@@ -2,6 +2,7 @@ import {useState} from "react";
 import ProjectCard from "./ProjectCard.jsx";
 import useProjects from "../../hooks/useProjects.js";
 import ErrorPage from "../common/ErrorPage.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function ViewProjects() {
     const { projects, loading, error, refresh } = useProjects()
@@ -21,10 +22,10 @@ export function ViewProjects() {
             ))}
 
             <div>
-                <button disabled={page === 1} onClick={() => setPage(page - 1)}>Previous</button>
+                <Button disabled={page === 1} onClick={() => setPage(page - 1)}>Previous</Button>
                 <span>Page {page} of {totalPages}</span>
-                <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>Next</button>
-                <button onClick={refresh}>Refresh</button>
+                <Button disabled={page === totalPages} onClick={() => setPage(page + 1)}>Next</Button>
+                <Button onClick={refresh}>Refresh</Button>
             </div>
         </>
     );

@@ -7,6 +7,7 @@ import ViewDevlogs from "../devlogs/ViewDevlogs.jsx";
 import MarkdownRenderer from "../common/MarkdownRenderer.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function ProjectView() {
     const { id: projectId} = useParams()
@@ -50,16 +51,16 @@ export function ProjectView() {
             {isOwner && (
                 <>
                     <Link to={`/projects/edit/${projectId}`}>
-                        <button>Edit Project</button>
+                        <Button>Edit Project</Button>
                     </Link>
                     <Link to={`/projects/delete/${projectId}`}>
-                        <button>Delete Project</button>
+                        <Button>Delete Project</Button>
                     </Link>
                     <Link to={`/projects/${projectId}/collaborators/add`}>
-                        <button>Add Collaborator</button>
+                        <Button>Add Collaborator</Button>
                     </Link>
                     <Link to={`/projects/${projectId}/collaborators/remove`}>
-                        <button>Remove Collaborator</button>
+                        <Button>Remove Collaborator</Button>
                     </Link>
                 </>
             )}

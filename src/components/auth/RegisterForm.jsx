@@ -4,6 +4,7 @@ import {parseApiError} from "../../api/client.js";
 import {useNavigate} from "react-router-dom";
 import {createProject} from "../../api/projects.js";
 import {Input} from "../common/Input.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function RegisterForm(){
     const emailRef = useRef(null)
@@ -59,7 +60,7 @@ export function RegisterForm(){
             {fieldErrors.password && <p className="error">{fieldErrors.password}</p>}
 
             <br/>
-            <button id="registerButton" onClick={RegisterUser} disabled={isSubmitting}>{isSubmitting ? "Registering.." : "Register"}</button>
+            <Button id="registerButton" onClick={RegisterUser} disabled={isSubmitting}>{isSubmitting ? "Registering.." : "Register"}</Button>
         </div>
     )
 }

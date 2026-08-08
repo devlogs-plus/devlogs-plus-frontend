@@ -3,6 +3,7 @@ import useCreateProject from "../../hooks/useCreateProject.js";
 import {parseApiError} from "../../api/client.js";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function ProjectForm() {
     const nameRef = useRef(null)
@@ -64,7 +65,7 @@ export function ProjectForm() {
             <Input name="demoUrl" ref={demoRef}/>
             {fieldErrors.demo_url && <p className="error">{fieldErrors.demo_url}</p>}
 
-            <button id="createProjectButton" onClick={createProject} disabled={isSubmitting}>{isSubmitting ? "Creating.." : "Create"}</button>
+            <Button id="createProjectButton" onClick={createProject} disabled={isSubmitting}>{isSubmitting ? "Creating.." : "Create"}</Button>
         </div>
     )
 }

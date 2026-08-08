@@ -9,6 +9,7 @@ import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function ProjectEditForm({onUpdated}) {
     const { id: projectId} = useParams()
@@ -107,7 +108,7 @@ export function ProjectEditForm({onUpdated}) {
             <Input name="demoUrl" value={formData.demo_url} onChange={(e) => setFormData({...formData, demo_url: e.target.value})}/>
             {fieldErrors.demo_url && <p className="error">{fieldErrors.demo_url}</p>}
 
-            <button id="editProjectButton" onClick={editProject} disabled={isSubmitting}>{isSubmitting ? "Saving.." : "Save"}</button>
+            <Button id="editProjectButton" onClick={editProject} disabled={isSubmitting}>{isSubmitting ? "Saving.." : "Save"}</Button>
         </div>
     )
 }

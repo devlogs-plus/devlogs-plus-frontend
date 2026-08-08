@@ -6,6 +6,7 @@ import {parseApiError} from "../../api/client.js";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function ProjectDeletePage() {
     const { id: projectId} = useParams()
@@ -67,10 +68,10 @@ export function ProjectDeletePage() {
                 <p>Warning!! This action is permanent</p>
             </div>
 
-            <button onClick={handleDelete} disabled={deleting}>
+            <Button onClick={handleDelete} disabled={deleting}>
                 {deleting ? "Deleting.." : "Delete Project"}
-            </button>
-            <button onClick={() => navigate(-1)}>Cancel</button>
+            </Button>
+            <Button onClick={() => navigate(-1)}>Cancel</Button>
         </div>
     )
 }

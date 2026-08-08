@@ -1,6 +1,7 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "../../context/AuthContext.jsx";
 import {useLogout} from "../../hooks/useAuth.js";
+import {Button} from "../common/Button.jsx";
 
 export function Nav() {
     const {user, isLoading} = useAuth()
@@ -24,9 +25,9 @@ export function Nav() {
                 </>
             ) : user ? (
                 <>
-                    <button onClick={handleLogout} disabled={logout.isLoading}>
+                    <Button onClick={handleLogout} disabled={logout.isLoading}>
                         {logout.isLoading ? "Logging out":"Logout"}
-                    </button>{" "}
+                    </Button>{" "}
                     | <Link to="/">Home</Link> {" "}
                     | <Link to="/projects/create">Create a Project</Link> {" "}
                     | <Link to="/devlogs/create">Create a Devlog</Link> {" "}

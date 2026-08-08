@@ -4,6 +4,7 @@ import useCreateDevlog from "../../hooks/useCreateDevlog.js";
 import usePublishDevlog from "../../hooks/usePublishDevlog.js";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function DevlogForm() {
     const titleRef = useRef(null)
@@ -92,8 +93,8 @@ export function DevlogForm() {
             <Input name="repoUrl" ref={projectIdRef}/>
             {fieldErrors.repo_url && <p className="error">{fieldErrors.project_id}</p>}
 
-            <button id="createProjectButton" onClick={createDevlog} disabled={isSubmitting}>{isSubmitting ? "Creating Draft.." : "Create Draft"}</button>
-            <button id="createProjectButton" onClick={publishDevlog} disabled={isSubmitting}>{isSubmitting ? "Publishing.." : "Publish Devlog"}</button>
+            <Button id="createProjectButton" onClick={createDevlog} disabled={isSubmitting}>{isSubmitting ? "Creating Draft.." : "Create Draft"}</Button>
+            <Button id="createProjectButton" onClick={publishDevlog} disabled={isSubmitting}>{isSubmitting ? "Publishing.." : "Publish Devlog"}</Button>
         </div>
     )
 }
