@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import MarkdownRenderer from "../common/MarkdownRenderer.jsx";
+import styles from "./ProjectCard.module.css"
 
 export function ProjectCard({ project }) {
     if (!project) {
@@ -15,14 +16,12 @@ export function ProjectCard({ project }) {
     } = project;
 
     return (
-        <div className="projectCard">
+        <div className={styles.card}>
             <Link to={`/projects/${id}`}>
-                <p>-----------------------</p>
-                <h3>{name}</h3>
+                <h3 className={styles.name}>{name}</h3>
                 <MarkdownRenderer content={shortDescription}/>
-                <p>Demo Url: {demoUrl}</p>
-                <p>Repo Url: {repoUrl}</p>
-                <p>-----------------------</p>
+                <p className={styles.url}>Demo Url: {demoUrl}</p>
+                <p className={styles.url}>Repo Url: {repoUrl}</p>
             </Link>
         </div>
     );
