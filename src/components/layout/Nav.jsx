@@ -37,7 +37,7 @@ export function Nav() {
                 </>
             ): (
                 <>
-                    <Link className={styles.link} to="/">Home</Link> | <Link to="/projects">Projects</Link>| {" "}
+                    <Link className={styles.link} to="/">Home</Link> | <Link className={styles.link} to="/projects">Projects</Link> | {" "}
                     <Link className={styles.link} to="/login">Login</Link> {" "}
                     | <Link className={styles.link} to="/register">Register</Link>
                 </>
