@@ -7,6 +7,7 @@ import NotFoundPage from "../common/NotFoundPage.jsx";
 import MarkdownRenderer from "../common/MarkdownRenderer.jsx";
 import {useAuth} from "../../context/AuthContext.jsx";
 import styles from "./DevlogPage.module.css"
+import {Button} from "../common/Button.jsx";
 
 export function DevlogPage() {
     const {projectId, devlogId} = useParams()
@@ -55,10 +56,10 @@ export function DevlogPage() {
             {isOwner && (
                 <>
                 <Link to={`/projects/${projectId}/devlogs/${devlogId}/edit`}>
-                    <button>Edit Devlog</button>
+                    <Button>Edit Devlog</Button>
                 </Link>
                 <Link to={`/projects/${projectId}/devlogs/${devlogId}/unpublish`}>
-                    <button>Unpublish Devlog</button>
+                    <Button>Unpublish Devlog</Button>
                 </Link>
                 </>
             )}

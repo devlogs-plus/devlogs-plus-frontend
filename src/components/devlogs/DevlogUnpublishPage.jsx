@@ -6,6 +6,7 @@ import {parseApiError} from "../../api/client.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function DevlogUnpublishPage() {
     const {projectId, devlogId} = useParams()
@@ -67,10 +68,10 @@ export function DevlogUnpublishPage() {
                 <p>You can republish this later at</p> <Link to="/devlogs/unpublished">Unpublished Devlogs</Link>
             </div>
 
-            <button onClick={handleUnpub} disabled={unpub}>
+            <Button onClick={handleUnpub} disabled={unpub}>
                 {unpub ? "Unpublishing.." : "Unpublish Devlog"}
-            </button>
-            <button onClick={() => navigate(-1)}>Cancel</button>
+            </Button>
+            <Button onClick={() => navigate(-1)}>Cancel</Button>
         </div>
     )
 }

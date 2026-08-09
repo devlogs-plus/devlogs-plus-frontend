@@ -8,6 +8,7 @@ import {useState} from "react";
 import ErrorPage from "../components/common/ErrorPage.jsx";
 import useEditDevlog from "../hooks/useEditDevlog.js";
 import {Link} from "react-router-dom";
+import {Button} from "../components/common/Button.jsx";
 
 export function UserUnpublishedDevlogs() {
     const { user, isLoading: authLoading } = useAuth();
@@ -52,16 +53,16 @@ export function UserUnpublishedDevlogs() {
                 <div key={d.id}>
                     <DevlogsCard devlog={d} />
                     <div>
-                        <button onClick={() => handlePublish(d)} disabled={publishingId === d.id || publishMutation.isLoading}>
+                        <Button onClick={() => handlePublish(d)} disabled={publishingId === d.id || publishMutation.isLoading}>
                             {publishingId === d.id ? "Publishing..." : "Publish"}
-                        </button>
+                        </Button>
                         <Link to={`/projects/${d.project_id ?? d.projectId}/devlogs/${d.id}/edit`}>
-                            <button>Edit</button>
+                            <Button>Edit</Button>
                         </Link>
                     </div>
                 </div>
             ))}
-            <div> <button onClick={refresh}>Refresh</button> </div>
+            <div> <Button onClick={refresh}>Refresh</Button> </div>
         </>
     );
 }

@@ -47,7 +47,7 @@ export function ProjectView() {
             <p>Demo: {demo_url}</p>
             <p>Created: {created_at}</p>
             <p>the project id is {projectId}</p>
-            <Link to={`/projects/${projectId}/collaborators`}><button>View Collaborators</button></Link>
+            <Link to={`/projects/${projectId}/collaborators`}><Button>View Collaborators</Button></Link>
             {isOwner && (
                 <>
                     <Link to={`/projects/edit/${projectId}`}>

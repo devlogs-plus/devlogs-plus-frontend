@@ -6,6 +6,7 @@ import {getProjectOwnerId} from "../../helperFunctions.js";
 import {parseApiError} from "../../api/client.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
+import {Button} from "../common/Button.jsx";
 
 export default function RemoveCollaboratorPage() {
     const {projectId} = useParams()
@@ -81,7 +82,7 @@ export default function RemoveCollaboratorPage() {
             <input name="userid" ref={userIdRef}/>
             {fieldErrors.user_id && <p className="error">{fieldErrors.user_id}</p>}
 
-            <button id="removeCollaborator" onClick={removeCollaborator} disabled={removing}>{removing ? "Removing.." : "Remove Collaborator"}</button>
+            <Button id="removeCollaborator" onClick={removeCollaborator} disabled={removing}>{removing ? "Removing.." : "Remove Collaborator"}</Button>
         </div>
     )
 }

@@ -9,6 +9,7 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function DevlogEditForm({onUpdated}) {
     const {projectId, devlogId} = useParams()
@@ -90,7 +91,7 @@ export function DevlogEditForm({onUpdated}) {
             <TextArea name="title" value={formData.body_markdown} onChange={(e) => setFormData({...formData, body_markdown: e.target.value})}/>
             {fieldErrors.body_markdown && <p className="error">{fieldErrors.body_markdown}</p> }
 
-            <button id="editDevlogButton" onClick={editDevlog} disabled={isSubmitting}>{isSubmitting ? "Saving.." : "Save"}</button>
+            <Button id="editDevlogButton" onClick={editDevlog} disabled={isSubmitting}>{isSubmitting ? "Saving.." : "Save"}</Button>
         </div>
     )
 }

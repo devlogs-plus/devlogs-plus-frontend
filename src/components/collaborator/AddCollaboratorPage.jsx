@@ -7,6 +7,7 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {getProjectOwnerId} from "../../helperFunctions.js";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Input} from "../common/Input.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function AddCollaboratorPage() {
     const userIdRef = useRef(null)
@@ -72,7 +73,7 @@ export function AddCollaboratorPage() {
             <Input name="userid" ref={userIdRef}/>
             {fieldErrors.user_id && <p className="error">{fieldErrors.user_id}</p> }
 
-            <button id="addCollaborator" onClick={addCollaborator} disabled={isSubmitting}>{isSubmitting ? "Adding..":"Add Collaborator"}</button>
+            <Button id="addCollaborator" onClick={addCollaborator} disabled={isSubmitting}>{isSubmitting ? "Adding..":"Add Collaborator"}</Button>
         </div>
     )
 }
