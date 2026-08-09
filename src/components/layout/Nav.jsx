@@ -29,6 +29,7 @@ export function Nav() {
                     <Button onClick={handleLogout} disabled={logout.isLoading}>
                         {logout.isLoading ? "Logging out":"Logout"}
                     </Button>{" "}
+                    | <Link className={styles.link} to="/me">You</Link> {" "}
                     | <Link className={styles.link} to="/">Home</Link> {" "}
                     | <Link className={styles.link} to="/projects/create">Create a Project</Link> {" "}
                     | <Link className={styles.link} to="/devlogs/create">Create a Devlog</Link> {" "}
