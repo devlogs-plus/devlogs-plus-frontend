@@ -1,10 +1,8 @@
 import {RegisterForm} from "./components/auth/RegisterForm.jsx";
 import {LoginForm} from "./components/auth/LoginForm.jsx";
-import {Link, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {Nav} from "./components/layout/Nav.jsx";
-import {useAuth} from "./context/AuthContext.jsx";
 import {ProtectedRoute} from "./components/common/ProtectedRoute.jsx";
-import PageContainer from "./components/layout/PageContainer.jsx";
 import ViewProjects from "./components/projects/ViewProjects.jsx";
 import ProjectForm from "./components/projects/ProjectForm.jsx";
 import ProjectView from "./components/projects/ProjectView.jsx";
@@ -19,27 +17,7 @@ import {DevlogUnpublishPage} from "./components/devlogs/DevlogUnpublishPage.jsx"
 import AddCollaboratorPage from "./components/collaborator/AddCollaboratorPage.jsx";
 import {CollaboratorList} from "./components/collaborator/CollaboratorList.jsx";
 import RemoveCollaboratorPage from "./components/collaborator/RemoveCollaboratorPage.jsx";
-import LoadingSpinner from "./components/common/LoadingSpinner.jsx";
-
-function HomePage() {
-    const {user, isLoading} = useAuth()
-
-    if (isLoading) return <LoadingSpinner/>
-    if (!user) return (
-        <PageContainer title="Home">
-            <h3>Welcome to Devlogs+</h3>
-            <p>the place for you! (yes you) to share your devlogs!</p>
-            <p>Want to join? <Link to="/register">Register</Link> or <Link to="/login">Login</Link>!!!</p>
-        </PageContainer>
-    )
-
-    return (
-        <PageContainer title="Home">
-            <p>Hello, {user.display_name}</p>
-            <p>user id: {user.id}</p>
-        </PageContainer>
-    );
-}
+import HomePage from "./components/common/HomePage.jsx";
 
 export default function App() {
     return (
