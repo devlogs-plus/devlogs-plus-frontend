@@ -3,7 +3,7 @@ import {updateDevlog} from "../api/devlogs.js";
 
 export default function useEditDevlog() {
     const queryClient = useQueryClient()
-    return  useMutation({
+    return useMutation({
         mutationFn: ({projectId, devlogId, devlog}) => updateDevlog(projectId,devlogId,devlog),
         onSuccess: (updatedDevlog) => {
             queryClient.invalidateQueries(['projects'])
