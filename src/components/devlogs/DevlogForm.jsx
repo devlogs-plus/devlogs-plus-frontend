@@ -22,12 +22,31 @@ export function DevlogForm() {
         setGeneralError(null)
         setFieldErrors({})
         setSuccessMessage(null)
+
+        const title = titleRef.current?.value?.trim() || ""
+        const body = bodyRef.current?.value?.trim() || ""
+        const projectId = projectIdRef.current?.value?.trim() || ""
+
+        const errors = {}
+        if (!title) errors.title = "Title is required"
+        if (!body) errors.body_markdown = "Body is required"
+        if (!projectId) {
+            errors.project_id = "Project ID is required"
+        } else if (!/^\d+$/.test(projectId)) {
+            errors.project_id = "Project ID must contain only digits"
+        }
+
+        if (Object.keys(errors).length > 0) {
+            setFieldErrors(errors)
+            return
+        }
+
         setIsSubmitting(true)
 
         const devlogObject = {
-            "title": titleRef.current.value,
-            "body_markdown": bodyRef.current.value,
-            "project_id": projectIdRef.current.value
+            title,
+            body_markdown: body,
+            project_id: projectId
         }
 
         try {
@@ -48,18 +67,32 @@ export function DevlogForm() {
         setGeneralError(null)
         setFieldErrors({})
         setSuccessMessage(null)
-        setIsSubmitting(true)
 
-        const devlogObject = {
-            "title": titleRef.current.value,
-            "body_markdown": bodyRef.current.value,
-            "project_id": projectIdRef.current.value
+        const title = titleRef.current?.value?.trim() || "";
+        const body = bodyRef.current?.value?.trim() || "";
+        const projectId = projectIdRef.current?.value?.trim() || ""
+
+        const errors = {}
+        if (!title) errors.title = "Title is required"
+        if (!body) errors.body_markdown = "Body is required"
+        if (!projectId) {
+            errors.project_id = "Project ID is required"
+        } else if (!/^\d+$/.test(projectId)) {
+            errors.project_id = "Project ID must contain only digits"
         }
 
-        try {
-            const created = await createMutation.mutateAsync(devlogObject)
-            console.log("Created devlog:", created)  // Debug: verify id and project_id exist
+        if (Object.keys(errors).length > 0) {
+            setFieldErrors(errors)
+            return
+        }
 
+        setIsSubmitting(true)
+        try {
+            const created = await createMutation.mutateAsync({
+                title,
+                body_markdown: body,
+                project_id: projectId
+            })
             const published = await publishMutation.mutateAsync({
                 projectId: created.project_id,
                 devlogId: created.id
@@ -82,19 +115,19 @@ export function DevlogForm() {
             {successMessage && <p className="success">{successMessage}</p> }
 
             <p>Title</p>
-            <Input name="name" ref={titleRef}/>
-            {fieldErrors.name && <p className="error">{fieldErrors.title}</p>}
+            <Input name="title" ref={titleRef}/>
+            {fieldErrors.title && <p className="error">{fieldErrors.title}</p>}
 
             <p>Body</p>
-            <TextArea name="shortDescription" ref={bodyRef}/>
-            {fieldErrors.short_description && <p className="error">{fieldErrors.body_markdown}</p>}
+            <TextArea name="body_markdown" ref={bodyRef}/>
+            {fieldErrors.body_markdown && <p className="error">{fieldErrors.body_markdown}</p>}
 
             <p>Project ID</p>
-            <Input name="repoUrl" ref={projectIdRef}/>
-            {fieldErrors.repo_url && <p className="error">{fieldErrors.project_id}</p>}
+            <Input name="project_id" ref={projectIdRef}/>
+            {fieldErrors.project_id && <p className="error">{fieldErrors.project_id}</p>}
 
             <Button id="createProjectButton" onClick={createDevlog} disabled={isSubmitting}>{isSubmitting ? "Creating Draft.." : "Create Draft"}</Button>
-            <Button id="createProjectButton" onClick={publishDevlog} disabled={isSubmitting}>{isSubmitting ? "Publishing.." : "Publish Devlog"}</Button>
+            <Button id="publishProjectButton" onClick={publishDevlog} disabled={isSubmitting}>{isSubmitting ? "Publishing.." : "Publish Devlog"}</Button>
         </div>
     )
 }

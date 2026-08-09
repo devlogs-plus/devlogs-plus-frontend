@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {createProject} from "../../api/projects.js";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
+import {isValidEmail} from "../../helperFunctions.js";
 
 export function RegisterForm(){
     const emailRef = useRef(null)
@@ -23,10 +24,27 @@ export function RegisterForm(){
         setSuccessMessage(null)
         setIsSubmitting(true)
 
+        const email = emailRef.current?.value?.trim() || ""
+        const password = passwordRef.current?.value?.trim() || ""
+        const displayName = nameRef.current?.value?.trim() || ""
+
+        const errors = {}
+        if (!email) errors.email = "Email is required"
+        else if (!isValidEmail(email)) errors.email = "Please enter a valid email address"
+
+        if (!password) errors.password = "Password is required"
+        if (!displayName) errors.display_name = "Display Name is required"
+
+        if (Object.keys(errors).length > 0) {
+            setFieldErrors(errors)
+            setIsSubmitting(false)
+            return
+        }
+
         const userObject = {
-            "email": emailRef.current.value?.toString(),
-            "password": passwordRef.current.value?.toString(),
-            "display_name": nameRef.current.value?.toString()
+            "email": email,
+            "password": password,
+            "display_name": displayName
         }
 
         try {

@@ -47,8 +47,20 @@ export function AddCollaboratorPage() {
         setSuccessMessage(null)
         setIsSubmitting(true)
 
+        const userIdValue = userIdRef.current?.value?.trim() || ""
+        if (!userIdValue) {
+            setFieldErrors({user_id: "User Id is required"})
+            setIsSubmitting(false)
+            return
+        }
+        if (!/^\d+$/.test(userIdValue)) {
+            setFieldErrors({ user_id: "User id must contain only digits" })
+            setIsSubmitting(false)
+            return
+        }
+
         try {
-            const added = await addMutation.mutateAsync({projectId: projectId, userId: userIdRef.current.value})
+            const added = await addMutation.mutateAsync({projectId: projectId, userId: userIdValue})
             setSuccessMessage("Collaborator added successfully.")
             if (typeof onCreated === "function") onCreated(added)
         } catch (err) {
@@ -61,7 +73,7 @@ export function AddCollaboratorPage() {
     }
 
     if (isLoadingOwner || isSubmitting) return <LoadingSpinner/>
-    if (ownerId !== currentUserId) return <UnauthorizedRoute/>
+    if (Number(ownerId) !== Number(currentUserId)) return <UnauthorizedRoute/>
 
     return (
         <div className="projectForm">
