@@ -1,0 +1,8 @@
+.link {
+    color: var(--nord9);
+    text-decoration: var(--color-accent);
+}
+
+.link:hover {
+    text-decoration: underline;
+}
