@@ -21,3 +21,10 @@ export function register(credentials) {
         body: JSON.stringify(credentials)
     })
 }
+
+export function editSelf(newUser) {
+    return apiFetch('/auth/me/edit', {
+        method: 'POST',
+        body: JSON.stringify(newUser)
+    })
+}

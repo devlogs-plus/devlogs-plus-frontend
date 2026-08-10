@@ -1,13 +1,14 @@
-import {useCurrentUser} from "../../hooks/useAuth.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
-import {useNavigate} from "react-router-dom";
+import {Link, Navigate, useNavigate} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext.jsx";
+import {Button} from "../common/Button.jsx";
 
 export function OwnUserPage() {
-    const {data: user, isLoading} = useCurrentUser()
+    const {user, isLoading} = useAuth()
     const navigate = useNavigate()
 
     if (isLoading) return <LoadingSpinner/>
-    if (!user) return navigate('/login')
+    if (!user) return <Navigate to="/login" replace/>
 
     return (
         <div>
@@ -15,6 +16,9 @@ export function OwnUserPage() {
             <p>Email: {user.email}</p>
             <p>Avatar Url: {user.avatar_url}</p>
             <p>User Id: {user.id}</p>
+            <Link to="/me/edit"><Button>Edit</Button></Link>
         </div>
     )
 }
+
+export default OwnUserPage

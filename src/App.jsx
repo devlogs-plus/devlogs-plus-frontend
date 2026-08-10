@@ -19,6 +19,7 @@ import {CollaboratorList} from "./components/collaborator/CollaboratorList.jsx";
 import RemoveCollaboratorPage from "./components/collaborator/RemoveCollaboratorPage.jsx";
 import HomePage from "./components/common/HomePage.jsx";
 import {OwnUserPage} from "./components/auth/OwnUserPage.jsx";
+import EditOwnUser from "./components/auth/EditOwnUser.jsx";
 
 export default function App() {
     return (
@@ -43,6 +44,7 @@ export default function App() {
                     <Route path="/projects/:projectId/collaborators" element={<CollaboratorList/>}/>
                     <Route path="/projects/:projectId/collaborators/remove" element={<RemoveCollaboratorPage/>}/>
                     <Route path="/me" element={<OwnUserPage/>}/>
+                    <Route path="/me/edit" element={<EditOwnUser/>}/>
                 </Route>
 
                 //404 page
