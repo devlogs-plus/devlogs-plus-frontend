@@ -14,7 +14,7 @@ export function OwnUserPage() {
         <div>
             <h3>{user.display_name}</h3>
             <p>Email: {user.email}</p>
-            <p>Avatar Url: {user.avatar_url}</p>
+            <p>Avatar Url: {user.avatar_url ?? "No avatar set"}</p>
             <p>User Id: {user.id}</p>
             <Link to="/me/edit"><Button>Edit</Button></Link>
         </div>
