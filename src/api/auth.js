@@ -28,3 +28,7 @@ export function editSelf(newUser) {
         body: JSON.stringify(newUser)
     })
 }
+
+export function getUser(userId) {
+    return apiFetch(`/auth/getuser/${userId}`)
+}
