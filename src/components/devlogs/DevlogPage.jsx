@@ -8,6 +8,7 @@ import MarkdownRenderer from "../common/MarkdownRenderer.jsx";
 import {useAuth} from "../../context/AuthContext.jsx";
 import styles from "./DevlogPage.module.css"
 import {Button} from "../common/Button.jsx";
+import {UserCard} from "../auth/UserCard.jsx";
 
 export function DevlogPage() {
     const {projectId, devlogId} = useParams()
@@ -47,6 +48,7 @@ export function DevlogPage() {
     return (
         <>
             <h1 className={styles.title}>{title}</h1>
+            <UserCard userId={ownerId}/>
             <p>-----------------------------------</p>
             <MarkdownRenderer content={bodyMarkdown}/>
             <p>-----------------------------------</p>

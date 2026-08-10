@@ -8,6 +8,7 @@ import MarkdownRenderer from "../common/MarkdownRenderer.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {Button} from "../common/Button.jsx";
+import {UserCard} from "../auth/UserCard.jsx";
 
 export function ProjectView() {
     const { id: projectId} = useParams()
@@ -47,6 +48,7 @@ export function ProjectView() {
             <p>Demo: {demo_url}</p>
             <p>Created: {created_at}</p>
             <p>the project id is {projectId}</p>
+            <UserCard userId={ownerId}/>
             <Link to={`/projects/${projectId}/collaborators`}><Button>View Collaborators</Button></Link>
             {isOwner && (
                 <>
