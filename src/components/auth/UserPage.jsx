@@ -8,7 +8,7 @@ export function UserPage() {
     const {data: user, isLoading, isError, error} = useUser(userId)
 
     if (isLoading) return <LoadingSpinner/>
-    if(isError) return <ErrorPage message={error.message}/>
+    if (isError) return <ErrorPage message={error.message}/>
 
     return (
         <div>
