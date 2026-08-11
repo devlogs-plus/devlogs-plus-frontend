@@ -42,5 +42,5 @@ export async function unpublishDevlog(projectId, devlogId) {
 
 export async function getFeed({page=1, per_page=10} ={}) {
     const qs = new URLSearchParams({page, per_page}).toString()
-    return apiFetch(`/feed${qs}`)
+    return apiFetch(`/feed?${qs}`)
 }
