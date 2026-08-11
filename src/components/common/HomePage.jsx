@@ -3,6 +3,7 @@ import LoadingSpinner from "./LoadingSpinner.jsx";
 import PageContainer from "../layout/PageContainer.jsx";
 import {Link} from "react-router-dom";
 import styles from "./HomePage.module.css"
+import {ViewFeed} from "../devlogs/ViewFeed.jsx";
 
 export default function HomePage() {
     const {user, isLoading} = useAuth()
@@ -20,6 +21,7 @@ export default function HomePage() {
         <PageContainer title="Home">
             <p>Hello, {user.display_name}</p>
             <p>user id: {user.id}</p>
+            <ViewFeed/>
         </PageContainer>
     );
 }
