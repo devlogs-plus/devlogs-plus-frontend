@@ -12,6 +12,12 @@ export function ViewFeed() {
 
     return (
         <div>
+            <div style={{display: "flex", alignItems: "center", gap: 8}}>
+                <Button onClick={prevPage} disabled={!page || page <= 1}>Prev</Button>
+                <Button onClick={nextPage} disabled={total != null && page * prevPage >= total}>Next</Button>
+                <Button onClick={refresh}>Refresh</Button>
+                <span>Page: {page ?? "-"}</span>
+            </div>
             {feed.length === 0 ? (
                 <div>No items in feed</div>
             ):(
@@ -21,7 +27,7 @@ export function ViewFeed() {
                 <Button onClick={prevPage} disabled={!page || page <= 1}>Prev</Button>
                 <Button onClick={nextPage} disabled={total != null && page * prevPage >= total}>Next</Button>
                 <Button onClick={refresh}>Refresh</Button>
-                <span>Page: {page ?? "-"} - Per page: {perPage ?? "-"} - Total {total ?? "-"}</span>
+                <span>Page: {page ?? "-"}</span>
             </div>
         </div>
     )
