@@ -39,3 +39,8 @@ export async function unpublishDevlog(projectId, devlogId) {
         body: JSON.stringify({})
     })
 }
+
+export async function getFeed({page=1, per_page=10} ={}) {
+    const qs = new URLSearchParams({page, per_page}).toString()
+    return apiFetch(`/feed${qs}`)
+}
