@@ -18,9 +18,17 @@ export function EditOwnUser() {
     if (isLoading) return <LoadingSpinner/>
     if (!user) return <Navigate to="/login" replace/>
 
+    function isValidImageUrl(url) {
+        return /\.(jpg|jpeg|png)$/i.test(url)
+    }
+
     async function handleSubmit(event) {
         event.preventDefault()
         setError("")
+        if (!isValidImageUrl(avatarUrl)) {
+            setError("Avatar Url must be a jpg or png")
+            return
+        }
         setSaving(true)
 
         try {
