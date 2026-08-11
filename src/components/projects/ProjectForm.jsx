@@ -25,7 +25,7 @@ export function ProjectForm() {
         const projectObject = {
             "name": nameRef.current.value,
             "short_description": descRef.current.value,
-            "demo_url": descRef.current.value,
+            "demo_url": demoRef.current.value,
             "repo_url": repoRef.current.value
         }
 
