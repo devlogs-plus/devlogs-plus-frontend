@@ -2,11 +2,10 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {Link, Navigate, useNavigate} from "react-router-dom";
 import {useAuth} from "../../context/AuthContext.jsx";
 import {Button} from "../common/Button.jsx";
-import styles from "./UserPage.module.css";
+import AvatarImg from "../common/AvatarImg.jsx";
 
 export function OwnUserPage() {
     const {user, isLoading} = useAuth()
-    const navigate = useNavigate()
 
     if (isLoading) return <LoadingSpinner/>
     if (!user) return <Navigate to="/login" replace/>
@@ -14,18 +13,7 @@ export function OwnUserPage() {
     return (
         <div>
             <h3>{user.display_name}</h3>
-            {user.avatar_url
-                ? (
-                    <img
-                        src={user.avatar_url}
-                        alt="avatar"
-                        className={styles.img}
-                    />
-                )
-                : (
-                    <img src="/default_user_photo.png" alt="deafult avatar" className={styles.img}/>
-                )
-            }
+            <AvatarImg user={user}/>
             <p>Email: {user.email}</p>
             <p>User Id: {user.id}</p>
             <Link to="/me/edit"><Button>Edit</Button></Link>

@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import useUser from "../../hooks/useUser.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
-import styles from "./UserPage.module.css"
+import AvatarImg from "../common/AvatarImg.jsx";
 
 export function UserPage() {
     const {userId} = useParams()
@@ -14,18 +14,7 @@ export function UserPage() {
     return (
         <div>
             <h3>{user.display_name}</h3>
-            {user.avatar_url
-                ? (
-                    <img
-                        src={user.avatar_url}
-                        alt="avatar"
-                        className={styles.img}
-                    />
-                )
-                : (
-                    <img src="/default_user_photo.png" alt="deafult avatar" className={styles.img}/>
-                )
-            }
+            <AvatarImg user={user}/>
             <p>User Id: {user.id}</p>
         </div>
     )

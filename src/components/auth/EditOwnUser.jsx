@@ -6,6 +6,7 @@ import {editSelf} from "../../api/auth.js";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import useUploadAvatar from "../../hooks/useUploadAvatar.js";
+import AvatarImg from "../common/AvatarImg.jsx";
 
 export function EditOwnUser() {
     const {user, isLoading} = useAuth()
@@ -78,6 +79,8 @@ export function EditOwnUser() {
     return (
         <div>
             <h3>Edit Profile</h3>
+
+            <AvatarImg user={user}/>
 
             <p>Display Name</p>
             <Input type="text" value={displayName} onChange={(event) => setDisplayName(event.target.value)} required/>

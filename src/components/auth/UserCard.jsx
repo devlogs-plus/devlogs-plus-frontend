@@ -3,6 +3,7 @@ import styles from "./UserCard.module.css"
 import {Link} from "react-router-dom";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
+import AvatarImg from "../common/AvatarImg.jsx";
 
 export function UserCard({userId}) {
     const {user, isLoading, isError,error} = useUser(userId)
@@ -14,8 +15,11 @@ export function UserCard({userId}) {
     return (
         <Link to={`/user/${userId}`}>
             <div className={styles.card}>
-                <h3 className={styles.name}>{user.display_name}</h3>
-                <p className={styles.id}>User Id: {user.id}</p>
+                <AvatarImg user={user}/>
+                <div className={styles.info}>
+                    <h3 className={styles.name}>{user.display_name}</h3>
+                    <p className={styles.id}>User Id: {user.id}</p>
+                </div>
             </div>
         </Link>
     )

@@ -1,5 +1,7 @@
 .card {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     background: var(--color-surface);
     color: var(--color-text);
     border-radius: 8px;
@@ -23,4 +25,10 @@
 .id {
     color: var(--nord4);
     font-size: 0.85rem;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
