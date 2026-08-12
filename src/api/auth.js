@@ -35,11 +35,9 @@ export function getUser(userId) {
 }
 
 export async function uploadAvatar(formData) {
-    const endpoint = 'https://cdn.hackclub.com/api/v4/upload'
+    const endpoint = 'https://localhost:5000/uploadavatar'
     try {
-        const response = await axios.post(endpoint, formData, {
-            headers: {Authorization: `Bearer ${import.meta.env.VITE_CDN_KEY}`}
-        })
+        const response = await axios.post(endpoint, formData)
         return response.data
     } catch (err) {
         if (err.response) {
