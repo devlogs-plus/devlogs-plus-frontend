@@ -80,7 +80,7 @@ export function EditOwnUser() {
         <div>
             <h3>Edit Profile</h3>
 
-            <AvatarImg user={user}/>
+
 
             <p>Display Name</p>
             <Input type="text" value={displayName} onChange={(event) => setDisplayName(event.target.value)} required/>
@@ -93,6 +93,9 @@ export function EditOwnUser() {
                 <Input ref={fileInputRef} type="file" accept=".jpg,.jpeg,.png" onChange={handleFileUpload} disabled={upload.isPending} style={{display: 'none'}}/>
                 <Button type="button" onClick={() => fileInputRef.current?.click()} disabled={upload.isPending || saving}>{upload.isPending ? "Uploading.." : "Upload Avatar"}</Button>
             </div>
+            <p>Preview:</p>
+            <AvatarImg user={user}/>
+            <br/>
 
             {error && <p className="error">{error}</p>}
             <Button type="submit" disabled={saving} onClick={(event) => handleSubmit(event)}>{saving ? "Saving..":"Save changes"}</Button>
