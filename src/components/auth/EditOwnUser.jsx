@@ -1,19 +1,22 @@
 import {useAuth} from "../../context/AuthContext.jsx";
-import {Navigate, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {Form, Navigate, useNavigate} from "react-router-dom";
+import {useRef, useState} from "react";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {editSelf} from "../../api/auth.js";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
+import useUploadAvatar from "../../hooks/useUploadAvatar.js";
 
 export function EditOwnUser() {
     const {user, isLoading} = useAuth()
     const navigate = useNavigate()
+    const fileInputRef = useRef(null)
     const [displayName, setDisplayName] = useState(user?.display_name ?? "")
     const [email, setEmail] = useState(user?.email ?? "")
     const [avatarUrl, setAvatarUrl] = useState(user?.avatar_url ?? "")
     const [saving, setSaving] = useState(false)
     const [error, setError] = useState(null)
+    const upload = useUploadAvatar()
 
     if (isLoading) return <LoadingSpinner/>
     if (!user) return <Navigate to="/login" replace/>
@@ -22,11 +25,30 @@ export function EditOwnUser() {
         return /\.(jpg|jpeg|png)$/i.test(url)
     }
 
+    async function handleFileUpload(event) {
+        const file = event.target.files?.[0]
+        if (!file) return
+
+        if (!isValidImageUrl(file.name)) {
+            setError("Avatar must be a jpg or png")
+            return
+        }
+
+        try {
+            setError("")
+            const formData = new FormData()
+            formData.append('file', file)
+            await upload.mutateAsync({formData})
+        } catch (err) {
+            setError(err.message || "Failed to update avatar")
+        }
+    }
+
     async function handleSubmit(event) {
         event.preventDefault()
         setError("")
-        if (!isValidImageUrl(avatarUrl)) {
-            setError("Avatar Url must be a jpg or png")
+        if (!avatarUrl) {
+            setError("Avatar Url is required")
             return
         }
         setSaving(true)
@@ -39,7 +61,7 @@ export function EditOwnUser() {
             })
             navigate("/me")
         } catch (err) {
-            setError(err.message || "failed to edit profile")
+            setError(err.message || "failed to edit profile, try again in 5mins")
         } finally {
             setSaving(false)
         }
@@ -55,8 +77,11 @@ export function EditOwnUser() {
             <p>Email</p>
             <Input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required/>
 
-            <p>Avatar Url</p>
-            <Input type="url" value={avatarUrl} onChange={(event) => setAvatarUrl(event.target.value)} required/>
+            <p>Avatar</p>
+            <div>
+                <Input ref={fileInputRef} type="file" accept=".jpg,.jpeg,.png" onChange={handleFileUpload} disabled={upload.isPending} style={{display: 'none'}}/>
+                <Button type="button" onClick={() => fileInputRef.current?.click()} disabled={upload.isPending || saving}>{upload.isPending ? "Uploading.." : "Upload Avatar"}</Button>
+            </div>
 
             {error && <p className="error">{error}</p>}
             <Button type="submit" disabled={saving} onClick={(event) => handleSubmit(event)}>{saving ? "Saving..":"Save changes"}</Button>
