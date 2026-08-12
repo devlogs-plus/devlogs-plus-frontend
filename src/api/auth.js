@@ -1,5 +1,6 @@
 import { apiFetch} from "./client";
 import axios from "axios";
+const API_BASE = import.meta.env.VITE_API_BASE
 
 export function getMe() {
     return apiFetch('/auth/me')
@@ -35,7 +36,7 @@ export function getUser(userId) {
 }
 
 export async function uploadAvatar(formData) {
-    const endpoint = 'https://localhost:5000/uploadavatar'
+    const endpoint = `${API_BASE}/uploadavatar`
     try {
         const response = await axios.post(endpoint, formData)
         return response.data
