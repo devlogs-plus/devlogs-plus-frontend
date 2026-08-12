@@ -7,6 +7,7 @@ import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import useUploadAvatar from "../../hooks/useUploadAvatar.js";
 import AvatarImg from "../common/AvatarImg.jsx";
+import {useQueryClient} from "@tanstack/react-query";
 
 export function EditOwnUser() {
     const {user, isLoading} = useAuth()
@@ -18,6 +19,7 @@ export function EditOwnUser() {
     const [saving, setSaving] = useState(false)
     const [error, setError] = useState(null)
     const upload = useUploadAvatar()
+    const queryClient = useQueryClient()
 
     if (isLoading) return <LoadingSpinner/>
     if (!user) return <Navigate to="/login" replace/>
@@ -68,6 +70,7 @@ export function EditOwnUser() {
                 "email": email,
                 "avatar_url": avatarUrl
             })
+            await queryClient.invalidateQueries({queryKey: ['me']})
             navigate("/me")
         } catch (err) {
             setError(err.message || "failed to edit profile, try again in 5mins")
@@ -94,12 +97,15 @@ export function EditOwnUser() {
                 <Button type="button" onClick={() => fileInputRef.current?.click()} disabled={upload.isPending || saving}>{upload.isPending ? "Uploading.." : "Upload Avatar"}</Button>
             </div>
             <p>Preview:</p>
-            <AvatarImg user={user}/>
+            <AvatarImg user={{...user, avatar_url: avatarUrl}}/>
             <br/>
 
             {error && <p className="error">{error}</p>}
             <Button type="submit" disabled={saving} onClick={(event) => handleSubmit(event)}>{saving ? "Saving..":"Save changes"}</Button>
-            <Button type="button" onClick={() => navigate(-1)} disabled={saving}>Cancel</Button>
+            <Button type="button" onClick={() => {
+                queryClient.invalidateQueries({queryKey: ['me']})
+                navigate(-1)
+            }} disabled={saving}>Cancel</Button>
         </div>
     )
 }
