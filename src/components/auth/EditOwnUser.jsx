@@ -38,7 +38,15 @@ export function EditOwnUser() {
             setError("")
             const formData = new FormData()
             formData.append('file', file)
-            await upload.mutateAsync({formData})
+            const res = await upload.mutateAsync({formData})
+            const url = res?.url || res?.result?.url || (Array.isArray(res?.result?.files) && res.result.files[0]?.url) || null
+
+            if (!url) {
+                setError("cdn did not provide any url, try again")
+                return
+            }
+
+            setAvatarUrl(url)
         } catch (err) {
             setError(err.message || "Failed to update avatar")
         }
