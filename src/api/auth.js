@@ -50,3 +50,7 @@ export async function uploadAvatar(formData) {
         throw err
     }
 }
+
+export function githubLogin() {
+    window.location.href = `${API_BASE}/auth/github`
+}

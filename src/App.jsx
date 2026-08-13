@@ -21,6 +21,7 @@ import HomePage from "./components/common/HomePage.jsx";
 import {OwnUserPage} from "./components/auth/OwnUserPage.jsx";
 import EditOwnUser from "./components/auth/EditOwnUser.jsx";
 import UserPage from "./components/auth/UserPage.jsx";
+import {GithubCallback} from "./routes/GithubCallback.jsx";
 
 export default function App() {
     return (
@@ -46,8 +47,9 @@ export default function App() {
                     <Route path="/projects/:projectId/collaborators/remove" element={<RemoveCollaboratorPage/>}/>
                     <Route path="/me" element={<OwnUserPage/>}/>
                     <Route path="/me/edit" element={<EditOwnUser/>}/>
-                    <Route path="/user/:userId" element={<UserPage/>}/>
                 </Route>
+                <Route path="/user/:userId" element={<UserPage/>}/>
+                <Route path="/auth/github/callback" element={<GithubCallback/>}/>
 
                 //404 page
                 <Route path="*" element={<NotFoundPage/>} />
