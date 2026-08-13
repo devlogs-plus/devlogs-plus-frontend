@@ -5,6 +5,7 @@ import {parseApiError} from "../../api/client.js";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import {isValidEmail} from "../../helperFunctions.js";
+import GithubButton from "../common/GithubButton.jsx";
 
 export function LoginForm() {
     const emailRef = useRef(null)
@@ -53,6 +54,8 @@ export function LoginForm() {
     return (
         <div className="loginForm">
             {generalError && <p className="error">{generalError}</p>}
+
+
             <p>Email</p>
             <Input type="email" name="email" ref={emailRef}/>
             {fieldErrors.email && <p className="error">{fieldErrors.email}</p> }
@@ -60,10 +63,12 @@ export function LoginForm() {
             <p>Password</p>
             <Input type="password" name="password" ref={passwordRef}/>
             {fieldErrors.password && <p className="error">{fieldErrors.password}</p>}
-
+            <br/>
             <Button id="loginButton" onClick={loginUser} disabled={loginMutation.isPending}>
                 {loginMutation.isPending ? "Logging in..." : "Login"}
             </Button>
+            <br/>
+            <GithubButton login={true}/>
         </div>
     )
 }

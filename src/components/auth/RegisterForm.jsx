@@ -6,6 +6,7 @@ import {createProject} from "../../api/projects.js";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import {isValidEmail} from "../../helperFunctions.js";
+import GithubButton from "../common/GithubButton.jsx";
 
 export function RegisterForm(){
     const emailRef = useRef(null)
@@ -79,6 +80,9 @@ export function RegisterForm(){
 
             <br/>
             <Button id="registerButton" onClick={RegisterUser} disabled={isSubmitting}>{isSubmitting ? "Registering.." : "Register"}</Button>
+
+            <br/>
+            <GithubButton login={false}/>
         </div>
     )
 }
