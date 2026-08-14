@@ -22,6 +22,7 @@ import {OwnUserPage} from "./components/auth/OwnUserPage.jsx";
 import EditOwnUser from "./components/auth/EditOwnUser.jsx";
 import UserPage from "./components/auth/UserPage.jsx";
 import {GithubCallback} from "./routes/GithubCallback.jsx";
+import {HackclubCallback} from "./routes/HackclubCallback.jsx";
 
 export default function App() {
     return (
@@ -50,7 +51,7 @@ export default function App() {
                 </Route>
                 <Route path="/user/:userId" element={<UserPage/>}/>
                 <Route path="/auth/github/callback" element={<GithubCallback/>}/>
-
+                <Route path="/auth/hackclub/callback" element={<HackclubCallback/>}/>
                 //404 page
                 <Route path="*" element={<NotFoundPage/>} />
             </Routes>

@@ -54,3 +54,7 @@ export async function uploadAvatar(formData) {
 export function githubLogin() {
     window.location.href = `${API_BASE}/auth/github`
 }
+
+export function hackclubLogin() {
+    window.location.href = `${API_BASE}/auth/hackclub`
+}
