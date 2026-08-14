@@ -1,12 +1,13 @@
 import {useRef, useState} from "react";
 import {useLogin} from "../../hooks/useAuth.js";
-import {useNavigate, useLocation} from "react-router-dom";
+import {useNavigate, useLocation, Link} from "react-router-dom";
 import {parseApiError} from "../../api/client.js";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import {isValidEmail} from "../../helperFunctions.js";
 import GithubButton from "../common/GithubButton.jsx";
 import HackclubButton from "../common/HackclubButton.jsx";
+import styles from "./LoginForm.module.css"
 
 export function LoginForm() {
     const emailRef = useRef(null)
@@ -72,6 +73,8 @@ export function LoginForm() {
             <GithubButton login={true}/>
             <br/>
             <HackclubButton login={true}/>
+            <br/>
+            <p>Dont have an account yet? <Link to="/register" className={styles.link}>Register!</Link></p>
         </div>
     )
 }
