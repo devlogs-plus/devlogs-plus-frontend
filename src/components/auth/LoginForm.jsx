@@ -6,6 +6,7 @@ import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import {isValidEmail} from "../../helperFunctions.js";
 import GithubButton from "../common/GithubButton.jsx";
+import HackclubButton from "../common/HackclubButton.jsx";
 
 export function LoginForm() {
     const emailRef = useRef(null)
@@ -69,6 +70,8 @@ export function LoginForm() {
             </Button>
             <br/>
             <GithubButton login={true}/>
+            <br/>
+            <HackclubButton login={true}/>
         </div>
     )
 }

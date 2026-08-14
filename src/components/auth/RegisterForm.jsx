@@ -7,6 +7,7 @@ import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import {isValidEmail} from "../../helperFunctions.js";
 import GithubButton from "../common/GithubButton.jsx";
+import HackclubButton from "../common/HackclubButton.jsx";
 
 export function RegisterForm(){
     const emailRef = useRef(null)
@@ -83,6 +84,8 @@ export function RegisterForm(){
 
             <br/>
             <GithubButton login={false}/>
+            <br/>
+            <HackclubButton login={false}/>
         </div>
     )
 }
