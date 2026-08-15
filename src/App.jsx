@@ -23,6 +23,7 @@ import EditOwnUser from "./components/auth/EditOwnUser.jsx";
 import UserPage from "./components/auth/UserPage.jsx";
 import {GithubCallback} from "./routes/GithubCallback.jsx";
 import {HackclubCallback} from "./routes/HackclubCallback.jsx";
+import DeleteSelfPage from "./components/auth/DeleteSelfPage.jsx";
 
 export default function App() {
     return (
@@ -48,6 +49,7 @@ export default function App() {
                     <Route path="/projects/:projectId/collaborators/remove" element={<RemoveCollaboratorPage/>}/>
                     <Route path="/me" element={<OwnUserPage/>}/>
                     <Route path="/me/edit" element={<EditOwnUser/>}/>
+                    <Route path="/me/delete" element={<DeleteSelfPage/>}/>
                 </Route>
                 <Route path="/user/:userId" element={<UserPage/>}/>
                 <Route path="/auth/github/callback" element={<GithubCallback/>}/>

@@ -10,7 +10,6 @@ import {Button} from "../common/Button.jsx";
 
 export default function RemoveCollaboratorPage() {
     const {projectId} = useParams()
-    console.log('RemoveCollaboratorPage - projectId:', projectId)
     const {user} = useAuth()
     const [removing, setRemoving] = useState(false)
     const [generalError, setGeneralError] = useState(null)
