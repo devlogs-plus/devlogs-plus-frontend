@@ -4,6 +4,7 @@ import {useLogout} from "../../hooks/useAuth.js";
 import {replace, useNavigate} from "react-router-dom";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {Button} from "../common/Button.jsx";
+import {Input} from "../common/Input.jsx";
 
 export default function DeleteSelfPage() {
     const [confirm, setConfirm] = useState("")
@@ -27,7 +28,7 @@ export default function DeleteSelfPage() {
             {del.isError && <p style={{color:"crimson"}}>{del.error?.message ?? "Delete fail"}</p> }
             <p style={{color: "crimson"}}>This is permanent. All your data will be removed. Type "DELETE" to confirm.</p>
             <form onSubmit={handleDelete}>
-                <input value={confirm} onChange={(e) => setConfirm(e.target.value)} placeholder="Type DELETE to confirm"/>
+                <Input value={confirm} onChange={(e) => setConfirm(e.target.value)} placeholder="Type DELETE to confirm"/>
 
                 <Button type="submit" disabled={confirm !== "DELETE" || del.isPending}>
                     {del.isPending ? "Deleting.." : "Delete my account"}
