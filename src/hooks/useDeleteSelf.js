@@ -3,9 +3,11 @@ import {deleteSelf} from "../api/auth.js";
 
 export default function useDeleteSelf() {
     const queryClient = useQueryClient()
-    return useMutation(deleteSelf, {
+    return useMutation({
+        mutationFn: deleteSelf,
         onSuccess: () => {
-            queryClient.invalidateQueries(['me'])
+            queryClient.setQueryData(['me'], null)
+            queryClient.removeQueries({queryKey: ['me']})
         }
     })
 }
