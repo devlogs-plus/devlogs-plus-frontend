@@ -58,3 +58,9 @@ export function githubLogin() {
 export function hackclubLogin() {
     window.location.href = `${API_BASE}/auth/hackclub`
 }
+
+export function deleteSelf() {
+    return apiFetch('/auth/me/delete', {
+        method: 'DELETE'
+    })
+}
