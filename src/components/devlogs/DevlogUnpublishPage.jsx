@@ -7,6 +7,8 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Button} from "../common/Button.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
+import styles from "./DevlogUnpublishPage.module.css"
 
 export function DevlogUnpublishPage() {
     const {projectId, devlogId} = useParams()
@@ -17,6 +19,7 @@ export function DevlogUnpublishPage() {
     const [unpub, setUnpub] = useState(false)
     const [error, setError] = useState(null)
     const [ownerId, setOwnerId] = useState(null)
+    usePageTitle(devlog ? `Unpublish ${devlog.title}` : "Loading..");
 
     useEffect(() => {
         let mounted = true
@@ -65,7 +68,7 @@ export function DevlogUnpublishPage() {
 
             <div className="unpubWarning">
                 <p>Devlog: {devlog?.title}</p>
-                <p>You can republish this later at</p> <Link to="/devlogs/unpublished">Unpublished Devlogs</Link>
+                <p>You can republish this later at</p> <Link className={styles.link} to="/devlogs/unpublished">Unpublished Devlogs</Link>
             </div>
 
             <Button onClick={handleUnpub} disabled={unpub}>

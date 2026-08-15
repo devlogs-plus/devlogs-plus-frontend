@@ -9,6 +9,7 @@ import {useAuth} from "../../context/AuthContext.jsx";
 import styles from "./DevlogPage.module.css"
 import {Button} from "../common/Button.jsx";
 import {UserCard} from "../auth/UserCard.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function DevlogPage() {
     const {projectId, devlogId} = useParams()
@@ -16,6 +17,7 @@ export function DevlogPage() {
     const [devlog, setDevlog] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    usePageTitle(devlog ? devlog.title : "Loading..");
 
     useEffect(() => {
         let mounted = true

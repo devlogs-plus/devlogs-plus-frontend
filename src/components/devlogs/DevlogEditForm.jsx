@@ -10,6 +10,7 @@ import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
 import {Button} from "../common/Button.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function DevlogEditForm({onUpdated}) {
     const {projectId, devlogId} = useParams()
@@ -26,6 +27,8 @@ export function DevlogEditForm({onUpdated}) {
         body_markdown: ""
     })
     const updateMutation = useEditDevlog()
+    const [title, setTitle] = useState(null)
+    usePageTitle(title ? `Edit ${title}` : "Loading..");
 
     useEffect(() => {
         if (!devlogId) {
@@ -40,6 +43,7 @@ export function DevlogEditForm({onUpdated}) {
                     title: devlog.title ?? "",
                     body_markdown: devlog.body_markdown ?? ""
                 })
+                setTitle(devlog.title ?? "")
                 setOwnerId(devlog.author_user_id)
                 setLoading(false)
             })

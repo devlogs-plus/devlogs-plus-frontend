@@ -5,6 +5,7 @@ import usePublishDevlog from "../../hooks/usePublishDevlog.js";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
 import {Button} from "../common/Button.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function DevlogForm() {
     const titleRef = useRef(null)
@@ -16,6 +17,7 @@ export function DevlogForm() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const createMutation = useCreateDevlog()
     const publishMutation = usePublishDevlog()
+    usePageTitle('Create Devlog')
 
     async function createDevlog(e) {
         e.preventDefault()
