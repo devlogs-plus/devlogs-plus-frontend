@@ -7,6 +7,7 @@ import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {Button} from "../common/Button.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function ProjectDeletePage() {
     const { id: projectId} = useParams()
@@ -17,6 +18,7 @@ export function ProjectDeletePage() {
     const [deleting, setDeleting] = useState(false)
     const [error, setError] = useState(null)
     const [ownerId, setOwnerId] = useState(null)
+    usePageTitle(project ? `Delete ${project.name}` : "Loading..");
 
     useEffect(() => {
         let mounted = true

@@ -4,6 +4,7 @@ import {parseApiError} from "../../api/client.js";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
 import {Button} from "../common/Button.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function ProjectForm() {
     const nameRef = useRef(null)
@@ -15,6 +16,7 @@ export function ProjectForm() {
     const [successMessage, setSuccessMessage] = useState(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const createMutation = useCreateProject()
+    usePageTitle('Create Project')
 
     async function createProject() {
         setGeneralError(null)

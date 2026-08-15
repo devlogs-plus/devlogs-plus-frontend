@@ -9,6 +9,7 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {Button} from "../common/Button.jsx";
 import {UserCard} from "../auth/UserCard.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function ProjectView() {
     const { id: projectId} = useParams()
@@ -16,6 +17,7 @@ export function ProjectView() {
     const [project, setProject] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    usePageTitle(project ? project.name : "Loading..")
 
     useEffect(() => {
         const fetchProject = async () => {

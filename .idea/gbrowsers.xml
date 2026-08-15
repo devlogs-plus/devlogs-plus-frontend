@@ -33,6 +33,14 @@
     {
       "name": "devlogs-plus-frontend",
       "url": "https://localhost:5173/user/0"
+    },
+    {
+      "name": "devlogs-plus-frontend",
+      "url": "https://localhost:5173/me"
+    },
+    {
+      "name": "devlogs-plus-frontend",
+      "url": "https://localhost:5173/projects/edit/3"
     }
   ],
   "bookmarks": [

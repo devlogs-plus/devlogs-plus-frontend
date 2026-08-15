@@ -4,6 +4,7 @@ import useProjects from "../../hooks/useProjects.js";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {Button} from "../common/Button.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function ViewProjects() {
     const { projects, loading, error, refresh } = useProjects()
@@ -12,6 +13,7 @@ export function ViewProjects() {
     const totalPages = Math.max(1, Math.ceil(projects.length / 10))
     const startIndex = (page - 1) * 10
     const visibleProjects = projects.slice(startIndex, startIndex + 10)
+    usePageTitle('All Projects')
 
     if (loading) return <LoadingSpinner/>
     if (error) return <ErrorPage message={error.message}/>

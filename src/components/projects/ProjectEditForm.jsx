@@ -10,6 +10,7 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
 import {Button} from "../common/Button.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function ProjectEditForm({onUpdated}) {
     const { id: projectId} = useParams()
@@ -21,6 +22,7 @@ export function ProjectEditForm({onUpdated}) {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [loading, setLoading] = useState(Boolean(projectId))
     const [ownerId, setOwnerId] = useState(null)
+    const [projectName, setProjectName] = useState(null)
     const [formData, setFormData] = useState({
         name: "",
         short_description: "",
@@ -28,6 +30,7 @@ export function ProjectEditForm({onUpdated}) {
         demo_url: ""
     })
     const updateMutation = useEditProject()
+    usePageTitle(`Edit ${projectName}`);
 
     useEffect(() => {
         if (!projectId) {
@@ -46,6 +49,7 @@ export function ProjectEditForm({onUpdated}) {
                     repo_url: project.repo_url ?? "",
                     demo_url: project.demo_url ?? ""
                 })
+                setProjectName(project.name ?? "")
                 setOwnerId(project.owner_user_id)
                 setLoading(false)
             })
