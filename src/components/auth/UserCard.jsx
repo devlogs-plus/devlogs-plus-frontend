@@ -6,7 +6,8 @@ import ErrorPage from "../common/ErrorPage.jsx";
 import AvatarImg from "../common/AvatarImg.jsx";
 
 export function UserCard({userId}) {
-    const {user, isLoading, isError,error} = useUser(userId)
+    const normUserId = userId === undefined || userId === null ? null : Number(userId)
+    const {user, isLoading, isError,error} = useUser(normUserId)
 
     if (isLoading) return <LoadingSpinner/>
     if (isError) return <ErrorPage message={error.message}/>
