@@ -1,15 +1,12 @@
 import {useState} from "react";
 import useDeleteSelf from "../../hooks/useDeleteSelf.js";
-import {useLogout} from "../../hooks/useAuth.js";
-import {replace, useNavigate} from "react-router-dom";
-import ErrorPage from "../common/ErrorPage.jsx";
+import {useNavigate} from "react-router-dom";
 import {Button} from "../common/Button.jsx";
 import {Input} from "../common/Input.jsx";
 
 export default function DeleteSelfPage() {
     const [confirm, setConfirm] = useState("")
     const del = useDeleteSelf()
-    const logout = useLogout()
     const navigate = useNavigate()
 
     const handleDelete = (e) => {
