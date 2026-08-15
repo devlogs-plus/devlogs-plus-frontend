@@ -17,6 +17,7 @@ export function OwnUserPage() {
             <p>Email: {user.email}</p>
             <p>User Id: {user.id}</p>
             <Link to="/me/edit"><Button>Edit</Button></Link>
+            <Link to="/me/delete"><Button>Delete Account</Button></Link>
         </div>
     )
 }
