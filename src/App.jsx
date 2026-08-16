@@ -24,10 +24,7 @@ import UserPage from "./components/auth/UserPage.jsx";
 import {GithubCallback} from "./routes/GithubCallback.jsx";
 import {HackclubCallback} from "./routes/HackclubCallback.jsx";
 import DeleteSelfPage from "./components/auth/DeleteSelfPage.jsx";
-import usePageTitle from "./hooks/usePageTitle.js";
-
 export default function App() {
-    usePageTitle()
     return (
         <>
             <Nav />

@@ -1,7 +1,9 @@
 import {Link} from "react-router-dom";
 import styles from "./NotFoundPage.module.css"
+import usePageTitle from "../../hooks/usePageTitle.js";
 
-export function NotFoundPage() {
+export default function NotFoundPage() {
+    usePageTitle('404: Not Found')
     return (
         <div className="NotFoundPage">
             <h1>404: Not Found</h1>
@@ -10,5 +12,3 @@ export function NotFoundPage() {
         </div>
     )
 }
-
-export default NotFoundPage
