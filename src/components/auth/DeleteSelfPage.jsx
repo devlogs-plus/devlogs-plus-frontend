@@ -3,11 +3,13 @@ import useDeleteSelf from "../../hooks/useDeleteSelf.js";
 import {useNavigate} from "react-router-dom";
 import {Button} from "../common/Button.jsx";
 import {Input} from "../common/Input.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export default function DeleteSelfPage() {
     const [confirm, setConfirm] = useState("")
     const del = useDeleteSelf()
     const navigate = useNavigate()
+    usePageTitle("Delete Account")
 
     const handleDelete = (e) => {
         e.preventDefault()

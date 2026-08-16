@@ -8,6 +8,7 @@ import {isValidEmail} from "../../helperFunctions.js";
 import GithubButton from "../common/GithubButton.jsx";
 import HackclubButton from "../common/HackclubButton.jsx";
 import styles from "./LoginForm.module.css"
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function LoginForm() {
     const emailRef = useRef(null)
@@ -18,6 +19,7 @@ export function LoginForm() {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/"
+    usePageTitle("Login")
 
     async function loginUser() {
         setGeneralError(null)

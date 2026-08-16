@@ -2,12 +2,12 @@ import {useRef, useState} from "react";
 import {register} from "../../api/auth.js";
 import {parseApiError} from "../../api/client.js";
 import {useNavigate} from "react-router-dom";
-import {createProject} from "../../api/projects.js";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import {isValidEmail} from "../../helperFunctions.js";
 import GithubButton from "../common/GithubButton.jsx";
 import HackclubButton from "../common/HackclubButton.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function RegisterForm(){
     const emailRef = useRef(null)
@@ -19,6 +19,7 @@ export function RegisterForm(){
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [successMessage, setSuccessMessage] = useState(null)
     const navigate = useNavigate()
+    usePageTitle("Register")
 
     async function RegisterUser() {
         setGeneralError(null)

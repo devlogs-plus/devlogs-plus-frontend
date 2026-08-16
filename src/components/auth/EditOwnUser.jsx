@@ -1,5 +1,5 @@
 import {useAuth} from "../../context/AuthContext.jsx";
-import {Form, Navigate, useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import {useRef, useState} from "react";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {editSelf} from "../../api/auth.js";
@@ -8,6 +8,7 @@ import {Button} from "../common/Button.jsx";
 import useUploadAvatar from "../../hooks/useUploadAvatar.js";
 import AvatarImg from "../common/AvatarImg.jsx";
 import {useQueryClient} from "@tanstack/react-query";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function EditOwnUser() {
     const {user, isLoading} = useAuth()
@@ -20,6 +21,7 @@ export function EditOwnUser() {
     const [error, setError] = useState(null)
     const upload = useUploadAvatar()
     const queryClient = useQueryClient()
+    usePageTitle("Edit Account")
 
     if (isLoading) return <LoadingSpinner/>
     if (!user) return <Navigate to="/login" replace/>

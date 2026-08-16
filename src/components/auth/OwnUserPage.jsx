@@ -3,9 +3,11 @@ import {Link, Navigate, useNavigate} from "react-router-dom";
 import {useAuth} from "../../context/AuthContext.jsx";
 import {Button} from "../common/Button.jsx";
 import AvatarImg from "../common/AvatarImg.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function OwnUserPage() {
     const {user, isLoading} = useAuth()
+    usePageTitle("You")
 
     if (isLoading) return <LoadingSpinner/>
     if (!user) return <Navigate to="/login" replace/>
