@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {getProjectName, getProjectOwnerId} from "../../helperFunctions.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import useCollaborators from "../../hooks/useCollaborators.js";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function CollaboratorList() {
     const {projectId} = useParams()
@@ -13,6 +14,7 @@ export function CollaboratorList() {
     })
     const [isLoadingOwner, setIsLoadingOwner] = useState(true)
     const [isLoadingTitle, setIsLoadingTitle] = useState(true)
+    usePageTitle("View collaborator")
 
     useEffect(() => {
         let mounted = true

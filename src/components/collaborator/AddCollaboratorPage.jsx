@@ -8,6 +8,7 @@ import {getProjectOwnerId} from "../../helperFunctions.js";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function AddCollaboratorPage() {
     const userIdRef = useRef(null)
@@ -21,6 +22,7 @@ export function AddCollaboratorPage() {
     const currentUserId = user?.id
     const [ownerId, setOwnerId] = useState(undefined)
     const [isLoadingOwner, setIsLoadingOwner] = useState(true)
+    usePageTitle("Add a collaborator");
 
     useEffect(() => {
         let mounted = true

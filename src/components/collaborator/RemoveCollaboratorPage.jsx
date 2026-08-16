@@ -7,6 +7,8 @@ import {parseApiError} from "../../api/client.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Button} from "../common/Button.jsx";
+import usePageTitle from "../../hooks/usePageTitle.js";
+import {Input} from "../common/Input.jsx";
 
 export default function RemoveCollaboratorPage() {
     const {projectId} = useParams()
@@ -20,6 +22,7 @@ export default function RemoveCollaboratorPage() {
     const [ownerId, setOwnerId] = useState(undefined)
     const [isLoadingOwner, setIsLoadingOwner] = useState(true)
     const userIdRef = useRef(null)
+    usePageTitle("Remove collaborator")
 
     useEffect(() => {
         let mounted = true
@@ -78,7 +81,7 @@ export default function RemoveCollaboratorPage() {
             {successMessage && <p className="success">{successMessage}</p>}
 
             <p>User Id</p>
-            <input name="userid" ref={userIdRef}/>
+            <Input name="userid" ref={userIdRef}/>
             {fieldErrors.user_id && <p className="error">{fieldErrors.user_id}</p>}
 
             <Button id="removeCollaborator" onClick={removeCollaborator} disabled={removing}>{removing ? "Removing.." : "Remove Collaborator"}</Button>
