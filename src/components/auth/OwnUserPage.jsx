@@ -20,6 +20,7 @@ export function OwnUserPage() {
             <p>User Id: {user.id}</p>
             <Link to="/me/edit"><Button>Edit</Button></Link>
             <Link to="/me/delete"><Button>Delete Account</Button></Link>
+            <Link to="/me/changepassword"><Button>Change Password</Button></Link>
         </div>
     )
 }
