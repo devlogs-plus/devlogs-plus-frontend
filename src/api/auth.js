@@ -64,3 +64,10 @@ export function deleteSelf() {
         method: 'DELETE'
     })
 }
+
+export function updatePassword(passwords) {
+    return apiFetch('/auth/me/editpassword', {
+        method: 'POST',
+        body: JSON.stringify(passwords)
+    })
+}
