@@ -3,24 +3,18 @@ import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import useUpdatePassword from "../../hooks/useUpdatePassword.js";
 import usePageTitle from "../../hooks/usePageTitle.js";
-import {useLogout} from "../../hooks/useAuth.js";
 
 export function PasswordChangePage() {
     const [form, setForm] = useState({
         old_password: "",
         new_password: ""
     })
-    const {mutate: updatePassword, isPending, error, isSuccess} = useUpdatePassword()
-    const {mutate: logout} = useLogout()
+    const {mutate, isPending, error, isSuccess} = useUpdatePassword()
     usePageTitle("Change Password")
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        updatePassword(form, {
-            onSuccess: () => {
-                logout()
-            }
-        })
+        mutate({passwords: form})
     }
 
     return (
