@@ -2,6 +2,7 @@ import {useState} from "react";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import useUpdatePassword from "../../hooks/useUpdatePassword.js";
+import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function PasswordChangePage() {
     const [form, setForm] = useState({
@@ -9,6 +10,7 @@ export function PasswordChangePage() {
         new_password: ""
     })
     const {mutate, isPending, error, isSuccess} = useUpdatePassword()
+    usePageTitle("Change Password")
 
     const handleSubmit = (e) => {
         e.preventDefault()
