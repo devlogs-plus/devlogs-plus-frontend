@@ -41,6 +41,26 @@
     {
       "name": "devlogs-plus-frontend",
       "url": "https://localhost:5173/projects/edit/3"
+    },
+    {
+      "name": "GBrowser Plugin for JetBrains IDEs | JetBrains Marketplace",
+      "url": "https://plugins.jetbrains.com/"
+    },
+    {
+      "name": "IntelliJ IDEA Plugins and Themes | JetBrains Marketplace",
+      "url": "https://plugins.jetbrains.com/androidstudio"
+    },
+    {
+      "name": "Android Studio Plugins and Themes | JetBrains Marketplace",
+      "url": "https://plugins.jetbrains.com/search?excludeTags=theme&products=androidstudio&search=react%20native"
+    },
+    {
+      "name": "Android Studio Plugins and Themes | JetBrains Marketplace",
+      "url": "https://plugins.jetbrains.com/search?excludeTags=theme&products=androidstudio&search=react+native"
+    },
+    {
+      "name": "Android Studio Plugins and Themes | JetBrains Marketplace",
+      "url": "https://plugins.jetbrains.com/plugin/15016-react-native-console-free"
     }
   ],
   "bookmarks": [

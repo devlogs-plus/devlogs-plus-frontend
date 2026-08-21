@@ -71,3 +71,10 @@ export function updatePassword(passwords) {
         body: JSON.stringify(passwords)
     })
 }
+
+export function resetPassword({email, password, verification_code}) {
+    return apiFetch('/auth/resetpassword', {
+        method: 'POST',
+        body: JSON.stringify({email, password, verification_code})
+    })
+}
