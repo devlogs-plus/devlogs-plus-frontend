@@ -78,3 +78,10 @@ export function resetPassword({email, password, verification_code}) {
         body: JSON.stringify({email, password, verification_code})
     })
 }
+
+export function requestResetEmail(email) {
+    return apiFetch('/email/send/reset', {
+        method: 'POST',
+        body: JSON.stringify(email)
+    })
+}
