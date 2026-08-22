@@ -4,6 +4,7 @@ import DeleteSelfPage from "../components/auth/DeleteSelfPage.jsx";
 import App from "../App.jsx";
 import {Button} from "../components/common/Button.jsx";
 import ErrorPage from "../components/common/ErrorPage.jsx";
+import {ResetPasswordForm} from "../components/auth/ResetPasswordForm.jsx";
 
 const ComponentPreviews = () => {
     return (
@@ -19,6 +20,9 @@ const ComponentPreviews = () => {
             </ComponentPreview>
             <ComponentPreview path="/ErrorPage">
                 <ErrorPage/>
+            </ComponentPreview>
+            <ComponentPreview path="/ResetPasswordForm">
+                <ResetPasswordForm/>
             </ComponentPreview>
         </Previews>
     )
