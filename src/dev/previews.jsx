@@ -5,6 +5,7 @@ import App from "../App.jsx";
 import {Button} from "../components/common/Button.jsx";
 import ErrorPage from "../components/common/ErrorPage.jsx";
 import {ResetPasswordForm} from "../components/auth/ResetPasswordForm.jsx";
+import {RequestResetEmailForm} from "../components/auth/RequestResetEmailForm.jsx";
 
 const ComponentPreviews = () => {
     return (
@@ -23,6 +24,10 @@ const ComponentPreviews = () => {
             </ComponentPreview>
             <ComponentPreview path="/ResetPasswordForm">
                 <ResetPasswordForm/>
+            </ComponentPreview>
+            <ComponentPreview
+                path="/RequestResetEmailForm">
+                <RequestResetEmailForm/>
             </ComponentPreview>
         </Previews>
     )
