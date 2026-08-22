@@ -5,9 +5,7 @@ import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 
 export function RequestResetEmailForm() {
-    const [email, setEmail] = useState({
-        email: ""
-    })
+    const [email, setEmail] = useState("")
     const {mutate, isPending, error, isSuccess} = useRequestResetEmail()
     usePageTitle("Request password reset")
     const handleSubmit = (e) => {
@@ -20,7 +18,7 @@ export function RequestResetEmailForm() {
             <h2>Request a password reset</h2>
 
             <p>Email of the account</p>
-            <Input type="email" value={email.email} onChange={(e) => setEmail({...email, email: e.target.value})}/>
+            <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
             <br/>
 
             <Button disabled={isPending} type="submit">

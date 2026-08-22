@@ -26,6 +26,7 @@ import {HackclubCallback} from "./routes/HackclubCallback.jsx";
 import DeleteSelfPage from "./components/auth/DeleteSelfPage.jsx";
 import {PasswordChangePage} from "./components/auth/PasswordChangePage.jsx";
 import {RequestResetEmailForm} from "./components/auth/RequestResetEmailForm.jsx";
+import {ResetPasswordForm} from "./components/auth/ResetPasswordForm.jsx";
 export default function App() {
     return (
         <>
@@ -56,7 +57,7 @@ export default function App() {
                 <Route path="/user/:userId" element={<UserPage/>}/>
                 <Route path="/auth/github/callback" element={<GithubCallback/>}/>
                 <Route path="/auth/hackclub/callback" element={<HackclubCallback/>}/>
-                <Route path="/auth/resetpassword" element={<PasswordChangePage/>}/>
+                <Route path="/auth/resetpassword" element={<ResetPasswordForm/>}/>
                 <Route path="/auth/requestpassword" element={<RequestResetEmailForm/>}/>
                 //404 page
                 <Route path="*" element={<NotFoundPage/>} />
