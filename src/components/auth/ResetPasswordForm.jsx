@@ -21,7 +21,7 @@ export function ResetPasswordForm() {
 
     const validate = () => {
         const errors ={}
-        if (!form.password) errors.password = "Password is requiered"
+        if (!form.password) errors.password = "Password is required"
         if (form.password.length < 8) errors.password = "Password must be at least 8 characters"
         if (form.password !== form.confirm_password) errors.confirm_password = "Passwords must match"
         if (!emailFromUrl) errors.email = "Email is missing from the url, trying clicking the link again"
@@ -34,14 +34,13 @@ export function ResetPasswordForm() {
         e.preventDefault()
         if (!validate()) return
 
-        const payload = {
-            "email": emailFromUrl,
-            "password": form.password,
-            "verification_code": codeFromUrl
-        }
-        mutate(payload, {
+        mutate({
+            email: emailFromUrl,
+            password: form.password,
+            verification_code: codeFromUrl,
+        }, {
             onSuccess: () => {
-                navigate("/login", {replace: true})
+                navigate("/login", { replace: true })
             }
         })
     }
