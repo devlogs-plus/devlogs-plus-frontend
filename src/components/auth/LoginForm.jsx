@@ -77,6 +77,7 @@ export function LoginForm() {
             <HackclubButton login={true}/>
             <br/>
             <p>Dont have an account yet? <Link to="/register" className={styles.link}>Register!</Link></p>
+            <p>Forgot your password? <Link to="/auth/requestpassword" className={styles.link}>Reset it now.</Link></p>
         </div>
     )
 }
