@@ -8,7 +8,7 @@ import {Button} from "../common/Button.jsx";
 
 export function ViewUsersProjects() {
     const {userId} = useParams()
-    const {projects, loading, error, refresh} = useUsersProjects(userId)
+    const {projects, loading, error, refresh} = useUsersProjects({}, userId)
     const [page, setPage] = useState(1)
     const totalPages = Math.max(1, Math.ceil(projects.length / 10))
     const startIndex = (page -1) * 10

@@ -4,6 +4,7 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import AvatarImg from "../common/AvatarImg.jsx";
 import usePageTitle from "../../hooks/usePageTitle.js";
+import ViewUsersProjects from "../projects/ViewUsersProjects.jsx";
 
 export function UserPage() {
     const {userId} = useParams()
@@ -14,11 +15,15 @@ export function UserPage() {
     if (isError) return <ErrorPage message={error.message}/>
 
     return (
-        <div>
-            <h3>{user.display_name}</h3>
-            <AvatarImg user={user}/>
-            <p>User Id: {user.id}</p>
-        </div>
+        <>
+            <div>
+                <h3>{user.display_name}</h3>
+                <AvatarImg user={user}/>
+                <p>User Id: {user.id}</p>
+            </div>
+            <h2>Projects</h2>
+            <ViewUsersProjects/>
+        </>
     )
 }
 
