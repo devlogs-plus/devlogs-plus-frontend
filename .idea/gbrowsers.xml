@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="GBrowserService"><![CDATA[{
+  "defaultHomePage": " https://localhost:5173/",
   "history": [
     {
       "name": "GBrowser - IntelliJ IDEs Plugin | Marketplace",
@@ -61,6 +62,22 @@
     {
       "name": "Android Studio Plugins and Themes | JetBrains Marketplace",
       "url": "https://plugins.jetbrains.com/plugin/15016-react-native-console-free"
+    },
+    {
+      "name": "",
+      "url": " https://localhost:5173/"
+    },
+    {
+      "name": "Register | Devlogs+",
+      "url": "https://localhost:5173/register"
+    },
+    {
+      "name": "Protected | Devlogs+",
+      "url": "https://localhost:5173/devlogs/create"
+    },
+    {
+      "name": "Create Project | Devlogs+",
+      "url": "https://localhost:5173/projects/create"
     }
   ],
   "bookmarks": [

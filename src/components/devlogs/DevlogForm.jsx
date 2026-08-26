@@ -6,6 +6,9 @@ import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
 import {Button} from "../common/Button.jsx";
 import usePageTitle from "../../hooks/usePageTitle.js";
+import {useCurrentUser} from "../../hooks/useAuth.js";
+import useUsersProjects from "../../hooks/useUsersProjects.js";
+import LoadingSpinner from "../common/LoadingSpinner.jsx";
 
 export function DevlogForm() {
     const titleRef = useRef(null)
@@ -17,7 +20,13 @@ export function DevlogForm() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const createMutation = useCreateDevlog()
     const publishMutation = usePublishDevlog()
-    usePageTitle('Create Devlog')
+    const {data: currentUser, isLoading: isUserLoading} = useCurrentUser()
+    const {
+        projects,
+        loading: projectsLoading,
+        error: projectsError
+    } = useUsersProjects({}, currentUser?.id)
+    usePageTitle('Create a Devlog')
 
     async function createDevlog(e) {
         e.preventDefault()
@@ -33,9 +42,7 @@ export function DevlogForm() {
         if (!title) errors.title = "Title is required"
         if (!body) errors.body_markdown = "Body is required"
         if (!projectId) {
-            errors.project_id = "Project ID is required"
-        } else if (!/^\d+$/.test(projectId)) {
-            errors.project_id = "Project ID must contain only digits"
+            errors.project_id = "Please select a project"
         }
 
         if (Object.keys(errors).length > 0) {
@@ -57,7 +64,7 @@ export function DevlogForm() {
             if (typeof onCreated === "function") onCreated(created)
         } catch (err) {
             const parsed = parseApiError(err)
-            setGeneralError(parsed.message || "An error happened")
+            setGeneralError(parsed.message || "ERROROROROROR!!!!")
             setFieldErrors(parsed.fields || {})
         } finally {
             setIsSubmitting(false)
@@ -78,11 +85,8 @@ export function DevlogForm() {
         if (!title) errors.title = "Title is required"
         if (!body) errors.body_markdown = "Body is required"
         if (!projectId) {
-            errors.project_id = "Project ID is required"
-        } else if (!/^\d+$/.test(projectId)) {
-            errors.project_id = "Project ID must contain only digits"
+            errors.project_id = "Please select a project"
         }
-
         if (Object.keys(errors).length > 0) {
             setFieldErrors(errors)
             return
@@ -103,17 +107,22 @@ export function DevlogForm() {
             if (typeof onCreated === "function") onCreated(published)
         } catch (err) {
             const parsed = parseApiError(err)
-            setGeneralError(parsed.message || "An error happened")
+            setGeneralError(parsed.message || "ERROROROROROR!!!!")
             setFieldErrors(parsed.fields || {})
         } finally {
             setIsSubmitting(false)
         }
     }
 
+    const isLoadingProjects = isUserLoading || projectsLoading
+    if (isLoadingProjects) return <LoadingSpinner/>
+    const hasNoProjects = !isLoadingProjects && projects.length === 0
+
     return (
         <div className="projectForm">
             <h2>Create Devlog</h2>
             {generalError && <p className="error">{generalError}</p> }
+            {projectsError && <p className="error">{projectsError.message || "Error loading Projects"}</p>}
             {successMessage && <p className="success">{successMessage}</p> }
 
             <p>Title</p>
@@ -124,8 +133,21 @@ export function DevlogForm() {
             <TextArea name="body_markdown" ref={bodyRef}/>
             {fieldErrors.body_markdown && <p className="error">{fieldErrors.body_markdown}</p>}
 
-            <p>Project ID</p>
-            <Input name="project_id" ref={projectIdRef}/>
+            <p>Project</p>
+            <select name="project_id" ref={projectIdRef} disabled={isLoadingProjects || hasNoProjects || isSubmitting} defaultValue="">
+                <option value="" disabled>
+                    {isLoadingProjects
+                    ? "Loading projects.."
+                    : hasNoProjects
+                        ? "No projects found"
+                        : "Select a project"}
+                </option>
+                {projects.map((project) => (
+                    <option key={project.id} value={project.id}>
+                        {project.name}
+                    </option>
+                ))}
+            </select>
             {fieldErrors.project_id && <p className="error">{fieldErrors.project_id}</p>}
 
             <Button id="createProjectButton" onClick={createDevlog} disabled={isSubmitting}>{isSubmitting ? "Creating Draft.." : "Create Draft"}</Button>
