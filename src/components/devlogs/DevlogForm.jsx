@@ -9,6 +9,7 @@ import usePageTitle from "../../hooks/usePageTitle.js";
 import {useCurrentUser} from "../../hooks/useAuth.js";
 import useUsersProjects from "../../hooks/useUsersProjects.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
+import {Select} from "../common/Select.jsx";
 
 export function DevlogForm() {
     const titleRef = useRef(null)
@@ -134,7 +135,7 @@ export function DevlogForm() {
             {fieldErrors.body_markdown && <p className="error">{fieldErrors.body_markdown}</p>}
 
             <p>Project</p>
-            <select name="project_id" ref={projectIdRef} disabled={isLoadingProjects || hasNoProjects || isSubmitting} defaultValue="">
+            <Select name="project_id" ref={projectIdRef} disabled={isLoadingProjects || hasNoProjects || isSubmitting} defaultValue="">
                 <option value="" disabled>
                     {isLoadingProjects
                     ? "Loading projects.."
@@ -147,7 +148,7 @@ export function DevlogForm() {
                         {project.name}
                     </option>
                 ))}
-            </select>
+            </Select>
             {fieldErrors.project_id && <p className="error">{fieldErrors.project_id}</p>}
 
             <Button id="createProjectButton" onClick={createDevlog} disabled={isSubmitting}>{isSubmitting ? "Creating Draft.." : "Create Draft"}</Button>

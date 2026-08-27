@@ -1,0 +1,29 @@
+.select {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 40px 10px 12px;
+    color: var(--nord4);
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-color: var(--nord9);
+    border: 1px solid var(--nord10);
+    border-radius: 6px;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.select option {
+    color: var(--nord4);
+    background-color: var(--color-accent);
+}
+
+.select:focus {
+    outline: none;
+    border-color: var(--nord8);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.25);
+}
