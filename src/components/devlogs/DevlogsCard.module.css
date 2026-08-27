@@ -29,3 +29,14 @@
     color: var(--nord4);
     font-size: 0.85rem;
 }
+
+.no-box-card {
+    display: block;
+    background: transparent;
+    color: var(--color-text);
+    padding: 1rem;
+    text-decoration: none;
+    transition: background 0.15s ease;
+    box-sizing: border-box;
+    margin: 15px 0;
+}
