@@ -9,12 +9,14 @@ import ErrorPage from "../components/common/ErrorPage.jsx";
 import {Link} from "react-router-dom";
 import {Button} from "../components/common/Button.jsx";
 import styles from "./UserUnpublisheDevlogs.module.css"
+import usePageTitle from "../hooks/usePageTitle.js";
 
 export function UserUnpublishedDevlogs() {
     const { user, isLoading: authLoading } = useAuth();
     const { devlogs = [], loading, error, refresh } = useUnpublishedDevlogs();
     const publishMutation = usePublishDevlog()
     const [publishingId, setPublishingId] = useState(null)
+    usePageTitle("Unpublished Devlogs")
 
     if (authLoading) return <LoadingSpinner/>;
     if (!user) return <UnauthorizedRoute/>
