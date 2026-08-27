@@ -30,7 +30,7 @@
     font-size: 0.85rem;
 }
 
-.no-box-card {
+.noBoxCard {
     display: block;
     background: transparent;
     color: var(--color-text);
