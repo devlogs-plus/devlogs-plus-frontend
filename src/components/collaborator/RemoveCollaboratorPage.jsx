@@ -22,6 +22,7 @@ export default function RemoveCollaboratorPage() {
     const [ownerId, setOwnerId] = useState(undefined)
     const [isLoadingOwner, setIsLoadingOwner] = useState(true)
     const userIdRef = useRef(null)
+    const navigate = useNavigate()
     usePageTitle("Remove collaborator")
 
     useEffect(() => {
