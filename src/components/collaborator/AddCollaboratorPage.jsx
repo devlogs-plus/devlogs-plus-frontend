@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
 import useAddCollaborator from "../../hooks/useAddCollaborator.js";
 import {parseApiError} from "../../api/client.js";
@@ -22,6 +22,7 @@ export function AddCollaboratorPage() {
     const currentUserId = user?.id
     const [ownerId, setOwnerId] = useState(undefined)
     const [isLoadingOwner, setIsLoadingOwner] = useState(true)
+    const navigate = useNavigate()
     usePageTitle("Add a collaborator");
 
     useEffect(() => {
@@ -71,6 +72,7 @@ export function AddCollaboratorPage() {
             setFieldErrors(parsed.fields || {})
         } finally {
             setIsSubmitting(false)
+            navigate(`/projects/${projectId}/collaborators`, {replace: true})
         }
     }
 
