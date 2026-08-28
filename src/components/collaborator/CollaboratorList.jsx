@@ -4,6 +4,7 @@ import {getProjectName, getProjectOwnerId} from "../../helperFunctions.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import useCollaborators from "../../hooks/useCollaborators.js";
 import usePageTitle from "../../hooks/usePageTitle.js";
+import {UserInfo} from "../common/UserInfo.jsx";
 
 export function CollaboratorList() {
     const {projectId} = useParams()
@@ -53,12 +54,12 @@ export function CollaboratorList() {
     return (
         <div className="collaboratorList">
             <h2>Collaborators for {projectTitle}</h2>
-            <h4>Project Owner</h4>
-            <p>User id: {ownerId}</p>
-            <h4>Project Collaborators</h4>
+            <h4>Project Owner:</h4>
+            <UserInfo userId={ownerId}/>
+            <h4>Project Collaborators:</h4>
             {Array.isArray(collaboratorIds) && collaboratorIds.length > 0 ? (
                 <div>
-                    {collaboratorIds.map(n => <p key={n}>{n}</p>)}
+                    {collaboratorIds.map(n => <UserInfo userId={n}/>)}
                 </div>
             ) : (
                 <p>No collaborators for this project</p>
