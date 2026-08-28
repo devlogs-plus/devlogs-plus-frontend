@@ -68,6 +68,7 @@ export default function RemoveCollaboratorPage() {
             setFieldErrors(parsed.fields || {})
         } finally {
             setRemoving(false)
+            navigate(`/projects/${projectId}/collaborators`, {replace: true})
         }
     }
 
