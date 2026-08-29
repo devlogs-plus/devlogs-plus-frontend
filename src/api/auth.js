@@ -38,7 +38,7 @@ export function getUser(userId) {
 export function getUserFromEmail(email) {
     return apiFetch('/auth/getuser', {
         method: 'POST',
-        body: JSON.stringify(email)
+        body: JSON.stringify({'email': email})
     })
 }
 
