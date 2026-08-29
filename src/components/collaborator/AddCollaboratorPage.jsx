@@ -50,16 +50,17 @@ export function AddCollaboratorPage() {
 
     useEffect(() => {
         if (!emailToLookup || isLoadingUser || !collaboratorUser) return
-        
+
         async function addResolvedCollaborator() {
             const resolvedUserId = collaboratorUser?.id || collaboratorUser?.user_id
-            
+
             if (!resolvedUserId) {
                 setGeneralError("Could not find a user for that email.")
+                setEmailToLookup(null)
                 setIsSubmitting(false)
                 return
             }
-            
+
             try {
                 await addMutation.mutateAsync({projectId, userId: resolvedUserId})
                 setSuccessMessage("Collaborator added successfully.")
@@ -68,12 +69,14 @@ export function AddCollaboratorPage() {
                 const parsed = parseApiError(e)
                 setGeneralError(parsed.message)
                 setFieldErrors(parsed.fields || {})
+                setEmailToLookup(null)
                 setIsSubmitting(false)
             }
-            
-            addResolvedCollaborator()
         }
-    }, [addMutation, collaboratorUser, emailToLookup, isLoadingUser, navigate, projectId]);
+
+        addResolvedCollaborator()
+    }, [collaboratorUser, emailToLookup, isLoadingUser, navigate, projectId]);
+
 
     useEffect(() => {
         if (!userLookupError) return
@@ -88,15 +91,17 @@ export function AddCollaboratorPage() {
         setGeneralError(null)
         setFieldErrors({})
         setSuccessMessage(null)
-        setIsSubmitting(true)
 
         const email = emailRef.current?.value?.trim() || ""
         if (!email) {
             setFieldErrors({email: "Email is required"})
+            return
         }
         if (!isValidEmail(email)) {
             setFieldErrors({email: "Enter a valid email address"})
+            return
         }
+
         setIsSubmitting(true)
         setEmailToLookup(email)
     }
