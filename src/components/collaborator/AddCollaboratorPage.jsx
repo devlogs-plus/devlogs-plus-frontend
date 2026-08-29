@@ -9,6 +9,7 @@ import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import usePageTitle from "../../hooks/usePageTitle.js";
+import BackButton from "../common/BackButton.jsx";
 
 export function AddCollaboratorPage() {
     const userIdRef = useRef(null)
@@ -81,6 +82,7 @@ export function AddCollaboratorPage() {
 
     return (
         <div className="projectForm">
+            <BackButton/>
             <h2>Add Collaborator</h2>
             {generalError && <p className="error">{generalError}</p> }
             {successMessage && <p className="success">{successMessage}</p> }

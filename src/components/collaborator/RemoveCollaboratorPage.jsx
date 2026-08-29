@@ -9,6 +9,7 @@ import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Button} from "../common/Button.jsx";
 import usePageTitle from "../../hooks/usePageTitle.js";
 import {Input} from "../common/Input.jsx";
+import BackButton from "../common/BackButton.jsx";
 
 export default function RemoveCollaboratorPage() {
     const {projectId} = useParams()
@@ -78,6 +79,7 @@ export default function RemoveCollaboratorPage() {
 
     return (
         <div className="removeCollabForm">
+            <BackButton/>
             <h2>Remove Collaborator</h2>
             {generalError && <p className="error">{generalError}</p>}
             {successMessage && <p className="success">{successMessage}</p>}

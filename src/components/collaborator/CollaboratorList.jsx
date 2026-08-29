@@ -5,6 +5,7 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import useCollaborators from "../../hooks/useCollaborators.js";
 import usePageTitle from "../../hooks/usePageTitle.js";
 import {UserInfo} from "../common/UserInfo.jsx";
+import BackButton from "../common/BackButton.jsx";
 
 export function CollaboratorList() {
     const {projectId} = useParams()
@@ -53,6 +54,7 @@ export function CollaboratorList() {
 
     return (
         <div className="collaboratorList">
+            <BackButton/>
             <h2>Collaborators for {projectTitle}</h2>
             <h4>Project Owner:</h4>
             <UserInfo userId={ownerId}/>
