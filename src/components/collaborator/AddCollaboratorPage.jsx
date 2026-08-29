@@ -4,27 +4,30 @@ import useAddCollaborator from "../../hooks/useAddCollaborator.js";
 import {parseApiError} from "../../api/client.js";
 import {useAuth} from "../../context/AuthContext.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
-import {getProjectOwnerId} from "../../helperFunctions.js";
+import {getProjectOwnerId, isValidEmail} from "../../helperFunctions.js";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import usePageTitle from "../../hooks/usePageTitle.js";
 import BackButton from "../common/BackButton.jsx";
+import useUserFromEmail from "../../hooks/useUserFromEmail.js";
 
 export function AddCollaboratorPage() {
-    const userIdRef = useRef(null)
+    const emailRef = useRef(null)
     const {projectId} = useParams()
     const [generalError, setGeneralError] = useState(null)
     const [fieldErrors, setFieldErrors] = useState({})
     const [successMessage, setSuccessMessage] = useState(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [emailToLookup, setEmailToLookup] = useState(null)
     const addMutation = useAddCollaborator()
     const {user} = useAuth()
     const currentUserId = user?.id
     const [ownerId, setOwnerId] = useState(undefined)
     const [isLoadingOwner, setIsLoadingOwner] = useState(true)
     const navigate = useNavigate()
-    usePageTitle("Add a collaborator");
+    const {user: collaboratorUser, isLoading: isLoadingUser, error: userLookupError} = useUserFromEmail(emailToLookup)
+    usePageTitle("Add collaborator");
 
     useEffect(() => {
         let mounted = true
@@ -45,39 +48,60 @@ export function AddCollaboratorPage() {
         return () => {mounted = false}
     }, [projectId]);
 
+    useEffect(() => {
+        if (!emailToLookup || isLoadingUser || !collaboratorUser) return
+        
+        async function addResolvedCollaborator() {
+            const resolvedUserId = collaboratorUser?.id || collaboratorUser?.user_id
+            
+            if (!resolvedUserId) {
+                setGeneralError("Could not find a user for that email.")
+                setIsSubmitting(false)
+                return
+            }
+            
+            try {
+                await addMutation.mutateAsync({projectId, userId: resolvedUserId})
+                setSuccessMessage("Collaborator added successfully.")
+                navigate(`/projects/${projectId}/collaborators`, {replace: true})
+            } catch (e) {
+                const parsed = parseApiError(e)
+                setGeneralError(parsed.message)
+                setFieldErrors(parsed.fields || {})
+                setIsSubmitting(false)
+            }
+            
+            await addResolvedCollaborator()
+        }
+    }, [addMutation, collaboratorUser, emailToLookup, isLoadingUser, navigate, projectId]);
+
+    useEffect(() => {
+        if (!userLookupError) return
+        
+        const parsed = parseApiError(userLookupError)
+        setGeneralError(parsed.message)
+        setFieldErrors(parsed.fields || {})
+        setIsSubmitting(false)
+    }, [userLookupError]);
+
     async function addCollaborator() {
         setGeneralError(null)
         setFieldErrors({})
         setSuccessMessage(null)
         setIsSubmitting(true)
 
-        const userIdValue = userIdRef.current?.value?.trim() || ""
-        if (!userIdValue) {
-            setFieldErrors({user_id: "User Id is required"})
-            setIsSubmitting(false)
-            return
+        const email = emailRef.current?.value?.trim() || ""
+        if (!email) {
+            setFieldErrors({email: "Email is required"})
         }
-        if (!/^\d+$/.test(userIdValue)) {
-            setFieldErrors({ user_id: "User id must contain only digits" })
-            setIsSubmitting(false)
-            return
+        if (!isValidEmail(email)) {
+            setFieldErrors({email: "Enter a valid email address"})
         }
-
-        try {
-            const added = await addMutation.mutateAsync({projectId: projectId, userId: userIdValue})
-            setSuccessMessage("Collaborator added successfully.")
-            if (typeof onCreated === "function") onCreated(added)
-        } catch (err) {
-            const parsed = parseApiError(err)
-            setGeneralError(parsed.message)
-            setFieldErrors(parsed.fields || {})
-        } finally {
-            setIsSubmitting(false)
-            navigate(`/projects/${projectId}/collaborators`, {replace: true})
-        }
+        setIsSubmitting(true)
+        setEmailToLookup(email)
     }
 
-    if (isLoadingOwner || isSubmitting) return <LoadingSpinner/>
+    if (isLoadingOwner || isSubmitting || isLoadingUser) return <LoadingSpinner/>
     if (Number(ownerId) !== Number(currentUserId)) return <UnauthorizedRoute/>
 
     return (
@@ -87,9 +111,9 @@ export function AddCollaboratorPage() {
             {generalError && <p className="error">{generalError}</p> }
             {successMessage && <p className="success">{successMessage}</p> }
 
-            <p>User Id</p>
-            <Input name="userid" ref={userIdRef}/>
-            {fieldErrors.user_id && <p className="error">{fieldErrors.user_id}</p> }
+            <p>User Email</p>
+            <Input name="email" type="email" ref={emailRef}/>
+            {fieldErrors.email && <p className="error">{fieldErrors.email}</p> }
 
             <Button id="addCollaborator" onClick={addCollaborator} disabled={isSubmitting}>{isSubmitting ? "Adding..":"Add Collaborator"}</Button>
         </div>
