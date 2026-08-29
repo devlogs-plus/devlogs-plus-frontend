@@ -35,6 +35,13 @@ export function getUser(userId) {
     return apiFetch(`/auth/getuser/${userId}`)
 }
 
+export function getUserFromEmail(email) {
+    return apiFetch('/auth/getuser', {
+        method: 'POST',
+        body: JSON.stringify(email)
+    })
+}
+
 export async function uploadAvatar(formData) {
     const endpoint = `${API_BASE}/uploadavatar`
     try {
