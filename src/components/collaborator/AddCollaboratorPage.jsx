@@ -71,7 +71,7 @@ export function AddCollaboratorPage() {
                 setIsSubmitting(false)
             }
             
-            await addResolvedCollaborator()
+            addResolvedCollaborator()
         }
     }, [addMutation, collaboratorUser, emailToLookup, isLoadingUser, navigate, projectId]);
 
