@@ -11,6 +11,7 @@ import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
 import {Button} from "../common/Button.jsx";
 import usePageTitle from "../../hooks/usePageTitle.js";
+import BackButton from "../common/BackButton.jsx";
 
 export function ProjectEditForm({onUpdated}) {
     const { id: projectId} = useParams()
@@ -92,6 +93,7 @@ export function ProjectEditForm({onUpdated}) {
 
     return (
         <div className="projectEditForm">
+            <BackButton/>
             <h2>Edit Project</h2>
             {generalError && <p className="error">{generalError}</p> }
             {successMessage && <p className="success">{successMessage}</p> }

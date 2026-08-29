@@ -8,6 +8,7 @@ import ErrorPage from "../common/ErrorPage.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {Button} from "../common/Button.jsx";
 import usePageTitle from "../../hooks/usePageTitle.js";
+import BackButton from "../common/BackButton.jsx";
 
 export function ProjectDeletePage() {
     const { id: projectId} = useParams()
@@ -62,6 +63,7 @@ export function ProjectDeletePage() {
 
     return (
         <div className="projectDeletePage">
+            <BackButton/>
             <h2>Delete Project</h2>
             {error && <p className="error">{error}</p>}
 
