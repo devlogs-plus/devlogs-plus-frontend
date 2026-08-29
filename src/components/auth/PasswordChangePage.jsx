@@ -3,6 +3,7 @@ import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import useUpdatePassword from "../../hooks/useUpdatePassword.js";
 import usePageTitle from "../../hooks/usePageTitle.js";
+import BackButton from "../common/BackButton.jsx";
 
 export function PasswordChangePage() {
     const [form, setForm] = useState({
@@ -19,6 +20,7 @@ export function PasswordChangePage() {
 
     return (
         <form onSubmit={handleSubmit}>
+            <BackButton/>
             <p>Old Password:</p>
             <Input type="password" value={form.old_password} onChange={(e) => setForm({...form, old_password: e.target.value})}/>
             <br/>

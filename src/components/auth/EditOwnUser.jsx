@@ -9,6 +9,7 @@ import useUploadAvatar from "../../hooks/useUploadAvatar.js";
 import AvatarImg from "../common/AvatarImg.jsx";
 import {useQueryClient} from "@tanstack/react-query";
 import usePageTitle from "../../hooks/usePageTitle.js";
+import BackButton from "../common/BackButton.jsx";
 
 export function EditOwnUser() {
     const {user, isLoading} = useAuth()
@@ -83,9 +84,8 @@ export function EditOwnUser() {
 
     return (
         <div>
+            <BackButton/>
             <h3>Edit Profile</h3>
-
-
 
             <p>Display Name</p>
             <Input type="text" value={displayName} onChange={(event) => setDisplayName(event.target.value)} required/>
