@@ -4,7 +4,6 @@ import LoadingSpinner from "./LoadingSpinner.jsx";
 import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function ProtectedRoute({children}) {
-    usePageTitle('Protected')
     const {user, isLoading} = useAuth()
     const location = useLocation()
 
