@@ -11,6 +11,7 @@ import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
 import {Button} from "../common/Button.jsx";
 import usePageTitle from "../../hooks/usePageTitle.js";
+import BackButton from "../common/BackButton.jsx";
 
 export function DevlogEditForm({onUpdated}) {
     const {projectId, devlogId} = useParams()
@@ -83,6 +84,7 @@ export function DevlogEditForm({onUpdated}) {
 
     return (
         <div className="devlogEditForm">
+            <BackButton/>
             <h2>Edit Devlog</h2>
             {generalError && <p className="error">{generalError}</p> }
             {successMessage && <p className="success">{successMessage}</p> }

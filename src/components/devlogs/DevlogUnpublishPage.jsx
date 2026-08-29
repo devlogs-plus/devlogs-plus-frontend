@@ -9,6 +9,7 @@ import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Button} from "../common/Button.jsx";
 import usePageTitle from "../../hooks/usePageTitle.js";
 import styles from "./DevlogUnpublishPage.module.css"
+import BackButton from "../common/BackButton.jsx";
 
 export function DevlogUnpublishPage() {
     const {projectId, devlogId} = useParams()
@@ -63,6 +64,7 @@ export function DevlogUnpublishPage() {
 
     return (
         <div className="devlogUnpubPage">
+            <BackButton/>
             <h2>Unpublish Devlog</h2>
             {error && <p className="error">{error}</p> }
 
