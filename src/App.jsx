@@ -37,17 +37,17 @@ export default function App() {
                 <Route path="/login" element={<LoginForm />}/>
                 <Route path="/projects" element={<ViewProjects/>}/>
                 <Route path="/projects/:id" element={<ProjectView/>}/>
+                <Route path="/projects/:projectId/devlogs/:devlogId" element={<DevlogPage/>}/>
+                <Route path="/projects/:projectId/collaborators" element={<CollaboratorList/>}/>
                 <Route element={<ProtectedRoute />}>
                     <Route path="/projects/create" element={<ProjectForm/>}/>
                     <Route path="/projects/edit/:id" element={<ProjectEditForm/>}/>
                     <Route path="/projects/delete/:id" element={<ProjectDeletePage/>}/>
                     <Route path="/devlogs/create" element={<DevlogForm/>}/>
                     <Route path="/devlogs/unpublished" element={<UserUnpublishedDevlogs/>}/>
-                    <Route path="/projects/:projectId/devlogs/:devlogId" element={<DevlogPage/>}/>
                     <Route path="/projects/:projectId/devlogs/:devlogId/edit" element={<DevlogEditForm/>}/>
                     <Route path="/projects/:projectId/devlogs/:devlogId/unpublish" element={<DevlogUnpublishPage/>}/>
                     <Route path="/projects/:projectId/collaborators/add" element={<AddCollaboratorPage/>}/>
-                    <Route path="/projects/:projectId/collaborators" element={<CollaboratorList/>}/>
                     <Route path="/projects/:projectId/collaborators/remove" element={<RemoveCollaboratorPage/>}/>
                     <Route path="/me" element={<OwnUserPage/>}/>
                     <Route path="/me/edit" element={<EditOwnUser/>}/>
