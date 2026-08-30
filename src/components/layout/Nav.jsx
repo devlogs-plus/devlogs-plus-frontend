@@ -1,48 +1,95 @@
-import {Link, useNavigate} from "react-router-dom";
-import {useAuth} from "../../context/AuthContext.jsx";
-import {useLogout} from "../../hooks/useAuth.js";
-import {Button} from "../common/Button.jsx";
-import styles from "./Nav.module.css"
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext.jsx";
+import { useLogout } from "../../hooks/useAuth.js";
+import { Button } from "../common/Button.jsx";
+import styles from "./Nav.module.css";
 
 export function Nav() {
-    const {user, isLoading} = useAuth()
-    const logout = useLogout()
-    const navigate = useNavigate()
+    const { user, isLoading } = useAuth();
+    const logout = useLogout();
+    const navigate = useNavigate();
 
     async function handleLogout() {
         try {
-            await logout.mutateAsync()
-            navigate("/login")
+            await logout.mutateAsync();
+            navigate("/login");
         } catch (err) {
-            console.log("logout failed", err)
+            console.log("logout failed", err);
         }
     }
 
+    const linkClassName = ({ isActive }) =>
+        isActive ? `${styles.link} ${styles.active}` : styles.link;
+
     return (
-        <nav>
-            {isLoading ? (
-                <>
-                    <span>Loading</span> | <Link to="/">Home</Link>
-                </>
-            ) : user ? (
-                <>
-                    <Button onClick={handleLogout} disabled={logout.isLoading}>
-                        {logout.isLoading ? "Logging out":"Logout"}
-                    </Button>{" "}
-                    | <Link className={styles.link} to="/me">You</Link> {" "}
-                    | <Link className={styles.link} to="/">Home</Link> {" "}
-                    | <Link className={styles.link} to="/projects/create">Create a Project</Link> {" "}
-                    | <Link className={styles.link} to="/devlogs/create">Create a Devlog</Link> {" "}
-                    | <Link className={styles.link} to="/projects">Projects</Link> {" "}
-                    | <Link className={styles.link} to="/devlogs/unpublished">Unpublished Devlogs</Link>
-                </>
-            ): (
-                <>
-                    <Link className={styles.link} to="/">Home</Link> | <Link className={styles.link} to="/projects">Projects</Link> | {" "}
-                    <Link className={styles.link} to="/login">Login</Link> {" "}
-                    | <Link className={styles.link} to="/register">Register</Link>
-                </>
-            )}
+        <nav className={styles.nav} aria-label="Main navigation">
+            <ul className={styles.navList}>
+                <li>
+                    <NavLink className={linkClassName} to="/">
+                        Home
+                    </NavLink>
+                </li>
+
+                <li>
+                    <NavLink className={linkClassName} to="/projects">
+                        Projects
+                    </NavLink>
+                </li>
+
+                {isLoading ? (
+                    <li className={styles.status}>Loading...</li>
+                ) : user ? (
+                    <>
+                        <li>
+                            <NavLink className={linkClassName} to="/devlogs/unpublished">
+                                Drafts
+                            </NavLink>
+                        </li>
+
+                        <li className={styles.spacer}></li>
+
+                        <li>
+                            <NavLink className={linkClassName} to="/projects/create">
+                                New Project
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink className={linkClassName} to="/devlogs/create">
+                                New Devlog
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink className={linkClassName} to="/me">
+                                Profile
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <Button onClick={handleLogout} disabled={logout.isPending}>
+                                {logout.isPending ? "Logging out..." : "Logout"}
+                            </Button>
+                        </li>
+                    </>
+                ) : (
+                    <>
+                        <li className={styles.spacer}></li>
+
+                        <li>
+                            <NavLink className={linkClassName} to="/login">
+                                Login
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink className={linkClassName} to="/register">
+                                Register
+                            </NavLink>
+                        </li>
+                    </>
+                )}
+            </ul>
         </nav>
-    )
+    );
 }
