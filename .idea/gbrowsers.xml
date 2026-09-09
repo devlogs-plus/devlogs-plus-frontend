@@ -4,14 +4,6 @@
   "defaultHomePage": " https://localhost:5173/",
   "history": [
     {
-      "name": "GBrowser - IntelliJ IDEs Plugin | Marketplace",
-      "url": "https://plugins.jetbrains.com/plugin/14458-gbrowser"
-    },
-    {
-      "name": "devlogs-plus-frontend",
-      "url": "https://localhost:5173/"
-    },
-    {
       "name": "devlogs-plus-frontend",
       "url": "https://localhost:5173/login"
     },
@@ -64,10 +56,6 @@
       "url": "https://plugins.jetbrains.com/plugin/15016-react-native-console-free"
     },
     {
-      "name": "",
-      "url": " https://localhost:5173/"
-    },
-    {
       "name": "Register | Devlogs+",
       "url": "https://localhost:5173/register"
     },
@@ -78,6 +66,22 @@
     {
       "name": "Create Project | Devlogs+",
       "url": "https://localhost:5173/projects/create"
+    },
+    {
+      "name": "localhost",
+      "url": " https://localhost:5173/"
+    },
+    {
+      "name": "tr | Devlogs+",
+      "url": "https://localhost:5173/projects/10"
+    },
+    {
+      "name": "View collaborator | Devlogs+",
+      "url": "https://localhost:5173/projects/10/collaborators"
+    },
+    {
+      "name": "Add collaborator | Devlogs+",
+      "url": "https://localhost:5173/projects/10/collaborators/add"
     }
   ],
   "bookmarks": [

@@ -6,6 +6,7 @@ import useCollaborators from "../../hooks/useCollaborators.js";
 import usePageTitle from "../../hooks/usePageTitle.js";
 import {UserInfo} from "../common/UserInfo.jsx";
 import BackButton from "../common/BackButton.jsx";
+import {UserCard} from "../auth/UserCard.jsx";
 
 export function CollaboratorList() {
     const {projectId} = useParams()
@@ -61,7 +62,7 @@ export function CollaboratorList() {
             <h4>Project Collaborators:</h4>
             {Array.isArray(collaboratorIds) && collaboratorIds.length > 0 ? (
                 <div>
-                    {collaboratorIds.map(n => <UserInfo userId={n}/>)}
+                    {collaboratorIds.map(n => <UserCard userId={n}/> )}
                 </div>
             ) : (
                 <p>No collaborators for this project</p>
