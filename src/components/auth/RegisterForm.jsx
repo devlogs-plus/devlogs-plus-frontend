@@ -5,8 +5,8 @@ import {useNavigate} from "react-router-dom";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 import {isValidEmail} from "../../helperFunctions.js";
-import GithubButton from "../common/GithubButton.jsx";
-import HackclubButton from "../common/HackclubButton.jsx";
+import GithubButton from "../common/button/GithubButton.jsx";
+import HackclubButton from "../common/button/HackclubButton.jsx";
 import usePageTitle from "../../hooks/usePageTitle.js";
 
 export function RegisterForm(){
