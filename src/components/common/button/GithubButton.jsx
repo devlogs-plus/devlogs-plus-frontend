@@ -1,5 +1,5 @@
-import {Button} from "./Button.jsx";
-import {githubLogin} from "../../api/auth.js";
+import {Button} from "../Button.jsx";
+import {githubLogin} from "../../../api/auth.js";
 
 export default function GithubButton({login}) {
     return login ? (<Button onClick={githubLogin}>

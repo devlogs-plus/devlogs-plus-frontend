@@ -1,5 +1,5 @@
-import {Button} from "./Button.jsx";
-import {hackclubLogin} from "../../api/auth.js";
+import {Button} from "../Button.jsx";
+import {hackclubLogin} from "../../../api/auth.js";
 
 export default function HackclubButton({login}) {
     return login ? (<Button onClick={hackclubLogin}>
