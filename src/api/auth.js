@@ -66,21 +66,6 @@ export function hackclubLogin() {
     window.location.href = `${API_BASE}/auth/hackclub`
 }
 
-export function connectWaka() {
-    window.location.href = `${API_BASE}/auth/wakatime/connect`
-}
-
-export function connectHacka() {
-    window.location.href = `${API_BASE}/auth/hackatime/connect`
-}
-
-export function disconnectWaka() {
-    window.location.href = `${API_BASE}/auth/wakatime/disconnect`
-}
-
-export function disconnectHacka() {
-    window.location.href = `${API_BASE}/auth/hackatime/disconnect`
-}
 export function deleteSelf() {
     return apiFetch('/auth/me/delete', {
         method: 'DELETE'
