@@ -1,3 +1,4 @@
+import axios from "axios";
 const API_BASE = import.meta.env.VITE_API_BASE
 
 export function connectWaka() {
@@ -14,4 +15,28 @@ export function disconnectWaka() {
 
 export function disconnectHacka() {
     window.location.href = `${API_BASE}/auth/hackatime/disconnect`
+}
+
+export async function doesWakaExist() {
+    try {
+        await axios.get(`${API_BASE}/auth/wakatime/exists`)
+        return true
+    } catch (e) {
+        if (e.response?.status === 404) {
+            return false
+        }
+        throw e
+    }
+}
+
+export async function doesHackaExist() {
+    try {
+        await axios.get(`${API_BASE}/auth/hackatime/exists`)
+        return true
+    } catch (e) {
+        if (e.response?.status === 404) {
+            return false
+        }
+        throw e
+    }
 }
