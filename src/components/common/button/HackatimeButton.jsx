@@ -1,5 +1,5 @@
 import {Button} from "../Button.jsx";
-import {connectHacka, disconnectHacka} from "../../../api/auth.js";
+import {connectHacka, disconnectHacka} from "../../../api/timetracking.js";
 
 export default function HackatimeButton({connect}) {
     return connect ? (<Button onClick={connectHacka}>

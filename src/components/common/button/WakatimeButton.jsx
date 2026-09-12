@@ -1,5 +1,5 @@
 import {Button} from "../Button.jsx";
-import {connectWaka, disconnectWaka} from "../../../api/auth.js";
+import {connectWaka, disconnectWaka} from "../../../api/timetracking.js";
 
 export default function WakatimeButton({connect}) {
     return connect ? (<Button onClick={connectWaka}>
