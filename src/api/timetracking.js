@@ -19,7 +19,7 @@ export function disconnectHacka() {
 
 export async function doesWakaExist() {
     try {
-        await axios.get(`${API_BASE}/auth/wakatime/exists`)
+        await axios.get(`${API_BASE}/auth/wakatime/exists`, {withCredentials: true})
         return true
     } catch (e) {
         if (e.response?.status === 404) {
@@ -31,7 +31,7 @@ export async function doesWakaExist() {
 
 export async function doesHackaExist() {
     try {
-        await axios.get(`${API_BASE}/auth/hackatime/exists`)
+        await axios.get(`${API_BASE}/auth/hackatime/exists`, {withCredentials: true})
         return true
     } catch (e) {
         if (e.response?.status === 404) {
