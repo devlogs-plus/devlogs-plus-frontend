@@ -36,3 +36,8 @@ export function extractWakaProjects(projects) {
     const items = Array.isArray(projects) ? projects : projects?.data ?? []
     return items.map(p => p?.name).filter(n => typeof n === "string" && n.trim().length > 0)
 }
+
+export function extractHackaProjects(projects) {
+    const items = Array.isArray(projects) ? projects : projects?.projects ?? []
+    return items.map(p => p?.name).filter(n => typeof n === "string" && n.trim().length > 0)
+}
