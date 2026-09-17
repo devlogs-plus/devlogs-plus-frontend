@@ -1,5 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
-import {getUser} from "../api/auth.js";
+import {getUser} from "../../api/auth.js";
 
 export default function useUser(userId) {
     const query =  useQuery({

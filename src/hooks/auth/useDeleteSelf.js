@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {deleteSelf} from "../api/auth.js";
+import {deleteSelf} from "../../api/auth.js";
 
 export default function useDeleteSelf() {
     const queryClient = useQueryClient()

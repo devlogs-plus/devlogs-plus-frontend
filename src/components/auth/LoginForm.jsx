@@ -1,5 +1,5 @@
 import {useRef, useState} from "react";
-import {useLogin} from "../../hooks/useAuth.js";
+import {useLogin} from "../../hooks/auth/useAuth.js";
 import {useNavigate, useLocation, Link} from "react-router-dom";
 import {parseApiError} from "../../api/client.js";
 import {Input} from "../common/Input.jsx";
@@ -8,7 +8,7 @@ import {isValidEmail} from "../../helperFunctions.js";
 import GithubButton from "../common/button/GithubButton.jsx";
 import HackclubButton from "../common/button/HackclubButton.jsx";
 import styles from "./LoginForm.module.css"
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export function LoginForm() {
     const emailRef = useRef(null)

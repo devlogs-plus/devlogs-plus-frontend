@@ -9,7 +9,7 @@ import {useAuth} from "../../context/AuthContext.jsx";
 import styles from "./DevlogPage.module.css"
 import {Button} from "../common/Button.jsx";
 import {UserCard} from "../auth/UserCard.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export function DevlogPage() {
     const {projectId, devlogId} = useParams()

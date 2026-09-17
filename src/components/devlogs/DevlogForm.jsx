@@ -1,13 +1,13 @@
 import {useRef, useState} from "react";
 import {parseApiError} from "../../api/client.js";
-import useCreateDevlog from "../../hooks/useCreateDevlog.js";
-import usePublishDevlog from "../../hooks/usePublishDevlog.js";
+import useCreateDevlog from "../../hooks/devlogs/useCreateDevlog.js";
+import usePublishDevlog from "../../hooks/devlogs/usePublishDevlog.js";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
 import {Button} from "../common/Button.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
-import {useCurrentUser} from "../../hooks/useAuth.js";
-import useUsersProjects from "../../hooks/useUsersProjects.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
+import {useCurrentUser} from "../../hooks/auth/useAuth.js";
+import useUsersProjects from "../../hooks/projects/useUsersProjects.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {Select} from "../common/Select.jsx";
 

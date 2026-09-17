@@ -9,7 +9,7 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {Button} from "../common/Button.jsx";
 import {UserCard} from "../auth/UserCard.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export function ProjectView() {
     const { id: projectId} = useParams()

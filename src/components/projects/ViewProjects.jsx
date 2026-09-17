@@ -1,10 +1,10 @@
 import {useState} from "react";
 import ProjectCard from "./ProjectCard.jsx";
-import useProjects from "../../hooks/useProjects.js";
+import useProjects from "../../hooks/projects/useProjects.js";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {Button} from "../common/Button.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export function ViewProjects() {
     const { projects, loading, error, refresh } = useProjects()

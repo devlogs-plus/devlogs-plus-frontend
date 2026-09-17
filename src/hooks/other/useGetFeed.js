@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getFeed, getSingleDevlog } from "../api/devlogs.js";
+import { getFeed, getSingleDevlog } from "../../api/devlogs.js";
 
 export default function useGetFeed({initialPage = 1, initialPerPage = 10, autoLoad = true, fetchDetails = true, failOnDetailError = false} = {}) {
     const [feed, setFeed] = useState([])

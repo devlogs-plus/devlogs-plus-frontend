@@ -1,4 +1,4 @@
-import useUser from "../../hooks/useUser.js";
+import useUser from "../../hooks/auth/useUser.js";
 import styles from "./UserCard.module.css"
 import {Link} from "react-router-dom";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";

@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from "react";
-import {getUnpublishedDevlogsByUser} from "../api/devlogs.js";
+import {getUnpublishedDevlogsByUser} from "../../api/devlogs.js";
 
 export default function useUnpublishedDevlogs() {
     const [devlogs, setDevlogs] = useState([]);

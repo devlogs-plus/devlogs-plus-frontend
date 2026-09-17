@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
-import { useLogout } from "../../hooks/useAuth.js";
+import { useLogout } from "../../hooks/auth/useAuth.js";
 import { Button } from "../common/Button.jsx";
 import styles from "./Nav.module.css";
 

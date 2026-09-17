@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import styles from "./UnauthorizedRoute.module.css"
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export function UnauthorizedRoute() {
     usePageTitle('Unauthorized')

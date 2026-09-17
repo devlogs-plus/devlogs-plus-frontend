@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createDevlog } from "../api/devlogs.js";
+import { createDevlog } from "../../api/devlogs.js";
 
 export default function useCreateDevlog() {
     const queryClient = useQueryClient();

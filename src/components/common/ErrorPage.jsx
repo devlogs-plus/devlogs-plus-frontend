@@ -1,4 +1,4 @@
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export default function ErrorPage({message}) {
     usePageTitle('Error')

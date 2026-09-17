@@ -1,4 +1,4 @@
-import useDevlogs from "../../hooks/useDevlogs.js";
+import useDevlogs from "../../hooks/devlogs/useDevlogs.js";
 import {useState} from "react";
 import {DevlogsCard} from "./DevlogsCard.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";

@@ -1,5 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
-import {getUserFromEmail} from "../api/auth.js";
+import {getUserFromEmail} from "../../api/auth.js";
 
 export default function useUserFromEmail(userEmail) {
     const query = useQuery({

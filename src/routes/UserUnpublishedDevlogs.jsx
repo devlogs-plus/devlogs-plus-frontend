@@ -1,15 +1,15 @@
 import { useAuth } from "../context/AuthContext.jsx";
-import useUnpublishedDevlogs from "../hooks/useUnpublishedDevlogs.js";
+import useUnpublishedDevlogs from "../hooks/devlogs/useUnpublishedDevlogs.js";
 import {DevlogsCard} from "../components/devlogs/DevlogsCard.jsx";
 import {UnauthorizedRoute} from "../components/common/UnauthorizedRoute.jsx";
 import LoadingSpinner from "../components/common/LoadingSpinner.jsx";
-import usePublishDevlog from "../hooks/usePublishDevlog.js";
+import usePublishDevlog from "../hooks/devlogs/usePublishDevlog.js";
 import {useState} from "react";
 import ErrorPage from "../components/common/ErrorPage.jsx";
 import {Link} from "react-router-dom";
 import {Button} from "../components/common/Button.jsx";
 import styles from "./UserUnpublisheDevlogs.module.css"
-import usePageTitle from "../hooks/usePageTitle.js";
+import usePageTitle from "../hooks/other/usePageTitle.js";
 
 export function UserUnpublishedDevlogs() {
     const { user, isLoading: authLoading } = useAuth();

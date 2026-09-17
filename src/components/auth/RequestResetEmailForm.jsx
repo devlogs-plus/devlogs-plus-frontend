@@ -1,6 +1,6 @@
 import {useState} from "react";
-import usePageTitle from "../../hooks/usePageTitle.js";
-import useRequestResetEmail from "../../hooks/useRequestResetEmail.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
+import useRequestResetEmail from "../../hooks/auth/useRequestResetEmail.js";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 

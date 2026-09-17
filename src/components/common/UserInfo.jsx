@@ -1,4 +1,4 @@
-import useUser from "../../hooks/useUser.js";
+import useUser from "../../hooks/auth/useUser.js";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 
 export function UserInfo({userId}) {

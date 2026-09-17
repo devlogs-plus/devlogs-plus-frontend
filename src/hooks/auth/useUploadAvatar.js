@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {uploadAvatar} from "../api/auth.js";
+import {uploadAvatar} from "../../api/auth.js";
 
 export default function useUploadAvatar() {
     const queryClient = useQueryClient()

@@ -1,10 +1,10 @@
 import {useRef, useState} from "react";
-import useCreateProject from "../../hooks/useCreateProject.js";
+import useCreateProject from "../../hooks/projects/useCreateProject.js";
 import {parseApiError} from "../../api/client.js";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
 import {Button} from "../common/Button.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export function ProjectForm() {
     const nameRef = useRef(null)

@@ -1,16 +1,16 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useAuth} from "../../context/AuthContext.jsx";
 import {useEffect, useRef, useState} from "react";
-import useDeleteCollaborator from "../../hooks/useDeleteCollaborator.js";
+import useDeleteCollaborator from "../../hooks/projects/useDeleteCollaborator.js";
 import {getProjectOwnerId, isValidEmail} from "../../helperFunctions.js";
 import {parseApiError} from "../../api/client.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Button} from "../common/Button.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 import {Input} from "../common/Input.jsx";
 import BackButton from "../common/BackButton.jsx";
-import useUserFromEmail from "../../hooks/useUserFromEmail.js";
+import useUserFromEmail from "../../hooks/auth/useUserFromEmail.js";
 
 export default function RemoveCollaboratorPage() {
     const emailRef = useRef(null)

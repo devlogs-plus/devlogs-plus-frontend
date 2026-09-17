@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from "react";
-import {getDevlogsByProject} from "../api/devlogs.js";
+import {getDevlogsByProject} from "../../api/devlogs.js";
 
 export default function useDevlogs({projectId}) {
     const [devlogs, setDevlogs] = useState([])

@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {editSelf} from "../api/auth.js";
+import {editSelf} from "../../api/auth.js";
 
 export default function useEditSelf() {
     const queryClient = useQueryClient()

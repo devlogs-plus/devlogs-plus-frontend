@@ -7,7 +7,7 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Button} from "../common/Button.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 import styles from "./DevlogUnpublishPage.module.css"
 import BackButton from "../common/BackButton.jsx";
 

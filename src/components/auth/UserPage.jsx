@@ -1,9 +1,9 @@
 import {useParams} from "react-router-dom";
-import useUser from "../../hooks/useUser.js";
+import useUser from "../../hooks/auth/useUser.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import AvatarImg from "../common/AvatarImg.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 import ViewUsersProjects from "../projects/ViewUsersProjects.jsx";
 
 export function UserPage() {

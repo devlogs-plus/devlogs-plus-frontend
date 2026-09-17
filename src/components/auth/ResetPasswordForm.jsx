@@ -1,7 +1,7 @@
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import useResetPassword from "../../hooks/useResetPassword.js";
+import useResetPassword from "../../hooks/auth/useResetPassword.js";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
 

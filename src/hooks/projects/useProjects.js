@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
-import { getProjects } from "../api/projects.js";
+import { getProjects } from "../../api/projects.js";
 
 export default function useProjects(params) {
     const [projects, setProjects] = useState([]);

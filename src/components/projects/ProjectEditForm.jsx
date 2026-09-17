@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {parseApiError} from "../../api/client.js";
 import {addIfNotEmpty} from "../../helperFunctions.js";
 import {useParams} from "react-router-dom";
-import useEditProject from "../../hooks/useEditProject.js";
+import useEditProject from "../../hooks/projects/useEditProject.js";
 import {getSingleProject} from "../../api/projects.js";
 import {useAuth} from "../../context/AuthContext.jsx";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
@@ -10,7 +10,7 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
 import {Button} from "../common/Button.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 import BackButton from "../common/BackButton.jsx";
 
 export function ProjectEditForm({onUpdated}) {

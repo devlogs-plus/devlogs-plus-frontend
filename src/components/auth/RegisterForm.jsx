@@ -7,7 +7,7 @@ import {Button} from "../common/Button.jsx";
 import {isValidEmail} from "../../helperFunctions.js";
 import GithubButton from "../common/button/GithubButton.jsx";
 import HackclubButton from "../common/button/HackclubButton.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export function RegisterForm(){
     const emailRef = useRef(null)

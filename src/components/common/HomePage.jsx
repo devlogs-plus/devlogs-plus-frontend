@@ -4,7 +4,7 @@ import PageContainer from "../layout/PageContainer.jsx";
 import {Link} from "react-router-dom";
 import styles from "./HomePage.module.css"
 import {ViewFeed} from "../devlogs/ViewFeed.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export default function HomePage() {
     const {user, isLoading} = useAuth()

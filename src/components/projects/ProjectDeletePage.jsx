@@ -7,7 +7,7 @@ import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {Button} from "../common/Button.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 import BackButton from "../common/BackButton.jsx";
 
 export function ProjectDeletePage() {

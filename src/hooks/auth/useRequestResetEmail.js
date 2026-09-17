@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {requestResetEmail} from "../api/auth.js";
+import {requestResetEmail} from "../../api/auth.js";
 
 export default function useRequestResetEmail() {
     const queryClient = useQueryClient()

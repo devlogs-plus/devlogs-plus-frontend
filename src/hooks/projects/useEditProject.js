@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {updateProject} from "../api/projects.js";
+import {updateProject} from "../../api/projects.js";
 
 export default function useEditProject() {
     const queryClient = useQueryClient()

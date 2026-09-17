@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {updatePassword} from "../api/auth.js";
+import {updatePassword} from "../../api/auth.js";
 
 export default function useUpdatePassword() {
     const queryClient = useQueryClient()

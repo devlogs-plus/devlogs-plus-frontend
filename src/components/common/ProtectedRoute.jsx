@@ -1,7 +1,7 @@
 import { Navigate, useLocation, Outlet} from "react-router-dom";
 import {useAuth} from "../../context/AuthContext.jsx";
 import LoadingSpinner from "./LoadingSpinner.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export function ProtectedRoute({children}) {
     const {user, isLoading} = useAuth()

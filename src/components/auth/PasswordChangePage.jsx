@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
-import useUpdatePassword from "../../hooks/useUpdatePassword.js";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import useUpdatePassword from "../../hooks/auth/useUpdatePassword.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 import BackButton from "../common/BackButton.jsx";
 
 export function PasswordChangePage() {

@@ -1,5 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
-import {viewCollaborators} from "../api/collaborator.js";
+import {viewCollaborators} from "../../api/collaborator.js";
 
 export default function useCollaborators(projectId, options={}) {
     return useQuery({

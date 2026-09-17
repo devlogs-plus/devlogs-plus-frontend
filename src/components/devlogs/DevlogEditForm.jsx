@@ -1,7 +1,7 @@
 import {useParams} from "react-router-dom";
 import {useAuth} from "../../context/AuthContext.jsx";
 import {useEffect, useState} from "react";
-import useEditDevlog from "../../hooks/useEditDevlog.js";
+import useEditDevlog from "../../hooks/devlogs/useEditDevlog.js";
 import {getSingleDevlog} from "../../api/devlogs.js";
 import {addIfNotEmpty} from "../../helperFunctions.js";
 import {parseApiError} from "../../api/client.js";
@@ -10,7 +10,7 @@ import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Input} from "../common/Input.jsx";
 import {TextArea} from "../common/TextArea.jsx";
 import {Button} from "../common/Button.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 import BackButton from "../common/BackButton.jsx";
 
 export function DevlogEditForm({onUpdated}) {

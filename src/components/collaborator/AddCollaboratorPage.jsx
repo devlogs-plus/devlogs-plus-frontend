@@ -1,6 +1,6 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
-import useAddCollaborator from "../../hooks/useAddCollaborator.js";
+import useAddCollaborator from "../../hooks/projects/useAddCollaborator.js";
 import {parseApiError} from "../../api/client.js";
 import {useAuth} from "../../context/AuthContext.jsx";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
@@ -8,9 +8,9 @@ import {getProjectOwnerId, isValidEmail} from "../../helperFunctions.js";
 import {UnauthorizedRoute} from "../common/UnauthorizedRoute.jsx";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 import BackButton from "../common/BackButton.jsx";
-import useUserFromEmail from "../../hooks/useUserFromEmail.js";
+import useUserFromEmail from "../../hooks/auth/useUserFromEmail.js";
 
 export function AddCollaboratorPage() {
     const emailRef = useRef(null)

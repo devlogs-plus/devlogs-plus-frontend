@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import styles from "./NotFoundPage.module.css"
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export default function NotFoundPage() {
     usePageTitle('404: Not Found')

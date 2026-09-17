@@ -1,4 +1,4 @@
-import useUsersProjects from "../../hooks/useUsersProjects.js";
+import useUsersProjects from "../../hooks/projects/useUsersProjects.js";
 import {useState} from "react";
 import {useParams} from "react-router-dom";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";

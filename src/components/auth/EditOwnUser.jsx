@@ -5,10 +5,10 @@ import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {editSelf} from "../../api/auth.js";
 import {Input} from "../common/Input.jsx";
 import {Button} from "../common/Button.jsx";
-import useUploadAvatar from "../../hooks/useUploadAvatar.js";
+import useUploadAvatar from "../../hooks/auth/useUploadAvatar.js";
 import AvatarImg from "../common/AvatarImg.jsx";
 import {useQueryClient} from "@tanstack/react-query";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 import BackButton from "../common/BackButton.jsx";
 
 export function EditOwnUser() {

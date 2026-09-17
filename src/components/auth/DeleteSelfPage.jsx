@@ -1,9 +1,9 @@
 import {useState} from "react";
-import useDeleteSelf from "../../hooks/useDeleteSelf.js";
+import useDeleteSelf from "../../hooks/auth/useDeleteSelf.js";
 import {useNavigate} from "react-router-dom";
 import {Button} from "../common/Button.jsx";
 import {Input} from "../common/Input.jsx";
-import usePageTitle from "../../hooks/usePageTitle.js";
+import usePageTitle from "../../hooks/other/usePageTitle.js";
 
 export default function DeleteSelfPage() {
     const [confirm, setConfirm] = useState("")

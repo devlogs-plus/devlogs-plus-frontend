@@ -1,4 +1,4 @@
-import useGetFeed from "../../hooks/useGetFeed.js";
+import useGetFeed from "../../hooks/other/useGetFeed.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {DevlogsCard} from "./DevlogsCard.jsx";
