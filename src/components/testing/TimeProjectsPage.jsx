@@ -2,10 +2,12 @@ import {useEffect, useState} from "react";
 import {getHackaProjects, getWakaProjects} from "../../api/timetracking.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
+import {extractHackaProjects, extractWakaProjects} from "../../helperFunctions.js";
 
 export default function TimeProjectsPage() {
     const [wakaProjects, setWakaProjects] = useState(null)
-    const [hackaProject, setHackaProjects] = useState(null)
+    const [hackaProjects, sethackaProjects] = useState(null)
+
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -14,12 +16,14 @@ export default function TimeProjectsPage() {
             try {
                 setLoading(true)
 
-                const [waka, hacka] = await Promise.all([
+                let [waka, hacka] = await Promise.all([
                     getWakaProjects(),
                     getHackaProjects()
                 ])
+                waka = extractWakaProjects(waka)
                 setWakaProjects(waka)
-                setHackaProjects(hacka)
+                hacka = extractHackaProjects(hacka)
+                sethackaProjects(hacka)
             } catch (err) {
                 console.error(err)
                 setError(err)
@@ -31,7 +35,7 @@ export default function TimeProjectsPage() {
     }, []);
 
     if (loading) return <LoadingSpinner/>
-    if (error) return <ErrorPage message={error}/>
+    if (error) return <p>{error}</p>
 
     return (
         <div>
@@ -41,7 +45,7 @@ export default function TimeProjectsPage() {
             <pre>{JSON.stringify(wakaProjects, null, 2)}</pre>
 
             <h2>Hacka</h2>
-            <pre>{JSON.stringify(hackaProject, null, 2)}</pre>
+            <pre>{JSON.stringify(hackaProjects, null, 2)}</pre>
         </div>
     )
 }
