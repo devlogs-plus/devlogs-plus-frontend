@@ -7,7 +7,7 @@ import {extractHackaProjects, extractWakaProjects} from "../../helperFunctions.j
 export default function TimeProjectsPage() {
     const [wakaProjects, setWakaProjects] = useState(null)
     const [hackaProjects, sethackaProjects] = useState(null)
-
+    const [allProjects, setAllProjects] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -24,6 +24,7 @@ export default function TimeProjectsPage() {
                 setWakaProjects(waka)
                 hacka = extractHackaProjects(hacka)
                 sethackaProjects(hacka)
+                setAllProjects([...waka, ...hacka])
             } catch (err) {
                 console.error(err)
                 setError(err)
@@ -40,6 +41,9 @@ export default function TimeProjectsPage() {
     return (
         <div>
             <h1>All Projects</h1>
+
+            <h2>All</h2>
+            <pre>{JSON.stringify(allProjects, null, 2)}</pre>
 
             <h2>Waka</h2>
             <pre>{JSON.stringify(wakaProjects, null, 2)}</pre>
