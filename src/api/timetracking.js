@@ -1,4 +1,5 @@
 import axios from "axios";
+import {apiFetch} from "./client.js";
 const API_BASE = import.meta.env.VITE_API_BASE
 
 export function connectWaka() {
@@ -39,4 +40,12 @@ export async function doesHackaExist() {
         }
         throw e
     }
+}
+
+export async function getWakaProjects() {
+    return apiFetch('/auth/wakatime/projects')
+}
+
+export async function getHackaProjects() {
+    return apiFetch('/auth/hackatime/projects')
 }
