@@ -27,6 +27,7 @@ import DeleteSelfPage from "./components/auth/DeleteSelfPage.jsx";
 import {PasswordChangePage} from "./components/auth/PasswordChangePage.jsx";
 import {RequestResetEmailForm} from "./components/auth/RequestResetEmailForm.jsx";
 import {ResetPasswordForm} from "./components/auth/ResetPasswordForm.jsx";
+import TimeProjectsPage from "./components/testing/TimeProjectsPage.jsx";
 export default function App() {
     return (
         <>
@@ -53,6 +54,7 @@ export default function App() {
                     <Route path="/me/edit" element={<EditOwnUser/>}/>
                     <Route path="/me/delete" element={<DeleteSelfPage/>}/>
                     <Route path="/me/changepassword" element={<PasswordChangePage/>}/>
+                    <Route path="/testing/time" element={<TimeProjectsPage/>}/>
                 </Route>
                 <Route path="/user/:userId" element={<UserPage/>}/>
                 <Route path="/auth/github/callback" element={<GithubCallback/>}/>
