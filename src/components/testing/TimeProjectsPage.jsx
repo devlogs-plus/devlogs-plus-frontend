@@ -3,11 +3,13 @@ import {getHackaProjects, getWakaProjects} from "../../api/timetracking.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {extractHackaProjects, extractWakaProjects} from "../../helperFunctions.js";
+import Picker from "../common/Picker.jsx";
 
 export default function TimeProjectsPage() {
     const [wakaProjects, setWakaProjects] = useState(null)
     const [hackaProjects, sethackaProjects] = useState(null)
     const [allProjects, setAllProjects] = useState(null)
+    const [selectedProject, setSelectedProject] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -41,6 +43,14 @@ export default function TimeProjectsPage() {
     return (
         <div>
             <h1>All Projects</h1>
+
+            <h3>Select a Project</h3>
+            <Picker onChange={setSelectedProject} selectedValue={selectedProject} options={allProjects}/>
+            {selectedProject ? (
+                <p>Selected: {selectedProject}</p>
+            ) : (
+                <p>select a thing</p>
+            )}
 
             <h2>All</h2>
             <pre>{JSON.stringify(allProjects, null, 2)}</pre>
