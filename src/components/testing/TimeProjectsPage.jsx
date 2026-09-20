@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getHackaProjects, getWakaProjects} from "../../api/timetracking.js";
+import {getArrayOfAllProjects, getHackaProjects, getWakaProjects} from "../../api/timetracking.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import ErrorPage from "../common/ErrorPage.jsx";
 import {extractHackaProjects, extractWakaProjects} from "../../helperFunctions.js";
@@ -26,7 +26,8 @@ export default function TimeProjectsPage() {
                 setWakaProjects(waka)
                 hacka = extractHackaProjects(hacka)
                 sethackaProjects(hacka)
-                setAllProjects([...waka, ...hacka])
+                const all_projects = await getArrayOfAllProjects()
+                setAllProjects(all_projects)
             } catch (err) {
                 console.error(err)
                 setError(err)

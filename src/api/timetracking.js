@@ -1,5 +1,6 @@
 import axios from "axios";
 import {apiFetch} from "./client.js";
+import {extractHackaProjects, extractWakaProjects} from "../helperFunctions.js";
 const API_BASE = import.meta.env.VITE_API_BASE
 
 export function connectWaka() {
@@ -48,4 +49,21 @@ export async function getWakaProjects() {
 
 export async function getHackaProjects() {
     return apiFetch('/auth/hackatime/projects')
+}
+
+export async function getArrayOfAllProjects() {
+    let all_projects = null
+    try {
+        let [waka, hacka] = await Promise.all([
+            getWakaProjects(),
+            getHackaProjects()
+        ])
+        waka = extractWakaProjects(waka)
+        hacka = extractHackaProjects(hacka)
+        all_projects = [...waka, ...hacka]
+    } catch (err) {
+        console.error(err)
+        return err
+    }
+    return [...all_projects]
 }
