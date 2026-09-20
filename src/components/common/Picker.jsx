@@ -1,4 +1,8 @@
 const Picker = ({ options, selectedValue, onChange }) => {
+    if (!Array.isArray(options)) {
+        return <p>thing is not an array</p>
+    }
+
     return (
         <div className="picker-container">
             <select value={selectedValue} onChange={(e) => onChange(e.target.value)}>
