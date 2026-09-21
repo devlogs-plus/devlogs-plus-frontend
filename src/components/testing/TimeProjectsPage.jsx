@@ -41,6 +41,16 @@ export default function TimeProjectsPage() {
     if (loading) return <LoadingSpinner/>
     if (error) return <p>{error}</p>
 
+    let selectedRequest = {time_tracking_projects: []}
+    if (selectedProject) {
+        const provider =
+            Array.isArray(wakaProjects) && wakaProjects.includes(selectedProject) ? "wakatime" : Array.isArray(hackaProjects) && hackaProjects.includes(selectedProject) ? "hackatime" : "unknown";
+
+        selectedRequest = {
+            time_tracking_projects: [{name: selectedProject, provider}]
+        }
+    }
+
     return (
         <div>
             <h1>All Projects</h1>
@@ -52,6 +62,9 @@ export default function TimeProjectsPage() {
             ) : (
                 <p>select a thing</p>
             )}
+
+            <h2>request</h2>
+            <pre>{JSON.stringify(selectedRequest, null , 2)}</pre>
 
             <h2>All</h2>
             <pre>{JSON.stringify(allProjects, null, 2)}</pre>
