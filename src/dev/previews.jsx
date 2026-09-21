@@ -7,6 +7,7 @@ import ErrorPage from "../components/common/ErrorPage.jsx";
 import {ResetPasswordForm} from "../components/auth/ResetPasswordForm.jsx";
 import {RequestResetEmailForm} from "../components/auth/RequestResetEmailForm.jsx";
 import BackButton from "../components/common/BackButton.jsx";
+import MultiPicker from "../components/common/MultiPicker.jsx";
 
 const ComponentPreviews = () => {
     return (
@@ -32,6 +33,9 @@ const ComponentPreviews = () => {
             </ComponentPreview>
             <ComponentPreview path="/BackButton">
                 <BackButton/>
+            </ComponentPreview>
+            <ComponentPreview path="/MultiPicker">
+                <MultiPicker/>
             </ComponentPreview>
         </Previews>
     )
