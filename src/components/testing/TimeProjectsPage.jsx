@@ -5,7 +5,6 @@ import {
     getWakaProjects,
 } from "../../api/timetracking.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
-import ErrorPage from "../common/ErrorPage.jsx";
 import { extractHackaProjects, extractWakaProjects } from "../../helperFunctions.js";
 import MultiPicker from "../common/MultiPicker.jsx";
 
