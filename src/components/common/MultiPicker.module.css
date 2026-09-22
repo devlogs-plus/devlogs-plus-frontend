@@ -1,0 +1,41 @@
+.multi-picker {
+    width: 100%;
+    max-width: 300px;
+}
+
+.select {
+    display: block;
+    width: 100%;
+    min-height: 128px;
+    padding: 8px;
+    box-sizing: border-box;
+    color: var(--color-text);
+    font: inherit;
+    background-color: var(--nord9);
+    border: 1px solid var(--nord10);
+    border-radius: 6px;
+    cursor: pointer;
+    appearance: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.select option {
+    padding: 6px 8px;
+    color: var(--nord4);
+    background-color: var(--nord1);
+}
+
+.select option:checked {
+    color: var(--nord0);
+    background-color: var(--nord8);
+}
+
+.select:hover {
+    border-color: var(--nord8);
+}
+
+.select:focus {
+    outline: none;
+    border-color: var(--nord8);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.25);
+}

@@ -1,5 +1,7 @@
+import styles from "./MultiPicker.module.css"
+
 const MultiPicker = ({
-                         options,
+                         options = [],
                          selectedValues = [],
                          onChange,
                          placeholder = "-- Select one or more options --",
@@ -18,8 +20,15 @@ const MultiPicker = ({
     };
 
     return (
-        <div className="picker-container">
-            <select multiple value={selectedValues} onChange={handleChange} size={Math.min(Math.max(options.length, 4), 10)}      >
+        <div className={styles.multiPicker}>
+            <select
+                className={styles.select}
+                multiple
+                value={selectedValues}
+                onChange={handleChange}
+                size={Math.min(Math.max(options.length, 4), 10)}
+                aria-label={placeholder}
+            >
                 {options.length === 0 ? (
                     <option value="">No options available</option>
                 ) : (
