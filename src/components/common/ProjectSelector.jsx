@@ -24,7 +24,7 @@ export default function ProjectSelector({wakaProjects, hackaProjects, allProject
         <MultiPicker
             options={allProjects || []}
             selectedValues={selectedProjects}
-            onChange={setSelectedProjects}
+            onChange={handleChange}
         />
     )
 }
