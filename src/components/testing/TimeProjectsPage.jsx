@@ -6,13 +6,13 @@ import {
 } from "../../api/timetracking.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import { extractHackaProjects, extractWakaProjects } from "../../helperFunctions.js";
-import MultiPicker from "../common/MultiPicker.jsx";
+import ProjectSelector from "../common/ProjectSelector.jsx";
 
 export default function TimeProjectsPage() {
     const [wakaProjects, setWakaProjects] = useState(null);
     const [hackaProjects, setHackaProjects] = useState(null);
     const [allProjects, setAllProjects] = useState(null);
-    const [selectedProjects, setSelectedProjects] = useState([]);
+    const [request, setRequest] = useState({time_tracking_projects: []})
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -48,37 +48,16 @@ export default function TimeProjectsPage() {
     if (loading) return <LoadingSpinner />;
     if (error) return <p>{error}</p>;
 
-    const getProvider = (projectName) => {
-        if (Array.isArray(wakaProjects) && wakaProjects.includes(projectName)) return "wakatime";
-        if (Array.isArray(hackaProjects) && hackaProjects.includes(projectName)) return "hackatime";
-        return "unknown";
-    };
-
-    const selectedRequest = {
-        time_tracking_projects: selectedProjects.map((projectName) => ({
-            name: projectName,
-            provider: getProvider(projectName),
-        })),
-    };
-
     return (
         <div>
             <h1>All Projects</h1>
 
             <h3>Select one or more projects</h3>
-            <MultiPicker
-                options={allProjects || []}
-                selectedValues={selectedProjects}
-                onChange={setSelectedProjects}
-            />
 
-            <p>
-                Selected:{" "}
-                {selectedProjects.length ? selectedProjects.join(", ") : "none"}
-            </p>
+            <ProjectSelector allProjects={allProjects} hackaProjects={hackaProjects} wakaProjects={wakaProjects} onRequestChange={setRequest}/>
 
             <h2>Request</h2>
-            <pre>{JSON.stringify(selectedRequest, null, 2)}</pre>
+            <pre>{JSON.stringify(request, null, 2)}</pre>
 
             <h2>All</h2>
             <pre>{JSON.stringify(allProjects, null, 2)}</pre>
