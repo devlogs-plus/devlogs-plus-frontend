@@ -67,3 +67,10 @@ export async function getArrayOfAllProjects() {
     }
     return [...all_projects]
 }
+
+export async function modifyLinkedTimeProjects(projects, projectId) {
+    return apiFetch(`/projects/${projectId}/time`, {
+        method: 'DELETE',
+        body: JSON.stringify(projects)
+    })
+}
