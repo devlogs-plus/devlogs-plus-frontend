@@ -13,8 +13,8 @@ import BackButton from "../common/BackButton.jsx";
 import ProjectSelector from "../common/ProjectSelector.jsx";
 import {Button} from "../common/Button.jsx";
 
-export default function HackatimeEdit() {
-    const {id: projectId} = useParams()
+export default function HackatimeEdit({onUpdated}) {
+    const {projectId} = useParams()
     const {user} = useAuth()
     const currentUserId = user?.id
     const [wakaProjects, setWakaProjects] = useState(null)
