@@ -7,6 +7,7 @@ import {
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import { extractHackaProjects, extractWakaProjects } from "../../helperFunctions.js";
 import ProjectSelector from "../common/ProjectSelector.jsx";
+import BackButton from "../common/BackButton.jsx";
 
 export default function TimeProjectsPage() {
     const [wakaProjects, setWakaProjects] = useState(null);
@@ -51,6 +52,7 @@ export default function TimeProjectsPage() {
     return (
         <div>
             <h1>All Projects</h1>
+            <BackButton/>
 
             <h3>Select one or more projects</h3>
 

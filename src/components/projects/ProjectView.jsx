@@ -69,6 +69,9 @@ export function ProjectView() {
                     <Link to={`/projects/${projectId}/timetracking`}>
                         <Button>Add Time Tracking Projects</Button>
                     </Link>
+                    <Link to={`/projects/${projectId}/timeprojects`}>
+                        <Button>View Connected Time Tracking Projects</Button>
+                    </Link>
                 </>
             )}
             <h2>Devlogs</h2>
