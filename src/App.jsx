@@ -28,7 +28,7 @@ import {PasswordChangePage} from "./components/auth/PasswordChangePage.jsx";
 import {RequestResetEmailForm} from "./components/auth/RequestResetEmailForm.jsx";
 import {ResetPasswordForm} from "./components/auth/ResetPasswordForm.jsx";
 import TimeProjectsPage from "./components/testing/TimeProjectsPage.jsx";
-import HackatimeEdit from "./components/projects/HackatimeEdit.jsx";
+import TimeProjectsEdit from "./components/timetracking/TimeProjectsEdit.jsx";
 export default function App() {
     return (
         <>
@@ -56,7 +56,7 @@ export default function App() {
                     <Route path="/me/delete" element={<DeleteSelfPage/>}/>
                     <Route path="/me/changepassword" element={<PasswordChangePage/>}/>
                     <Route path="/testing/time" element={<TimeProjectsPage/>}/>
-                    <Route path="/projects/:projectId/timetracking" element={<HackatimeEdit/>}/>
+                    <Route path="/projects/:projectId/timetracking" element={<TimeProjectsEdit/>}/>
                 </Route>
                 <Route path="/user/:userId" element={<UserPage/>}/>
                 <Route path="/auth/github/callback" element={<GithubCallback/>}/>
