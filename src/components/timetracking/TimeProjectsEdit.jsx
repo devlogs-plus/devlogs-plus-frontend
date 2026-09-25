@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import useModifyTimeProjects from "../../hooks/timetracking/useModifyTimeProjects.js";
 import usePageTitle from "../../hooks/other/usePageTitle.js";
 import {getSingleProject} from "../../api/projects.js";
-import {getArrayOfAllProjects, getHackaProjects, getWakaProjects} from "../../api/timetracking.js";
+import {getHackaProjects, getWakaProjects} from "../../api/timetracking.js";
 import {extractHackaProjects, extractWakaProjects} from "../../helperFunctions.js";
 import {parseApiError} from "../../api/client.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
@@ -17,9 +17,9 @@ export default function TimeProjectsEdit({onUpdated}) {
     const {projectId} = useParams()
     const {user} = useAuth()
     const currentUserId = user?.id
-    const [wakaProjects, setWakaProjects] = useState(null)
-    const [hackaProjects, setHackaProjects] = useState(null)
-    const [allProjects, setAllProjects] = useState(null)
+    const [wakaProjects, setWakaProjects] = useState([])
+    const [hackaProjects, setHackaProjects] = useState([])
+    const [allProjects, setAllProjects] = useState([])
     const [request, setRequest] = useState({time_tracking_projects: []})
     const [projectName, setProjectName] = useState(null)
     const [ownerId, setOwnerId] = useState(null)
@@ -28,6 +28,7 @@ export default function TimeProjectsEdit({onUpdated}) {
     const [fieldErrors, setFieldErrors] = useState({})
     const [successMessage, setSuccessMessage] = useState(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [providerWarnings, setProviderWarnings] = useState([])
     const modifyTimeProjectsMutation = useModifyTimeProjects()
     usePageTitle(projectName ? `Edit time projects for ${projectName}` : "Edit time projects")
 
@@ -43,22 +44,39 @@ export default function TimeProjectsEdit({onUpdated}) {
                 setLoading(true)
                 setGeneralError(null)
 
-                const [project, waka, hacka, allProjectsList] = await Promise.all([
-                    getSingleProject(projectId),
-                    getWakaProjects(),
-                    getHackaProjects(),
-                    getArrayOfAllProjects()
-                ])
+                const project = await getSingleProject(projectId)
                 if (!mounted) return
 
                 setProjectName(project.name ?? "")
                 setOwnerId(project.owner_user_id)
                 setRequest({
-                    time_tracking_projects: project.time_tracking_projects?? []
+                    time_tracking_projects: project.time_tracking_projects ?? []
                 })
-                setWakaProjects(extractWakaProjects(waka))
-                setHackaProjects(extractHackaProjects(hacka))
-                setAllProjects(allProjectsList)
+
+                const warnings = []
+
+                let waka = []
+                try {
+                    waka = extractWakaProjects(await getWakaProjects())
+                } catch (err) {
+                    console.warn(err)
+                    warnings.push("Wakatime account is not connected.")
+                }
+
+                let hacka = []
+                try {
+                    hacka = extractHackaProjects(await getHackaProjects())
+                } catch (err) {
+                    console.warn(err)
+                    warnings.push("Hackatime account is not connected.")
+                }
+
+                if (!mounted) return
+
+                setWakaProjects(waka)
+                setHackaProjects(hacka)
+                setAllProjects([...waka, ...hacka])
+                setProviderWarnings(warnings)
             } catch (err) {
                 if (!mounted) return
                 setGeneralError(String(err.message ?? err))
@@ -66,11 +84,12 @@ export default function TimeProjectsEdit({onUpdated}) {
                 if (mounted) setLoading(false)
             }
         }
+
         loadData()
         return () => {
             mounted = false
         }
-    }, [projectId]);
+    }, [projectId])
 
     async function editTimeProjects() {
         setGeneralError(null)
@@ -78,9 +97,24 @@ export default function TimeProjectsEdit({onUpdated}) {
         setSuccessMessage(null)
         setIsSubmitting(true)
 
+        const timeTrackingProjectNames = request.time_tracking_projects
+            .map((project) => typeof project === "string" ? project : project.name)
+            .filter((name) => typeof name === "string" && name.trim())
+
+        if (timeTrackingProjectNames.length === 0) {
+            setGeneralError("Select at least one time tracking project.")
+            setIsSubmitting(false)
+            return
+        }
+
         try {
-            const updated = await modifyTimeProjectsMutation.mutateAsync({projectId, projects: request})
-            setSuccessMessage('Connect projects updated.')
+            const updated = await modifyTimeProjectsMutation.mutateAsync({
+                projectId,
+                projects: {
+                    time_tracking_project_names: timeTrackingProjectNames
+                }
+            })
+            setSuccessMessage('Connected projects updated.')
             if (typeof onUpdated === "function") onUpdated(updated)
         } catch (err) {
             const parsed = parseApiError(err)
@@ -92,7 +126,7 @@ export default function TimeProjectsEdit({onUpdated}) {
     }
 
     if (loading) return <LoadingSpinner/>
-    if (ownerId !== currentUserId) return <UnauthorizedRoute/>
+    if (String(ownerId) !== String(currentUserId)) return <UnauthorizedRoute/>
 
     return (
         <div>
@@ -100,23 +134,33 @@ export default function TimeProjectsEdit({onUpdated}) {
             <h2>Edit Connected Time Tracking Projects</h2>
             {projectName && <p>Editing linked Hackatime/Wakatime projects for {projectName}</p>}
 
+            {providerWarnings.map((warning) => (
+                <p className="error" key={warning}>{warning}</p>
+            ))}
+
             {generalError && <p className="error">{generalError}</p> }
             {successMessage && <p className="success">{successMessage}</p>}
 
-            <h3>Select one or more projects</h3>
-            <ProjectSelector
-                allProjects={allProjects}
-                hackaProjects={hackaProjects}
-                wakaProjects={wakaProjects}
-                onRequestChange={setRequest}
-            />
-            {fieldErrors.time_tracking_projects && (
-                <p className="error">{fieldErrors.time_tracking_projects}</p>
-            )}
+            {allProjects.length === 0 ? (
+                <p>Connect a Wakatime or Hackatime account to select time tracking projects.</p>
+            ) : (
+                <>
+                    <h3>Select one or more projects</h3>
+                    <ProjectSelector
+                        allProjects={allProjects}
+                        hackaProjects={hackaProjects}
+                        wakaProjects={wakaProjects}
+                        onRequestChange={setRequest}
+                    />
+                    {fieldErrors.time_tracking_projects && (
+                        <p className="error">{fieldErrors.time_tracking_projects}</p>
+                    )}
 
-            <Button id="editTimeProjectsButton" onClick={editTimeProjects} disabled={isSubmitting}>
-                {isSubmitting ? "Saving.." : "Save"}
-            </Button>
+                    <Button id="editTimeProjectsButton" onClick={editTimeProjects} disabled={isSubmitting}>
+                        {isSubmitting ? "Saving.." : "Save"}
+                    </Button>
+                </>
+            )}
         </div>
     )
 }
