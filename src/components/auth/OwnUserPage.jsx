@@ -11,6 +11,7 @@ import {
 import {useEffect, useState} from "react";
 import WakatimeButton from "../common/button/WakatimeButton.jsx";
 import HackatimeButton from "../common/button/HackatimeButton.jsx";
+import ViewOwnProjects from "./ViewOwnProjects.jsx";
 
 export function OwnUserPage() {
     const {user, isLoading} = useAuth()
@@ -66,6 +67,8 @@ export function OwnUserPage() {
             <Link to="/me/edit"><Button>Edit</Button></Link>
             <Link to="/me/delete"><Button>Delete Account</Button></Link>
             <Link to="/me/changepassword"><Button>Change Password</Button></Link>
+            <h3>Your Projects</h3>
+            <ViewOwnProjects/>
         </div>
     )
 }
