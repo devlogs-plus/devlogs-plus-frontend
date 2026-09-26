@@ -174,7 +174,6 @@ export default function TimeProjectsEdit({onUpdated}) {
                         wakaProjects={wakaProjects}
                         onRequestChange={setRequest}
                     />
-                    <pre>{JSON.stringify(request, null, 2)}</pre>
                     {fieldErrors.time_tracking_projects && (
                         <p className="error">{fieldErrors.time_tracking_projects}</p>
                     )}
