@@ -41,3 +41,14 @@ export function extractHackaProjects(projects) {
     const items = Array.isArray(projects) ? projects : projects?.projects ?? []
     return items.map(p => p?.name).filter(n => typeof n === "string" && n.trim().length > 0)
 }
+
+export function makeSecondsReadable(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+
+    let result = [];
+    if (hours > 0) result.push(`${hours}hrs`);
+    if (minutes > 0 || hours === 0) result.push(`${minutes}mins`);
+
+    return result.join(' ');
+}
