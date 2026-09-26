@@ -74,3 +74,9 @@ export async function modifyLinkedTimeProjects(projects, projectId) {
         body: JSON.stringify(projects)
     })
 }
+
+export async function getProjectSecondsSpent(projectId) {
+    return apiFetch(`/projects/${projectId}/seconds-spent`, {
+        method: 'GET'
+    })
+}
