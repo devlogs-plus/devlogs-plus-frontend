@@ -91,17 +91,37 @@ export default function TimeProjectsEdit({onUpdated}) {
         }
     }, [projectId])
 
+    // ... existing code ...
+
     async function editTimeProjects() {
         setGeneralError(null)
         setFieldErrors({})
         setSuccessMessage(null)
         setIsSubmitting(true)
 
-        const timeTrackingProjectNames = request.time_tracking_projects
-            .map((project) => typeof project === "string" ? project : project.name)
-            .filter((name) => typeof name === "string" && name.trim())
+        const timeTrackingProjects = request.time_tracking_projects
+            .map((project) => {
+                if (typeof project !== "string") {
+                    return {
+                        name: project.name,
+                        provider: project.provider
+                    }
+                }
 
-        if (timeTrackingProjectNames.length === 0) {
+                const matchedProject = allProjects.find((availableProject) => availableProject.name === project)
+
+                return {
+                    name: project,
+                    provider: matchedProject?.provider
+                }
+            })
+            .filter((project) => {
+                const name = project?.name
+                const provider = project?.provider
+                return typeof name === "string" && name.trim() && typeof provider === "string" && provider.trim()
+            })
+
+        if (timeTrackingProjects.length === 0) {
             setGeneralError("Select at least one time tracking project.")
             setIsSubmitting(false)
             return
@@ -111,7 +131,7 @@ export default function TimeProjectsEdit({onUpdated}) {
             const updated = await modifyTimeProjectsMutation.mutateAsync({
                 projectId,
                 projects: {
-                    time_tracking_project_names: timeTrackingProjectNames
+                    time_tracking_projects: timeTrackingProjects
                 }
             })
             setSuccessMessage('Connected projects updated.')
@@ -124,6 +144,8 @@ export default function TimeProjectsEdit({onUpdated}) {
             setIsSubmitting(false)
         }
     }
+
+// ... existing code ...
 
     if (loading) return <LoadingSpinner/>
     if (String(ownerId) !== String(currentUserId)) return <UnauthorizedRoute/>
@@ -152,6 +174,7 @@ export default function TimeProjectsEdit({onUpdated}) {
                         wakaProjects={wakaProjects}
                         onRequestChange={setRequest}
                     />
+                    <pre>{JSON.stringify(request, null, 2)}</pre>
                     {fieldErrors.time_tracking_projects && (
                         <p className="error">{fieldErrors.time_tracking_projects}</p>
                     )}
