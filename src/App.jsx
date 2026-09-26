@@ -29,7 +29,7 @@ import {RequestResetEmailForm} from "./components/auth/RequestResetEmailForm.jsx
 import {ResetPasswordForm} from "./components/auth/ResetPasswordForm.jsx";
 import TimeProjectsPage from "./components/testing/TimeProjectsPage.jsx";
 import TimeProjectsEdit from "./components/timetracking/TimeProjectsEdit.jsx";
-import ConnectedTimeProjects from "./components/testing/ConnectedTimeProjects.jsx";
+import ConnectedTimeProjects from "./components/timetracking/ConnectedTimeProjects.jsx";
 export default function App() {
     return (
         <>
