@@ -80,3 +80,9 @@ export async function getProjectSecondsSpent(projectId) {
         method: 'GET'
     })
 }
+
+export async function getTimeSinceLastDevlog(projectId) {
+    return apiFetch(`/projects/${projectId}/time-since-last-devlog`, {
+        method: 'GET'
+    })
+}
