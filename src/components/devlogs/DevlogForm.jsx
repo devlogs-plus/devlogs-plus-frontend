@@ -10,11 +10,13 @@ import {useCurrentUser} from "../../hooks/auth/useAuth.js";
 import useUsersProjects from "../../hooks/projects/useUsersProjects.js";
 import LoadingSpinner from "../common/LoadingSpinner.jsx";
 import {Select} from "../common/Select.jsx";
+import useTimeSinceLastDevlog from "../../hooks/timetracking/useTimeSinceLastDevlog.js";
+import {makeSecondsReadable} from "../../helperFunctions.js";
 
-export function DevlogForm() {
+export function DevlogForm({ onCreated }) {
     const titleRef = useRef(null)
     const bodyRef = useRef(null)
-    const projectIdRef = useRef(null)
+    const [projectId, setProjectId] = useState("")
     const [generalError, setGeneralError] = useState(null)
     const [fieldErrors, setFieldErrors] = useState({})
     const [successMessage, setSuccessMessage] = useState(null)
@@ -27,6 +29,7 @@ export function DevlogForm() {
         loading: projectsLoading,
         error: projectsError
     } = useUsersProjects({}, currentUser?.id)
+    const {timeSince, isLoading: isTimeSpentLoading, error: timeSpentError, data: timeSinceData} = useTimeSinceLastDevlog(projectId)
     usePageTitle('Create a Devlog')
 
     async function createDevlog(e) {
@@ -37,12 +40,12 @@ export function DevlogForm() {
 
         const title = titleRef.current?.value?.trim() || ""
         const body = bodyRef.current?.value?.trim() || ""
-        const projectId = projectIdRef.current?.value?.trim() || ""
+        const selectedProjectId = projectId
 
         const errors = {}
         if (!title) errors.title = "Title is required"
         if (!body) errors.body_markdown = "Body is required"
-        if (!projectId) {
+        if (!selectedProjectId) {
             errors.project_id = "Please select a project"
         }
 
@@ -80,12 +83,12 @@ export function DevlogForm() {
 
         const title = titleRef.current?.value?.trim() || "";
         const body = bodyRef.current?.value?.trim() || "";
-        const projectId = projectIdRef.current?.value?.trim() || ""
+        const selectedProjectId = projectId
 
         const errors = {}
         if (!title) errors.title = "Title is required"
         if (!body) errors.body_markdown = "Body is required"
-        if (!projectId) {
+        if (!selectedProjectId) {
             errors.project_id = "Please select a project"
         }
         if (Object.keys(errors).length > 0) {
@@ -116,7 +119,7 @@ export function DevlogForm() {
     }
 
     const isLoadingProjects = isUserLoading || projectsLoading
-    if (isLoadingProjects) return <LoadingSpinner/>
+    if (isLoadingProjects || isTimeSpentLoading) return <LoadingSpinner/>
     const hasNoProjects = !isLoadingProjects && projects.length === 0
 
     return (
@@ -124,7 +127,29 @@ export function DevlogForm() {
             <h2>Create Devlog</h2>
             {generalError && <p className="error">{generalError}</p> }
             {projectsError && <p className="error">{projectsError.message || "Error loading Projects"}</p>}
+            {timeSpentError && <p className="error">{timeSpentError.message || "Error loading time spent"}</p> }
             {successMessage && <p className="success">{successMessage}</p> }
+            {(() => {
+                const extractTotal = (d) => {
+                    if (!d) return null
+                    if (typeof d === 'number') return d
+                    if (typeof d === 'object') {
+                        if (typeof d.total_time === 'number') return d.total_time
+                        if (typeof d.total_time === 'string' && /^\d+$/.test(d.total_time)) return Number(d.total_time)
+                        if (typeof d.total_seconds === 'number') return d.total_seconds
+                        if (typeof d.seconds === 'number') return d.seconds
+                        if (d.data) return extractTotal(d.data)
+                        const nums = Object.values(d).filter(v => typeof v === 'number' || (typeof v === 'string' && /^\d+$/.test(v)))
+                        if (nums.length === 1) return Number(nums[0])
+                    }
+                    return null
+                }
+
+                const total = extractTotal(timeSinceData ?? timeSince)
+                return total != null ? (
+                    <p>Time that will be added to this devlog: {makeSecondsReadable(Number(total) || 0)}</p>
+                ) : null
+            })()}
 
             <p>Title</p>
             <Input name="title" ref={titleRef}/>
@@ -135,7 +160,7 @@ export function DevlogForm() {
             {fieldErrors.body_markdown && <p className="error">{fieldErrors.body_markdown}</p>}
 
             <p>Project</p>
-            <Select name="project_id" ref={projectIdRef} disabled={isLoadingProjects || hasNoProjects || isSubmitting} defaultValue="">
+            <Select name="project_id" value={projectId} onChange={(e) => setProjectId(e.target.value)} disabled={isLoadingProjects || hasNoProjects || isSubmitting}>
                 <option value="" disabled>
                     {isLoadingProjects
                     ? "Loading projects.."
