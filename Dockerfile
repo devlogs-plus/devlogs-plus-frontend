@@ -15,6 +15,7 @@ RUN npm run build
 
 # ---- serve stage ----
 FROM nginx:alpine
+LABEL org.opencontainers.image.source="https://github.com/devlogs-plus/devlogs-plus-frontend"
 
 # Official image runs envsubst on files in /etc/nginx/templates,
 # so ${PORT} gets filled in at startup (Render sets it)
