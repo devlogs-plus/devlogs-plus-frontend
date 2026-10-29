@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: devlogs
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-devlogs-local}
+      POSTGRES_DB: devlogs
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U devlogs -d devlogs"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    image: ghcr.io/devlogs-plus/devlogs-plus-backend:latest
+    restart: unless-stopped
+    env_file:
+      - docker.env
+    environment:
+      DATABASE_URL: postgresql://devlogs:${POSTGRES_PASSWORD:-devlogs-local}@db:5432/devlogs
+      CORS_ORIGINS: http://localhost:8080
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: .
+      args:
+        VITE_API_BASE: http://localhost:8000
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+volumes:
+  pgdata:
